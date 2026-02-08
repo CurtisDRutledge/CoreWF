@@ -21,6 +21,7 @@ namespace MS.Internal.Xaml.Parser
             {
             }
 
+            [Obsolete("This API supports obsolete formatter-based serialization. It should not be called or extended by application code.")]
             protected TypeNameParserException(SerializationInfo si, StreamingContext sc) : base(si, sc)
             {
             }

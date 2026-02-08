@@ -299,7 +299,9 @@ namespace System.Xaml.Schema
 #endif
             private static object CallCtorDelegate(XamlTypeInvoker type)
             {
+#pragma warning disable SYSLIB0050 // FormatterServices is required for object initialization
                 object inst = FormatterServices.GetUninitializedObject(type._xamlType.UnderlyingType);
+#pragma warning restore SYSLIB0050
                 InvokeDelegate(type._constructorDelegate, inst);
                 return inst;
             }

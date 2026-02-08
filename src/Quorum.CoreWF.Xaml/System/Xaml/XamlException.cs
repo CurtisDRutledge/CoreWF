@@ -61,6 +61,7 @@ namespace System.Xaml
             :base(message) { }
 
         // FxCop required this.
+        [Obsolete("This API supports obsolete formatter-based serialization. It should not be called or extended by application code.")]
         protected XamlException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
@@ -75,6 +76,7 @@ namespace System.Xaml
 #if TARGETTING35SP1
 #else
 #endif
+        [Obsolete("This API supports obsolete formatter-based serialization. It should not be called or extended by application code.")]
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             if (info == null)
@@ -157,6 +159,7 @@ namespace System.Xaml
         public XamlDuplicateMemberException(string message, Exception innerException)
             : base(message, innerException) { }
 
+        [Obsolete("This API supports obsolete formatter-based serialization. It should not be called or extended by application code.")]
         protected XamlDuplicateMemberException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
@@ -171,6 +174,7 @@ namespace System.Xaml
 #if TARGETTING35SP1
 #else
 #endif
+        [Obsolete("This API supports obsolete formatter-based serialization. It should not be called or extended by application code.")]
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             if (info == null)
