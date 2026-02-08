@@ -30,6 +30,7 @@ public class SourceExpressionException : Exception, ISerializable
         _errors = errors.ToArray();
     }
 
+    [Obsolete("This API supports obsolete formatter-based serialization. It should not be called or extended by application code.")]
     protected SourceExpressionException(SerializationInfo info, StreamingContext context)
         : base(info, context)
     {
@@ -53,6 +54,7 @@ public class SourceExpressionException : Exception, ISerializable
 
     public IEnumerable<TextExpressionCompilerError> Errors => _errors ??= Array.Empty<TextExpressionCompilerError>();
 
+    [Obsolete("This API supports obsolete formatter-based serialization. It should not be called or extended by application code.")]
     public override void GetObjectData(SerializationInfo info, StreamingContext context)
     {
         if (info == null)

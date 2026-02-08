@@ -10,9 +10,13 @@ using System.Threading.Tasks;
 
 namespace System.Activities;
 
+#pragma warning disable RS1038 // Compiler extension references VB - required for multi-language support
+#pragma warning disable RS1041 // Compiler extension targets .NET 10 - intentional for this project
 [DiagnosticAnalyzer(LanguageNames.CSharp, LanguageNames.VisualBasic)]
 public sealed class UsedTypesAnalyzer : DiagnosticAnalyzer
 {
+#pragma warning restore RS1038
+#pragma warning restore RS1041
 #pragma warning disable RS2008
     private static readonly DiagnosticDescriptor _usedTypesRule = new("UT_001", "Used reference", "'{0}'", "Architecture", DiagnosticSeverity.Info, true);
 #pragma warning restore RS2008

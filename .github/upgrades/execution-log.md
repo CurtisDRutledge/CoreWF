@@ -40,3 +40,26 @@ Status: Complete
 
 Success - VB.NET scripting project upgraded to .NET 10
 
+
+## [2026-02-08 16:02] TASK-003: Upgrade Quorum.CoreWF.Runtime to .NET 10
+
+Status: Complete
+
+- **Files Modified**: 
+  - src/Quorum.CoreWF.Runtime/Quorum.CoreWF.Runtime.csproj
+  - src/Directory.Build.props (simplified for .NET 10 only)
+  - 25+ exception classes with [Obsolete] attributes added
+
+- **Code Changes**: 
+  - Updated TargetFramework from net6.0 to net10.0
+  - Added explicit ProjectReference to Quorum.CoreWF.Xaml
+  - Simplified Directory.Build.props to support only .NET 10
+  - Added [Obsolete] attributes to 20+ serialization constructors and GetObjectData methods
+  - Fixed all SYSLIB0051 warnings for formatter-based serialization
+
+- **Tests**: Build succeeded with zero warnings
+
+- **Commits**: fb4a035 - "Upgrade Quorum.CoreWF.Runtime to .NET 10"
+
+Success - Core runtime project upgraded with 25 API incompatibilities resolved
+
