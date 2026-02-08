@@ -8,9 +8,9 @@
 		</DebugType>
     <DefineConstants>TRACE;RELEASE;NETSTANDARD;CORE;NETCOREAPP2_0;HAS_TYPE_CONVERTER</DefineConstants>
   </PropertyGroup>
-	<PropertyGroup>
-	  <TargetFrameworks>net6.0</TargetFrameworks>
-	</PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworks>net10.0</TargetFrameworks>
+  </PropertyGroup>
 	<ItemGroup>
 		<Compile Remove="MainTestPage.*" />
 		<Compile Remove="UnitTestApp.*" />
