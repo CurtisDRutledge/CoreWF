@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net6.0</TargetFrameworks>
+    <TargetFrameworks>net10.0</TargetFrameworks>
 	<AssemblyName>Quorum.CoreWF.Runtime</AssemblyName>
 	<PackageId>Quorum.CoreWF.Runtime</PackageId>
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -16,6 +16,9 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Quorum.CoreWF.Xaml\Quorum.CoreWF.Xaml.csproj" PrivateAssets="All" />
   </ItemGroup>
   <ItemGroup>
     <Using Include="System.Activities.Internals" />

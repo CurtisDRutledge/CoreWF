@@ -47,6 +47,7 @@ public class InstancePersistenceException : Exception
         CommandName = commandName;
     }
 
+    [Obsolete("This API supports obsolete formatter-based serialization. It should not be called or extended by application code.")]
     protected InstancePersistenceException(SerializationInfo info, StreamingContext context)
         : base(info, context)
     {
@@ -55,6 +56,7 @@ public class InstancePersistenceException : Exception
 
     public XName CommandName { get; private set; }
 
+    [Obsolete("This API supports obsolete formatter-based serialization. It should not be called or extended by application code.")]
     public override void GetObjectData(SerializationInfo info, StreamingContext context)
     {
         base.GetObjectData(info, context);

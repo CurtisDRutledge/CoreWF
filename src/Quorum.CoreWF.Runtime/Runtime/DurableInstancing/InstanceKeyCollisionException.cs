@@ -43,6 +43,7 @@ public class InstanceKeyCollisionException : InstancePersistenceCommandException
         InstanceKey = instanceKey;
     }
 
+    [Obsolete("This API supports obsolete formatter-based serialization. It should not be called or extended by application code.")]
     protected InstanceKeyCollisionException(SerializationInfo info, StreamingContext context)
         : base(info, context)
     {
@@ -55,6 +56,7 @@ public class InstanceKeyCollisionException : InstancePersistenceCommandException
 
     public InstanceKey InstanceKey { get; private set; }
 
+    [Obsolete("This API supports obsolete formatter-based serialization. It should not be called or extended by application code.")]
     public override void GetObjectData(SerializationInfo info, StreamingContext context)
     {
         base.GetObjectData(info, context);

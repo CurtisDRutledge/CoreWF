@@ -3,9 +3,8 @@
 		<Version>6.0.0</Version>
 		<RoslynPackageVersion>4.13.0-3.24620.4</RoslynPackageVersion>
 		<WarningsAsErrors>true</WarningsAsErrors>
-		<UseWPF Condition="$(TargetFramework) == 'net6.0-windows'">true</UseWPF>
 	</PropertyGroup>
-	<ItemGroup Condition="$(AssemblyName) != 'Quorum.CoreWF.Xaml' AND $(TargetFramework) != 'net6.0-windows'">
+	<ItemGroup Condition="$(AssemblyName) != 'Quorum.CoreWF.Xaml'">
 		<ProjectReference Include="$(SolutionDir)\Quorum.CoreWF.Xaml\Quorum.CoreWF.Xaml.csproj" PrivateAssets="All" />
 	</ItemGroup>
 </Project>
