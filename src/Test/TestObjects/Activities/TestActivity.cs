@@ -39,7 +39,7 @@ namespace Test.Common.TestObjects.Activities
         public Activity ProductActivity
         {
             get { return _productActivity; }
-            protected internal set
+            protected set
             {
                 _productActivity = value;
                 GenerateDefaultDisplayName(_productActivity);
@@ -52,7 +52,7 @@ namespace Test.Common.TestObjects.Activities
             // PartialTrustExpressionHelper.ReplaceLambdasAndCompileVB(this.productActivity);
         }
 
-        internal void SetProductActivityBypassGenerateDisplayName(Activity workflowElement)
+        public void SetProductActivityBypassGenerateDisplayName(Activity workflowElement)
         {
             _productActivity = workflowElement;
         }
@@ -153,7 +153,7 @@ namespace Test.Common.TestObjects.Activities
             expected.AddIgnoreTypes(typeof(BookmarkResumptionTrace));
         }
 
-        internal Outcome GetTrace(TraceGroup traceGroup)
+        public Outcome GetTrace(TraceGroup traceGroup)
         {
             // if None add nothing to trace
             if (ExpectedOutcome.DefaultPropogationState != OutcomeState.None)
@@ -251,12 +251,12 @@ namespace Test.Common.TestObjects.Activities
             traceGroup.Steps.Add(new ActivityTrace(this.DisplayName, ActivityInstanceState.Closed));
         }
 
-        internal virtual IEnumerable<TestActivity> GetChildren()
+        public virtual IEnumerable<TestActivity> GetChildren()
         {
             return new List<TestActivity>();
         }
 
-        internal virtual void ResetForValidation()
+        public virtual void ResetForValidation()
         {
             this.iterationNumber = 0;
 
@@ -269,11 +269,11 @@ namespace Test.Common.TestObjects.Activities
             }
         }
 
-        internal virtual void GetCompensationTrace(TraceGroup traceGroup)
+        public virtual void GetCompensationTrace(TraceGroup traceGroup)
         {
             // Only activities which affect Compensation/Confirmation should override this
         }
-        internal virtual void GetConfirmationTrace(TraceGroup traceGroup)
+        public virtual void GetConfirmationTrace(TraceGroup traceGroup)
         {
             // Only activities which affect Compensation/Confirmation should override this
         }

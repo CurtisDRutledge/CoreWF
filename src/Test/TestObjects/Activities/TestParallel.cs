@@ -120,7 +120,7 @@ namespace Test.Common.TestObjects.Activities
             ProductParallel.Branches.RemoveAt(index);
         }
 
-        internal override IEnumerable<TestActivity> GetChildren()
+        public override IEnumerable<TestActivity> GetChildren()
         {
             return _branches;
         }
@@ -206,12 +206,12 @@ namespace Test.Common.TestObjects.Activities
         // Parallel needs to participate in the results building because, again, the traces
         // will be unordered
         //
-        internal override void GetCompensationTrace(TraceGroup traceGroup)
+        public override void GetCompensationTrace(TraceGroup traceGroup)
         {
             ProcessCompensationHints(this.CompensationHint, Directive.Compensate, traceGroup);
         }
 
-        internal override void GetConfirmationTrace(TraceGroup traceGroup)
+        public override void GetConfirmationTrace(TraceGroup traceGroup)
         {
             ProcessCompensationHints(this.CompensationHint, Directive.Confirm, traceGroup);
         }

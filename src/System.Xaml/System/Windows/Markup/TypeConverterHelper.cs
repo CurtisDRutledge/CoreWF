@@ -25,11 +25,11 @@ namespace System.Windows.Markup
     /// Class that provides functionality to obtain a TypeConverter from a property or the
     /// type of the property, based on logic similar to TypeDescriptor.GetConverter.
     /// </summary>
-    internal static class TypeConverterHelper
+    public static class TypeConverterHelper
     {
         private static CultureInfo invariantEnglishUS = CultureInfo.InvariantCulture;
 
-        internal static CultureInfo InvariantEnglishUS
+        public static CultureInfo InvariantEnglishUS
         {
             get
             {
@@ -38,7 +38,7 @@ namespace System.Windows.Markup
         }
 
 #if !SYSTEM_XAML
-        internal static MemberInfo GetMemberInfoForPropertyConverter(object dpOrPiOrMi)
+        public static MemberInfo GetMemberInfoForPropertyConverter(object dpOrPiOrMi)
         {
             MemberInfo memberInfo = dpOrPiOrMi as PropertyInfo;
 
@@ -95,7 +95,7 @@ namespace System.Windows.Markup
             return memberInfo;
         }
 
-        internal static Type GetConverterType(MemberInfo memberInfo)
+        static Type GetConverterType(MemberInfo memberInfo)
         {
             Debug.Assert(null != memberInfo, "Null passed for memberInfo to GetConverterType");
 
@@ -112,7 +112,7 @@ namespace System.Windows.Markup
             return converterType;
         }
 #endif
-        internal static Type GetConverterType(Type type)
+        public static Type GetConverterType(Type type)
         {
             Debug.Assert(null != type, "Null passed for type to GetConverterType");
 
@@ -158,7 +158,7 @@ namespace System.Windows.Markup
             return converterType;
         }
 #if !SYSTEM_XAML
-        internal static Type GetCoreConverterTypeFromCustomType(Type type)
+        public static Type GetCoreConverterTypeFromCustomType(Type type)
         {
             Type converterType = null;
             if (type.IsEnum)
@@ -359,7 +359,7 @@ namespace System.Windows.Markup
             return typeConverter;
         }
 
-        internal static TypeConverter GetCoreConverterFromCustomType(Type type)
+        public static TypeConverter GetCoreConverterFromCustomType(Type type)
         {
             TypeConverter typeConverter = null;
             if (type.IsEnum)
@@ -476,7 +476,7 @@ namespace System.Windows.Markup
         /// </summary>
         /// <param name="type">The target Type for which to find a TypeConverter.</param>
         /// <returns>A TypeConverter for the Type type if found. Null otherwise.</returns>
-        internal static TypeConverter GetTypeConverter(Type type)
+        public static TypeConverter GetTypeConverter(Type type)
         {
             if (type == null)
             {

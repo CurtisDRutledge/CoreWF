@@ -28,10 +28,10 @@ namespace Test.Common.TestObjects.Activities
             return new TestFlowStep { ActionActivity = activity };
         }
 
-        internal abstract Outcome GetTrace(TraceGroup traceGroup);
+        public abstract Outcome GetTrace(TraceGroup traceGroup);
         public abstract FlowNode GetProductElement();
 
         //This is needed to return the next element based on the hints (for conditional elements)
-        internal abstract TestFlowElement GetNextElement();
+        public abstract TestFlowElement GetNextElement();
     }
 }

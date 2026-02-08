@@ -45,7 +45,7 @@ namespace Test.Common.TestObjects.Activities
             return base.GetExpectedTraceUnordered();
         }
 
-        internal override System.Collections.Generic.IEnumerable<TestActivity> GetChildren()
+        public override System.Collections.Generic.IEnumerable<TestActivity> GetChildren()
         {
             foreach (TestPickBranch branch in Branches)
             {

@@ -12,7 +12,7 @@ namespace System.Xaml.Replacements
     using System.Globalization;
     using System.Reflection;
 
-    internal class UriTypeConverter : TypeConverter
+    class UriTypeConverter : TypeConverter
     {
         public UriTypeConverter()
         { 

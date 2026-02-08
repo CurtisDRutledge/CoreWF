@@ -11,7 +11,7 @@ using XAML3 = System.Windows.Markup;
 
 namespace MS.Internal.Xaml.Context
 {
-    internal enum FixupType
+    public enum FixupType
     {
         MarkupExtensionFirstRun,   // An ME that can't be run because it has pending fixups on its properties
         MarkupExtensionRerun,      // An ME that was run and returned a FixupToken
@@ -20,7 +20,7 @@ namespace MS.Internal.Xaml.Context
         UnresolvedChildren,        // An object that can't be EndInited because it has pending fixups on its properties
     };
 
-    internal class FixupTargetKeyHolder
+    public class FixupTargetKeyHolder
     {
         public FixupTargetKeyHolder(object key)
         {
@@ -30,7 +30,7 @@ namespace MS.Internal.Xaml.Context
         public object Key { get; set; }
     }
 
-    internal class FixupTarget : IAddLineInfo
+    public class FixupTarget : IAddLineInfo
     {
         /// <summary>
         /// The Property the value will be assigned into.
@@ -98,7 +98,7 @@ namespace MS.Internal.Xaml.Context
         }
     }
 
-    internal class NameFixupToken : IAddLineInfo
+    public class NameFixupToken : IAddLineInfo
     {
         List<string> _names;
         List<XAML3.INameScopeDictionary> _nameScopeDictionaryList;
@@ -170,7 +170,7 @@ namespace MS.Internal.Xaml.Context
         // For other fixup types, this property is null.
         public object ReferencedObject { get; set; }
 
-        internal object ResolveName(string name)
+        public object ResolveName(string name)
         {
             object namedObject = null;
             if (CanAssignDirectly)

@@ -9,7 +9,7 @@ using System.Xml;
 namespace MS.Internal.Xaml.Parser
 {
     [DebuggerDisplay("{NodeType}")]
-    internal class XamlScannerNode
+    class XamlScannerNode
     {
         public XamlScannerNode(IXmlLineInfo lineInfo)
         {

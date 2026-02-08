@@ -15,7 +15,7 @@ namespace MS.Internal.Xaml.Context
     // Graph of unresolved forward references, and the objects that depend on them.
     // The nodes are objects and names. The edges (NameFixupTokens) are dependencies from an object to 
     // a set of unresolved names, or from an object to another object that has unresolved dependencies.
-    internal class NameFixupGraph
+    class NameFixupGraph
     {
         // Node -> out-edges (other objects the parent is dependent on)
         Dictionary<object, FrugalObjectList<NameFixupToken>> _dependenciesByParentObject;

@@ -9,7 +9,7 @@ namespace System.Xaml
     // list of the different kinds of "built-in" type functionality
     // recognized by the XAML language system.
     [Flags]
-    internal enum BoolTypeBits
+    public enum BoolTypeBits
     {
         Constructible                       = 0x0001,
         XmlData                             = 0x0002,
@@ -28,7 +28,7 @@ namespace System.Xaml
     }
 
     [Flags]
-    internal enum BoolMemberBits
+    public enum BoolMemberBits
     {
         ReadOnly     = 0x0001,
         WriteOnly    = 0x0002,
@@ -43,7 +43,7 @@ namespace System.Xaml
     }
 
     // Use this instead of a Nullable<bool> when a single-word read is needed for thread safety
-    internal enum ThreeValuedBool : byte
+    public enum ThreeValuedBool : byte
     {
         NotSet,
         False,
@@ -52,7 +52,7 @@ namespace System.Xaml
 	
     // Thread safety: it's important that this structure remain word-sized, so that reads and
     // writes to it are atomic
-    internal struct NullableReference<T> where T : class
+    public struct NullableReference<T> where T : class
     {
         private static object s_NullSentinel = new object();
         private static object s_NotPresentSentinel = new object();

@@ -6,7 +6,7 @@ using System.Globalization;
 
 namespace MS.Internal.Xaml.Parser
 {
-    internal abstract class XamlName
+    public abstract class XamlName
     {
         public const char PlusSign = '+';
         public const char UnderScore = '_';

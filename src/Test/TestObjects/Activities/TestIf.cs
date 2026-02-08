@@ -218,7 +218,7 @@ namespace Test.Common.TestObjects.Activities
             }
         }
 
-        internal override IEnumerable<TestActivity> GetChildren()
+        public override IEnumerable<TestActivity> GetChildren()
         {
             if (this.ThenActivity != null)
             {

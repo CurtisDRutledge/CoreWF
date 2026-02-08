@@ -7,9 +7,9 @@ using System.Xaml;
 
 namespace MS.Internal.Xaml.Context
 {
-    internal abstract class XamlCommonFrame: XamlFrame
+    public abstract class XamlCommonFrame: XamlFrame
     {
-        internal Dictionary<string, string> _namespaces;
+        Dictionary<string, string> _namespaces;
 
         public Dictionary<string, string> Namespaces
         {

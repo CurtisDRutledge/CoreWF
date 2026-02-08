@@ -61,7 +61,7 @@ namespace Test.Common.TestObjects.Activities
             return Outcome.Completed;
         }
 
-        internal override TestFlowElement GetNextElement()
+        public override TestFlowElement GetNextElement()
         {
             if (_hints.Count == 0 || _hints.Count == _iterationNumber)
             {
@@ -197,7 +197,7 @@ namespace Test.Common.TestObjects.Activities
             this.caseElements.Insert(caseIndex, newElement);
         }
 
-        internal override Outcome GetTrace(TraceGroup traceGroup)
+        public override Outcome GetTrace(TraceGroup traceGroup)
         {
             return base.GetTrace<T>(traceGroup);
         }

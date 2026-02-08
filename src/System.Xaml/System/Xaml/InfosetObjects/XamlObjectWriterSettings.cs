@@ -64,7 +64,7 @@ namespace System.Xaml
         //               this value without demanding XamlLoadPermission.
         public XamlAccessLevel AccessLevel { get; set; }
 
-        internal XamlObjectWriterSettings StripDelegates()
+        public XamlObjectWriterSettings StripDelegates()
         {
             XamlObjectWriterSettings result = new XamlObjectWriterSettings(this);
             // We need better protection against leaking out these delegates

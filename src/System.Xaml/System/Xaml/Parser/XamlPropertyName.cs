@@ -6,7 +6,7 @@ using System;
 
 namespace MS.Internal.Xaml.Parser
 {
-    internal class XamlPropertyName : XamlName
+    public class XamlPropertyName : XamlName
     {
         private XamlPropertyName(XamlName owner, string prefix, string name)
             : base(name)

@@ -15,14 +15,14 @@ public class Calculation_CompiledExpressionRoot : System.Activities.XamlIntegrat
         this.rootActivity = rootActivity;
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("UiPath.Workflow", "1.0.0.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Quorum.CoreWF", "1.0.0.0")]
     [System.ComponentModel.BrowsableAttribute(false)]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public string GetLanguage() {
         return "C#";
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("UiPath.Workflow", "1.0.0.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Quorum.CoreWF", "1.0.0.0")]
     [System.ComponentModel.BrowsableAttribute(false)]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public object InvokeExpression(int expressionId, System.Collections.Generic.IList<System.Activities.LocationReference> locations, System.Activities.ActivityContext activityContext) {
@@ -96,7 +96,7 @@ public class Calculation_CompiledExpressionRoot : System.Activities.XamlIntegrat
         return null;
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("UiPath.Workflow", "1.0.0.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Quorum.CoreWF", "1.0.0.0")]
     [System.ComponentModel.BrowsableAttribute(false)]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public object InvokeExpression(int expressionId, System.Collections.Generic.IList<System.Activities.Location> locations) {
@@ -135,7 +135,7 @@ public class Calculation_CompiledExpressionRoot : System.Activities.XamlIntegrat
         return null;
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("UiPath.Workflow", "1.0.0.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Quorum.CoreWF", "1.0.0.0")]
     [System.ComponentModel.BrowsableAttribute(false)]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public bool CanExecuteExpression(string expressionText, bool isReference, System.Collections.Generic.IList<System.Activities.LocationReference> locations, out int expressionId) {
@@ -191,14 +191,14 @@ public class Calculation_CompiledExpressionRoot : System.Activities.XamlIntegrat
         return false;
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("UiPath.Workflow", "1.0.0.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Quorum.CoreWF", "1.0.0.0")]
     [System.ComponentModel.BrowsableAttribute(false)]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public System.Collections.Generic.IList<string> GetRequiredLocations(int expressionId) {
         return null;
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("UiPath.Workflow", "1.0.0.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Quorum.CoreWF", "1.0.0.0")]
     [System.ComponentModel.BrowsableAttribute(false)]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public System.Linq.Expressions.Expression GetExpressionTreeForExpression(int expressionId, System.Collections.Generic.IList<System.Activities.LocationReference> locationReferences) {
@@ -229,7 +229,7 @@ public class Calculation_CompiledExpressionRoot : System.Activities.XamlIntegrat
         return null;
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("UiPath.Workflow", "1.0.0.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Quorum.CoreWF", "1.0.0.0")]
     [System.ComponentModel.BrowsableAttribute(false)]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     private class Calculation_CompiledExpressionRoot_TypedDataContext0 : System.Activities.XamlIntegration.CompiledDataContext {
@@ -278,7 +278,7 @@ public class Calculation_CompiledExpressionRoot : System.Activities.XamlIntegrat
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("UiPath.Workflow", "1.0.0.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Quorum.CoreWF", "1.0.0.0")]
     [System.ComponentModel.BrowsableAttribute(false)]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     private class Calculation_CompiledExpressionRoot_TypedDataContext0_ForReadOnly : System.Activities.XamlIntegration.CompiledDataContext {
@@ -327,7 +327,7 @@ public class Calculation_CompiledExpressionRoot : System.Activities.XamlIntegrat
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("UiPath.Workflow", "1.0.0.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Quorum.CoreWF", "1.0.0.0")]
     [System.ComponentModel.BrowsableAttribute(false)]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     private class Calculation_CompiledExpressionRoot_TypedDataContext1 : Calculation_CompiledExpressionRoot_TypedDataContext0 {
@@ -408,7 +408,7 @@ public class Calculation_CompiledExpressionRoot : System.Activities.XamlIntegrat
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("UiPath.Workflow", "1.0.0.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Quorum.CoreWF", "1.0.0.0")]
     [System.ComponentModel.BrowsableAttribute(false)]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     private class Calculation_CompiledExpressionRoot_TypedDataContext1_ForReadOnly : Calculation_CompiledExpressionRoot_TypedDataContext0_ForReadOnly {
@@ -482,7 +482,7 @@ public class Calculation_CompiledExpressionRoot : System.Activities.XamlIntegrat
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("UiPath.Workflow", "1.0.0.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Quorum.CoreWF", "1.0.0.0")]
     [System.ComponentModel.BrowsableAttribute(false)]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     private class Calculation_CompiledExpressionRoot_TypedDataContext2 : Calculation_CompiledExpressionRoot_TypedDataContext1 {
@@ -599,7 +599,7 @@ public class Calculation_CompiledExpressionRoot : System.Activities.XamlIntegrat
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("UiPath.Workflow", "1.0.0.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Quorum.CoreWF", "1.0.0.0")]
     [System.ComponentModel.BrowsableAttribute(false)]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     private class Calculation_CompiledExpressionRoot_TypedDataContext2_ForReadOnly : Calculation_CompiledExpressionRoot_TypedDataContext1_ForReadOnly {

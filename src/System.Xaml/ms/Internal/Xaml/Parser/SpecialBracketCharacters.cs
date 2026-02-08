@@ -16,7 +16,7 @@ namespace MS.Internal.Xaml.Parser
     /// Class that provides helper functions for the parser/Xaml Reader 
     /// to process Bracket Characters specified on a Markup Extension Property
     /// </summary>
-    internal class SpecialBracketCharacters : ISupportInitialize
+    public class SpecialBracketCharacters : ISupportInitialize
     {
         private string _startChars;
         private string _endChars;
@@ -24,13 +24,13 @@ namespace MS.Internal.Xaml.Parser
         private bool _initializing;
         private StringBuilder _startCharactersStringBuilder;
         private StringBuilder _endCharactersStringBuilder;
-        
-        internal SpecialBracketCharacters()
+
+        public SpecialBracketCharacters()
         {
             BeginInit();
         }
 
-        internal SpecialBracketCharacters(IReadOnlyDictionary<char,char> attributeList)
+        public SpecialBracketCharacters(IReadOnlyDictionary<char,char> attributeList)
         {
             BeginInit();
             if (attributeList != null && attributeList.Count > 0)
@@ -39,7 +39,7 @@ namespace MS.Internal.Xaml.Parser
             }
         }
 
-        internal void AddBracketCharacters(char openingBracket, char closingBracket)
+        public void AddBracketCharacters(char openingBracket, char closingBracket)
         {
             if (_initializing)
             {
@@ -89,32 +89,32 @@ namespace MS.Internal.Xaml.Parser
             }
         }
 
-        internal bool IsSpecialCharacter(char ch)
+        public bool IsSpecialCharacter(char ch)
         {
             return _startChars.Contains(ch.ToString()) || _endChars.Contains(ch.ToString());
         }
 
-        internal bool StartsEscapeSequence(char ch)
+        public bool StartsEscapeSequence(char ch)
         {
             return _startChars.Contains(ch.ToString());
         }
 
-        internal bool EndsEscapeSequence(char ch)
+        public bool EndsEscapeSequence(char ch)
         {
             return _endChars.Contains(ch.ToString());
         }
 
-        internal bool Match(char start, char end)
+        public bool Match(char start, char end)
         {
             return _endChars.IndexOf(end.ToString()) == _startChars.IndexOf(start.ToString());
         }
 
-        internal string StartBracketCharacters
+        public string StartBracketCharacters
         {
             get { return _startChars; }
         }
 
-        internal string EndBracketCharacters
+        public string EndBracketCharacters
         {
             get { return _endChars; }
         }

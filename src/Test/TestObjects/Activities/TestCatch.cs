@@ -73,7 +73,7 @@ namespace Test.Common.TestObjects.Activities
             get { return (Catch<TException>)this.productCatch; }
         }
 
-        internal override System.Collections.Generic.IEnumerable<TestActivity> GetChildren()
+        public override System.Collections.Generic.IEnumerable<TestActivity> GetChildren()
         {
             if (_body != null)
             {

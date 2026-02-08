@@ -11,7 +11,7 @@ using MS.Internal.Xaml.Context;
 
 namespace MS.Internal.Xaml
 {
-internal class ServiceProviderContext : ITypeDescriptorContext,  // derives from IServiceProvider
+    public class ServiceProviderContext : ITypeDescriptorContext,  // derives from IServiceProvider
                                   IServiceProvider,
                                   IXamlTypeResolver,
                                   IUriContext,

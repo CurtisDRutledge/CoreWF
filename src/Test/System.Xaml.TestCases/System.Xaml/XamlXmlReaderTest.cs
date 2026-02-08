@@ -1575,7 +1575,7 @@ namespace MonoTests.System.Xaml
 
 			public List<string> RequestedTypeNames { get; } = new List<string>();
 
-			protected override XamlType GetXamlType(string xamlNamespace, string name, params XamlType[] typeArguments)
+            public override XamlType GetXamlType(string xamlNamespace, string name, params XamlType[] typeArguments)
 			{
 				RequestedTypeNames.Add(name);
 				return unknownTypeNames.Contains(name) ? null : base.GetXamlType(xamlNamespace, name, typeArguments);

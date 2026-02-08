@@ -119,9 +119,9 @@ namespace TestCases.Workflows
         [Category("Input")]
         public InArgument<string> privateMessage { get; set; }
 
-        internal Dictionary<object, string> ConstructorIdRefDictionary { get; set; }
+        Dictionary<object, string> ConstructorIdRefDictionary { get; set; }
 
-        internal Dictionary<object, string> IdRefDictionary { get; set; }
+        Dictionary<object, string> IdRefDictionary { get; set; }
 
         public LogMessage()
         {

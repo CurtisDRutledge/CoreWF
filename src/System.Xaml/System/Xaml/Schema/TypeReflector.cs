@@ -13,7 +13,7 @@ using XAML3 = System.Windows.Markup;
 
 namespace System.Xaml.Schema
 {
-    class TypeReflector : Reflector
+    public class TypeReflector : Reflector
     {
         private const XamlCollectionKind XamlCollectionKindInvalid = (XamlCollectionKind)byte.MaxValue;
 
@@ -103,7 +103,7 @@ namespace System.Xaml.Schema
             _collectionKind = XamlCollectionKindInvalid;
         }
 
-        internal static TypeReflector UnknownReflector
+        public static TypeReflector UnknownReflector
         {
             get
             {

@@ -1,6 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net6.0</TargetFrameworks>
+  </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\UiPath.Workflow\UiPath.Workflow.csproj" />
+    <ProjectReference Include="..\..\Quorum.CoreWF.Core\Quorum.CoreWF.Core.csproj" />
     <ProjectReference Include="..\CustomTestObjects\CustomTestObjects.csproj" />
     <ProjectReference Include="..\WorkflowApplicationTestExtensions\WorkflowApplicationTestExtensions.csproj" />
   </ItemGroup>

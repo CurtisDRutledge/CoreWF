@@ -568,7 +568,7 @@ namespace Test.Common.TestObjects.Activities
             traceGroup.Steps.Add(new ActivityTrace(this.DisplayName, ActivityInstanceState.Canceled));
         }
 
-        internal override IEnumerable<TestActivity> GetChildren()
+        public override IEnumerable<TestActivity> GetChildren()
         {
             List<TestFlowConditional> conditionals = new List<TestFlowConditional>();
             List<TestFlowSwitchBase> switches = new List<TestFlowSwitchBase>();
@@ -604,12 +604,12 @@ namespace Test.Common.TestObjects.Activities
         // will be unordered
         //
 
-        internal override void GetCompensationTrace(TraceGroup traceGroup)
+        public override void GetCompensationTrace(TraceGroup traceGroup)
         {
             ProcessCompensationHints(this.CompensationHint, Directive.Compensate, traceGroup);
         }
 
-        internal override void GetConfirmationTrace(TraceGroup traceGroup)
+        public override void GetConfirmationTrace(TraceGroup traceGroup)
         {
             ProcessCompensationHints(this.CompensationHint, Directive.Confirm, traceGroup);
         }

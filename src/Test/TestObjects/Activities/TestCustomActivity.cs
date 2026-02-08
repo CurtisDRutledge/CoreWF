@@ -14,7 +14,7 @@ namespace Test.Common.TestObjects.Activities
 {
     public class TestCustomActivity : TestActivity
     {
-        internal List<TestActivity> childActivities;
+        public List<TestActivity> childActivities;
         protected List<Variable> variables = new List<Variable>();
 
         // TestCustomActivityDesign createdFrom = null;
@@ -68,12 +68,12 @@ namespace Test.Common.TestObjects.Activities
         }
 
 
-        internal override IEnumerable<TestActivity> GetChildren()
+        public override IEnumerable<TestActivity> GetChildren()
         {
             return this.childActivities;
         }
 
-        internal IEnumerable<Variable> GetEnvironmentVariables()
+        public IEnumerable<Variable> GetEnvironmentVariables()
         {
             return this.variables;
         }

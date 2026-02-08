@@ -305,7 +305,7 @@ namespace System.Xaml
             return GetXamlType(xamlTypeName.Namespace, xamlTypeName.Name, typeArgs);
         }
 
-        protected internal virtual XamlType GetXamlType(string xamlNamespace, string name, params XamlType[] typeArguments)
+        public virtual XamlType GetXamlType(string xamlNamespace, string name, params XamlType[] typeArguments)
         {
             if (xamlNamespace == null)
             {
@@ -545,7 +545,7 @@ namespace System.Xaml
             return GetXamlType(type, XamlLanguage.TypeAlias(type));
         }
 
-        internal XamlType GetXamlType(Type type, string alias)
+        public XamlType GetXamlType(Type type, string alias)
         {
             if (type == null)
             {
@@ -565,7 +565,7 @@ namespace System.Xaml
         /// MarkupExtensionBracketCharactersAttribute set on them. This cache is added to a master
         /// cache which stores the BracketCharacter cache for each type.
         /// </summary>
-        internal Dictionary<string, SpecialBracketCharacters> InitBracketCharacterCacheForType(XamlType type)
+        public Dictionary<string, SpecialBracketCharacters> InitBracketCharacterCacheForType(XamlType type)
         {
             if (type == null)
             {
@@ -615,7 +615,7 @@ namespace System.Xaml
             return map.Count > 0 ? map : null;
         } 
 
-        protected internal XamlValueConverter<TConverterBase> GetValueConverter<TConverterBase>(
+        public XamlValueConverter<TConverterBase> GetValueConverter<TConverterBase>(
             Type converterType, XamlType targetType)
             where TConverterBase : class
         {
@@ -629,7 +629,7 @@ namespace System.Xaml
             return (XamlValueConverter<TConverterBase>)result;
         }
 
-        internal virtual XamlMember GetProperty(PropertyInfo pi)
+        public virtual XamlMember GetProperty(PropertyInfo pi)
         {
             var xpik = new ReferenceEqualityTuple<MemberInfo, MemberInfo>(pi, null);
             XamlMember member;
@@ -641,7 +641,7 @@ namespace System.Xaml
             return member;
         }
 
-        internal virtual XamlMember GetEvent(EventInfo ei)
+        public virtual XamlMember GetEvent(EventInfo ei)
         {
             var xpik = new ReferenceEqualityTuple<MemberInfo, MemberInfo>(ei, null);
             XamlMember member;
@@ -654,7 +654,7 @@ namespace System.Xaml
         }
 
         // Caller responsible for ensuring getter and setter not null
-        internal virtual XamlMember GetAttachableProperty(string name, MethodInfo getter, MethodInfo setter)
+        public virtual XamlMember GetAttachableProperty(string name, MethodInfo getter, MethodInfo setter)
         {
             XamlMember property;
             var xpik = new ReferenceEqualityTuple<MemberInfo, MemberInfo>(getter, setter);
@@ -666,7 +666,7 @@ namespace System.Xaml
             return property;
         }
 
-        internal virtual XamlMember GetAttachableEvent(string name, MethodInfo adder)
+        public virtual XamlMember GetAttachableEvent(string name, MethodInfo adder)
         {
             XamlMember property;
             var xpik = new ReferenceEqualityTuple<MemberInfo, MemberInfo>(adder, null);
@@ -772,7 +772,7 @@ namespace System.Xaml
             }
         }
 
-        internal bool AreInternalsVisibleTo(Assembly fromAssembly, Assembly toAssembly)
+        public bool AreInternalsVisibleTo(Assembly fromAssembly, Assembly toAssembly)
         {
             if (fromAssembly.Equals(toAssembly))
             {
@@ -906,13 +906,13 @@ namespace System.Xaml
             }
         }
 
-        internal string GetRootNamespace(Assembly asm)
+        public string GetRootNamespace(Assembly asm)
         {
             XmlNsInfo nsInfo = GetXmlNsInfo(asm);
             return nsInfo.RootNamespace;
         }
 
-        internal ReadOnlyCollection<string> GetXamlNamespaces(XamlType type)
+        public ReadOnlyCollection<string> GetXamlNamespaces(XamlType type)
         {
             Type clrType = type.UnderlyingType;
             if (clrType == null || clrType.Assembly == null)
@@ -1189,24 +1189,24 @@ namespace System.Xaml
         #region Helper Methods
 
         // Given an assembly, return the assembly short name.  We need to avoid Assembly.GetName() so we run in PartialTrust without asserting.
-        internal static string GetAssemblyShortName(Assembly assembly)
+        public static string GetAssemblyShortName(Assembly assembly)
         {
             string assemblyLongName = assembly.FullName;
             string assemblyShortName = assemblyLongName.Substring(0, assemblyLongName.IndexOf(','));
             return assemblyShortName;
         }
 
-        internal static ConcurrentDictionary<K, V> CreateDictionary<K, V>()
+        public static ConcurrentDictionary<K, V> CreateDictionary<K, V>()
         {
             return new ConcurrentDictionary<K, V>(ConcurrencyLevel, DictionaryCapacity);
         }
 
-        internal static ConcurrentDictionary<K, V> CreateDictionary<K, V>(IEqualityComparer<K> comparer)
+        public static ConcurrentDictionary<K, V> CreateDictionary<K, V>(IEqualityComparer<K> comparer)
         {
             return new ConcurrentDictionary<K, V>(ConcurrencyLevel, DictionaryCapacity, comparer);
         }
 
-        internal static V TryAdd<K, V>(ConcurrentDictionary<K, V> dictionary, K key, V value)
+        public static V TryAdd<K, V>(ConcurrentDictionary<K, V> dictionary, K key, V value)
         {
             if (dictionary.TryAdd(key, value))
             {
@@ -1218,7 +1218,7 @@ namespace System.Xaml
             }
         }
 
-        internal static V TryUpdate<K, V>(ConcurrentDictionary<K, V> dictionary, K key, V value, V comparand)
+        public static V TryUpdate<K, V>(ConcurrentDictionary<K, V> dictionary, K key, V value, V comparand)
         {
             if (dictionary.TryUpdate(key, value, comparand))
             {
@@ -1238,7 +1238,7 @@ namespace System.Xaml
         // The indexes should match _referenceAssemblies
         private AssemblyName[] _referenceAssemblyNames;
 
-        protected internal virtual Assembly OnAssemblyResolve(string assemblyName)
+        public virtual Assembly OnAssemblyResolve(string assemblyName)
         {
             if (String.IsNullOrEmpty(assemblyName))
             {

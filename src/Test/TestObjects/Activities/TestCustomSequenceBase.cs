@@ -53,7 +53,7 @@ namespace Test.Common.TestObjects.Activities
             ((CustomSequenceBase)ProductActivity).Activities.Add(item.ProductActivity);
         }
 
-        internal override IEnumerable<TestActivity> GetChildren()
+        public override IEnumerable<TestActivity> GetChildren()
         {
             return this.Activities;
         }

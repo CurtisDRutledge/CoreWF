@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\UiPath.Workflow.Runtime\UiPath.Workflow.Runtime.csproj" />
-    <ProjectReference Include="..\..\UiPath.Workflow\UiPath.Workflow.csproj" />
+    <ProjectReference Include="..\..\Quorum.CoreWF.Runtime\Quorum.CoreWF.Runtime.csproj" />
+    <ProjectReference Include="..\..\Quorum.CoreWF.Core\Quorum.CoreWF.Core.csproj" />
   </ItemGroup>
 
 </Project>

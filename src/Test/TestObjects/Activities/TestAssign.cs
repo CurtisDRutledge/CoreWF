@@ -85,7 +85,7 @@ namespace Test.Common.TestObjects.Activities
             }
         }
 
-        internal override IEnumerable<TestActivity> GetChildren()
+        public override IEnumerable<TestActivity> GetChildren()
         {
             if (_valueActivity != null && !(_valueActivity.ExpectedOutcome == Outcome.None))
                 yield return _valueActivity;

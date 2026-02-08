@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net6.0</TargetFrameworks>
+	<AssemblyName>System.Activities</AssemblyName>
+	<PackageId>Quorum.CoreWF.Runtime</PackageId>
+	<PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
+    <GeneratePackageOnBuild Condition="$(Configuration)=='Release'">true</GeneratePackageOnBuild>
+    <RepositoryType>git</RepositoryType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <NoWarn>$(NoWarn);NU5105</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="System.Activities.Internals" />
+    <Using Include="System.Collections.Generic" />
+    <Using Include="System.ComponentModel" />
+    <Using Include="System.Runtime.Serialization" />
+  </ItemGroup>
+  <ItemGroup>
+	<ProjectCapability Include="ConfigurableFileNesting" />
+	<ProjectCapability Include="ConfigurableFileNestingFeatureEnabled" />
+  </ItemGroup>
+  <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="BuildOnlySettings;ResolveReferences">
+    <ItemGroup>
+      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))" />
+    </ItemGroup>
+  </Target>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="$(Configuration)=='Release'">
+    <Exec Command="rd /S /Q %25UserProfile%25\.nuget\packages\$(MSBuildProjectName)" />
+  </Target>
+</Project>

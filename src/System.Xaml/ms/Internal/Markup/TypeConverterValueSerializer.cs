@@ -15,7 +15,7 @@ namespace MS.Internal.Serialization
     /// to and from a string. The caller of the constructor must ensure the TypeConverter supports
     /// converstion to and from string.
     /// </summary>
-    internal sealed class TypeConverterValueSerializer : ValueSerializer
+    sealed class TypeConverterValueSerializer : ValueSerializer
     {
         private TypeConverter converter;
 

@@ -14,7 +14,7 @@ namespace System.Xaml.Replacements
     /// <summary>
     /// TypeConverter for System.Type[]
     /// </summary>
-    internal class TypeListConverter : TypeConverter
+    class TypeListConverter : TypeConverter
     {
         private static readonly TypeTypeConverter typeTypeConverter = new TypeTypeConverter();
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
@@ -42,7 +42,7 @@ namespace System.Xaml.Replacements
         
     }
 
-    internal static class StringHelpers
+    static class StringHelpers
     {
         // split top level types and strip out whitespace
         public static string[] SplitTypeList(string typeList)

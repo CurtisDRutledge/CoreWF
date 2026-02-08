@@ -73,12 +73,12 @@ namespace Test.Common.TestObjects.Activities
             return _productFlowStep;
         }
 
-        internal override TestFlowElement GetNextElement()
+        public override TestFlowElement GetNextElement()
         {
             return this.NextElement;
         }
 
-        internal override Outcome GetTrace(TraceGroup traceGroup)
+        public override Outcome GetTrace(TraceGroup traceGroup)
         {
             if (_actionActivity != null)
             {

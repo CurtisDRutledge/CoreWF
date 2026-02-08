@@ -51,7 +51,7 @@ namespace System.Xaml.Schema
             return base.ConvertTo(context, culture, value, destinationType);
         }
 
-        internal static string ConvertXamlTypeToString(ITypeDescriptorContext context, XamlType xamlType)
+        public static string ConvertXamlTypeToString(ITypeDescriptorContext context, XamlType xamlType)
         {
             var prefixLookup = GetService<INamespacePrefixLookup>(context);
             if (prefixLookup == null)

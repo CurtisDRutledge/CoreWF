@@ -188,8 +188,8 @@ namespace MonoTests.System.Xaml
 			{
 				var nr = (IXamlNameResolver)context.GetService(typeof(IXamlNameResolver));
 				Assert.IsNull(nr.Resolve("random"), "nr#1");
-				//var ft = nr.GetFixupToken (new string [] {"random"}); -> causes internal error.
-				//var ft = nr.GetFixupToken (new string [] {"random"}, true); -> causes internal error
+				//var ft = nr.GetFixupToken (new string [] {"random"}); -> causes error.
+				//var ft = nr.GetFixupToken (new string [] {"random"}, true); -> causes error
 				//var ft = nr.GetFixupToken (new string [0], false);
 				//Assert.IsNotNull (ft, "nr#2");
 				ranConvertFrom = true;

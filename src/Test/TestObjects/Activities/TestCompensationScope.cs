@@ -58,7 +58,7 @@ namespace Test.Common.TestObjects.Activities
             get { return (CustomCompensationScope)this.ProductActivity; }
         }
 
-        internal override IEnumerable<TestActivity> GetChildren()
+        public override IEnumerable<TestActivity> GetChildren()
         {
             if (_body != null)
             {

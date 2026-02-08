@@ -11,18 +11,18 @@ using TypeListConverter = System.Xaml.Replacements.TypeListConverter;
 
 namespace System.Xaml.Schema
 {
-    internal class BuiltInValueConverter<TConverterBase> : XamlValueConverter<TConverterBase>
+    public class BuiltInValueConverter<TConverterBase> : XamlValueConverter<TConverterBase>
         where TConverterBase : class
     {
         private Func<TConverterBase> _factory;
 
-        internal BuiltInValueConverter(Type converterType, Func<TConverterBase> factory)
+        public BuiltInValueConverter(Type converterType, Func<TConverterBase> factory)
             :base(converterType, null)
         {
             _factory = factory;
         }
 
-        internal override bool IsPublic
+        public override bool IsPublic
         {
             get { return true; }
         }
@@ -33,7 +33,7 @@ namespace System.Xaml.Schema
         }
     }
 
-    internal static class BuiltInValueConverter
+    public static class BuiltInValueConverter
     {
         private static XamlValueConverter<TypeConverter> s_String;
         private static XamlValueConverter<TypeConverter> s_Object;
@@ -63,7 +63,7 @@ namespace System.Xaml.Schema
         private static XamlValueConverter<TypeConverter> s_Delegate;
         private static XamlValueConverter<TypeConverter> s_Uri;
 
-        internal static XamlValueConverter<TypeConverter> Int32
+        public static XamlValueConverter<TypeConverter> Int32
         {
             get
             {
@@ -75,7 +75,7 @@ namespace System.Xaml.Schema
             }
         }
 
-        internal static XamlValueConverter<TypeConverter> String
+        public static XamlValueConverter<TypeConverter> String
         {
             get
             {
@@ -87,7 +87,7 @@ namespace System.Xaml.Schema
             }
         }
 
-        internal static XamlValueConverter<TypeConverter> Object
+        public static XamlValueConverter<TypeConverter> Object
         {
             get
             {
@@ -99,7 +99,7 @@ namespace System.Xaml.Schema
             }
         }
 
-        internal static XamlValueConverter<TypeConverter> Event
+        public static XamlValueConverter<TypeConverter> Event
         {
             get
             {
@@ -111,7 +111,7 @@ namespace System.Xaml.Schema
             }
         }
 
-        internal static XamlValueConverter<TypeConverter> GetTypeConverter(Type targetType)
+        public static XamlValueConverter<TypeConverter> GetTypeConverter(Type targetType)
         {
             if (typeof(string) == targetType)
             {
@@ -340,7 +340,7 @@ namespace System.Xaml.Schema
             return null;
         }
 
-        internal static XamlValueConverter<ValueSerializer> GetValueSerializer(Type targetType)
+        public static XamlValueConverter<ValueSerializer> GetValueSerializer(Type targetType)
         {
             if (typeof(string) == targetType)
             {

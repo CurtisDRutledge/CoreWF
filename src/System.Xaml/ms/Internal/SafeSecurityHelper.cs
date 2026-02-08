@@ -42,14 +42,14 @@ namespace System.Xaml
 #error Class is being used from an unknown assembly.
 #endif
 {
-    internal static partial class SafeSecurityHelper
+    public static partial class SafeSecurityHelper
     {
 #if PRESENTATION_CORE
         ///<summary>
         /// Given a rectangle with coords in local screen coordinates.
         /// Return the rectangle in global screen coordinates.
         ///</summary>
-        internal static void TransformLocalRectToScreen(HandleRef hwnd, ref NativeMethods.RECT rcWindowCoords)
+        public static void TransformLocalRectToScreen(HandleRef hwnd, ref NativeMethods.RECT rcWindowCoords)
         {
             int retval = MS.Internal.WindowsBase.NativeMethodsSetLastError.MapWindowPoints(hwnd , new HandleRef(null, IntPtr.Zero), ref rcWindowCoords, 2);
             int win32Err = Marshal.GetLastWin32Error();
@@ -66,7 +66,7 @@ namespace System.Xaml
         /// <summary>
         ///     Given an assembly, returns the partial name of the assembly.
         /// </summary>
-        internal static string GetAssemblyPartialName(Assembly assembly)
+        public static string GetAssemblyPartialName(Assembly assembly)
         {
             AssemblyName name = new AssemblyName(assembly.FullName);
             string partialName = name.Name;
@@ -82,7 +82,7 @@ namespace System.Xaml
         ///     Get the full assembly name by combining the partial name passed in
         ///     with everything else from proto assembly.
         /// </summary>
-        internal static string GetFullAssemblyNameFromPartialName(
+        public static string GetFullAssemblyNameFromPartialName(
                                     Assembly protoAssembly,
                                     string partialName)
         {
@@ -91,7 +91,7 @@ namespace System.Xaml
             return name.FullName;
         }
 
-        internal static Point ClientToScreen(UIElement relativeTo, Point point)
+        public static Point ClientToScreen(UIElement relativeTo, Point point)
         {
             GeneralTransform transform;
             PresentationSource source = PresentationSource.CriticalFromVisual(relativeTo);
@@ -119,18 +119,18 @@ namespace System.Xaml
         // This cache is bound (gated) by the number of assemblies in the appdomain.
         // We use a callback on GC to purge out collected assemblies, so we don't grow indefinitely.
         //
-        static Dictionary<object, AssemblyName> _assemblies; // get key via GetKeyForAssembly
-        static object syncObject = new object();
-        static bool _isGCCallbackPending;
+        public static Dictionary<object, AssemblyName> _assemblies; // get key via GetKeyForAssembly
+        public static object syncObject = new object();
+        public static bool _isGCCallbackPending;
 
         // PERF: Cache delegate for CleanupCollectedAssemblies to avoid allocating it each time.
-        static readonly WaitCallback _cleanupCollectedAssemblies = CleanupCollectedAssemblies;
+        public static readonly WaitCallback _cleanupCollectedAssemblies = CleanupCollectedAssemblies;
 
         /// <summary>
         ///     This function iterates through the assemblies loaded in the current
         ///     AppDomain and finds one that has the same assembly name passed in.
         /// </summary>
-        internal static Assembly GetLoadedAssembly(AssemblyName assemblyName)
+        public static Assembly GetLoadedAssembly(AssemblyName assemblyName)
         {
             Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
@@ -156,7 +156,7 @@ namespace System.Xaml
             return null;
         }
 
-        static AssemblyName GetAssemblyName(Assembly assembly)
+        public static AssemblyName GetAssemblyName(Assembly assembly)
         {
             object key = assembly.IsDynamic ? (object)new WeakRefKey(assembly) : assembly;
             lock (syncObject)
@@ -192,7 +192,7 @@ namespace System.Xaml
         }
 
         // After a GC, clean up the weakrefs to any collected dynamic assemblies
-        static void CleanupCollectedAssemblies(object state) // dummy parameter required by WaitCallback definition
+        public static void CleanupCollectedAssemblies(object state) // dummy parameter required by WaitCallback definition
         {
             bool foundLiveDynamicAssemblies = false;
             List<object> keysToRemove = null;
@@ -245,7 +245,7 @@ namespace System.Xaml
         //
 #if !REACHFRAMEWORK
 #if PRESENTATIONFRAMEWORK || SYSTEM_XAML || PRESENTATION_CORE
-        internal
+        public
 #else
         private
 #endif
@@ -282,7 +282,7 @@ namespace System.Xaml
 
 #if PRESENTATION_CORE || PRESENTATIONFRAMEWORK
         // enum to choose between the various keys
-        internal enum KeyToRead
+        enum KeyToRead
         {
              WebBrowserDisable = 0x01 ,
              MediaAudioDisable = 0x02 ,
@@ -292,7 +292,7 @@ namespace System.Xaml
              ScriptInteropDisable = 0x10 ,
         }
 
-        internal static bool IsFeatureDisabled(KeyToRead key)
+        public static bool IsFeatureDisabled(KeyToRead key)
         {
             string regValue = null;
             bool fResult = false;
@@ -366,19 +366,19 @@ namespace System.Xaml
         ///     The wrapper works around a bug in that routine, which causes it to throw
         ///     a SecurityException in Partial Trust.
         /// </summary>
-        static internal CultureInfo GetCultureInfoByIetfLanguageTag(string languageTag)
+        public static CultureInfo GetCultureInfoByIetfLanguageTag(string languageTag)
         {
             return CultureInfo.GetCultureInfoByIetfLanguageTag(languageTag);
         }
 #endif //PRESENTATIONCORE
 
-        internal const string IMAGE = "image";
+        const string IMAGE = "image";
     }
 
 #if WINDOWS_BASE || PRESENTATION_CORE || SYSTEM_XAML
     // for use as the key to a dictionary, when the "real" key is an object
     // that we should not keep alive by a strong reference.
-    class WeakRefKey : WeakReference
+    public class WeakRefKey : WeakReference
     {
         public WeakRefKey(object target)
             :base(target)
@@ -428,7 +428,7 @@ namespace System.Xaml
     // This cleanup token will be immediately thrown away and as a result it will
     // (a couple of GCs later) make it into the finalization queue and when finalized
     // will kick off a thread-pool job that you can use to purge a weakref cache.
-    class GCNotificationToken
+    public class GCNotificationToken
     {
         WaitCallback callback;
         object state;
@@ -446,7 +446,7 @@ namespace System.Xaml
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1806:DoNotIgnoreMethodResults", Justification = "See comment above")]
-        internal static void RegisterCallback(WaitCallback callback, object state)
+        public static void RegisterCallback(WaitCallback callback, object state)
         {
             new GCNotificationToken(callback, state);
         }

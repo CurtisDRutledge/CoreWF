@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net6.0-windows</TargetFrameworks>
+    <TargetFrameworks>net6.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <Import Project="$(SolutionDir)Directory.Build.props" />
@@ -10,6 +10,6 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" PrivateAssets="All" />
-    <ProjectReference Include="..\..\UiPath.Workflow.Runtime\UiPath.Workflow.Runtime.csproj" />
+    <ProjectReference Include="..\..\Quorum.CoreWF.Runtime\Quorum.CoreWF.Runtime.csproj" />
   </ItemGroup>
 </Project>

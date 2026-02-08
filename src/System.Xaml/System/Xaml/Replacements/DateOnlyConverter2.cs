@@ -11,20 +11,20 @@ namespace System.Xaml.Replacements
     /// <summary>
     /// Provides a type converter to convert <see cref='System.DateOnly'/> objects to and from various other representations.
     /// </summary>
-    internal class DateOnlyConverter2 : TypeConverter
+    class DateOnlyConverter2 : TypeConverter
     {
         /// <summary>
         /// Gets a value indicating whether this converter can convert an object in the given source type to a <see cref='System.DateOnly'/>
         /// object using the specified context.
         /// </summary>
         /// <inheritdoc />
-        public override bool CanConvertFrom(ITypeDescriptorContext? context, Type sourceType)
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
         {
             return sourceType == typeof(string) || base.CanConvertFrom(context, sourceType);
         }
 
         /// <inheritdoc />
-        public override bool CanConvertTo(ITypeDescriptorContext? context, [NotNullWhen(true)] Type? destinationType)
+        public override bool CanConvertTo(ITypeDescriptorContext context, [NotNullWhen(true)] Type destinationType)
         {
             return destinationType == typeof(InstanceDescriptor) || base.CanConvertTo(context, destinationType);
         }
@@ -33,7 +33,7 @@ namespace System.Xaml.Replacements
         /// Converts the given value object to a <see cref='System.DateOnly'/> object.
         /// </summary>
         /// <inheritdoc />
-        public override object? ConvertFrom(ITypeDescriptorContext? context, CultureInfo? culture, object value)
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
             if (value is string text)
             {
@@ -44,11 +44,11 @@ namespace System.Xaml.Replacements
                 }
 
                 // See if we have a culture info to parse with. If so, then use it.
-                DateTimeFormatInfo? formatInfo = null;
+                DateTimeFormatInfo formatInfo = null;
 
                 if (culture != null)
                 {
-                    formatInfo = (DateTimeFormatInfo?)culture.GetFormat(typeof(DateTimeFormatInfo));
+                    formatInfo = (DateTimeFormatInfo)culture.GetFormat(typeof(DateTimeFormatInfo));
                 }
 
                 if (formatInfo != null)
@@ -68,7 +68,7 @@ namespace System.Xaml.Replacements
         /// Converts the given value object from a <see cref='System.DateOnly'/> object using the arguments.
         /// </summary>
         /// <inheritdoc />
-        public override object? ConvertTo(ITypeDescriptorContext? context, CultureInfo? culture, object? value, Type destinationType)
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
         {
             if (destinationType == typeof(string) && value is DateOnly dateOnly)
             {

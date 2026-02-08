@@ -68,7 +68,7 @@ namespace System.Xaml
         {
         }
 
-        internal XamlType(string alias, Type underlyingType, XamlSchemaContext schemaContext, XamlTypeInvoker invoker, TypeReflector reflector)
+        public XamlType(string alias, Type underlyingType, XamlSchemaContext schemaContext, XamlTypeInvoker invoker, TypeReflector reflector)
         {
             if (underlyingType == null)
             {
@@ -171,7 +171,7 @@ namespace System.Xaml
         /// <summary>
         /// Accesses UnderlyingType without initializing it
         /// </summary>
-        internal NullableReference<Type> UnderlyingTypeInternal
+        public NullableReference<Type> UnderlyingTypeInternal
         {
             get { return _underlyingType; }
         }
@@ -477,8 +477,8 @@ namespace System.Xaml
             AppendTypeName(sb, false);
             return sb.ToString();
         }
-        
-        internal bool IsUsableAsReadOnly
+
+        public bool IsUsableAsReadOnly
         {
             get
             {
@@ -489,8 +489,8 @@ namespace System.Xaml
                     IsXData;
             }
         }
-       
-        internal MethodInfo IsReadOnlyMethod
+
+        public MethodInfo IsReadOnlyMethod
         {
             get
             {
@@ -516,7 +516,7 @@ namespace System.Xaml
             }
         }
 
-        internal EventHandler<XamlSetMarkupExtensionEventArgs> SetMarkupExtensionHandler
+        public EventHandler<XamlSetMarkupExtensionEventArgs> SetMarkupExtensionHandler
         {
             get
             {
@@ -528,7 +528,7 @@ namespace System.Xaml
             }
         }
 
-        internal EventHandler<XamlSetTypeConverterEventArgs> SetTypeConverterHandler
+        public EventHandler<XamlSetTypeConverterEventArgs> SetTypeConverterHandler
         {
             get
             {
@@ -541,7 +541,7 @@ namespace System.Xaml
             }
         }
 
-        internal MethodInfo AddMethod
+        public MethodInfo AddMethod
         {
             get
             {
@@ -559,7 +559,7 @@ namespace System.Xaml
             }
         }
 
-        internal MethodInfo GetEnumeratorMethod
+        public MethodInfo GetEnumeratorMethod
         {
             get
             {
@@ -576,7 +576,7 @@ namespace System.Xaml
             }
         }
 
-        internal string GetQualifiedName()
+        public string GetQualifiedName()
         {
             StringBuilder sb = new StringBuilder();
             AppendTypeName(sb, true);
@@ -584,12 +584,12 @@ namespace System.Xaml
         }
 
         // Security note:
-        // Keep this internal so that people don't use it for real security decisions.
+        // Keep this public so that people don't use it for real security decisions.
         // This is only for convenience filtering, we still depend on the CLR for our real security.
         //
         // Extensibility note:
         // This is not overridable since it does not make sense in a non-CLR context.
-        internal bool IsVisibleTo(Assembly accessingAssembly)
+        public bool IsVisibleTo(Assembly accessingAssembly)
         {
             if (IsPublic)
             {
@@ -600,7 +600,7 @@ namespace System.Xaml
                 TypeReflector.IsVisibleTo(underlyingType, accessingAssembly, SchemaContext);
         }
 
-        internal ICollection<XamlMember> GetAllExcludedReadOnlyMembers()
+        public ICollection<XamlMember> GetAllExcludedReadOnlyMembers()
         {
             EnsureReflector();
             if (_reflector.ExcludedReadOnlyMembers == null)
@@ -611,8 +611,8 @@ namespace System.Xaml
         }
 
         // If a type is public, returns only its public constructors. Otherwise, returns its
-        // public and internal constructors.
-        internal IEnumerable<ConstructorInfo> GetConstructors()
+        // public and public constructors.
+        public IEnumerable<ConstructorInfo> GetConstructors()
         {
             if (UnderlyingType == null)
             {
@@ -626,7 +626,7 @@ namespace System.Xaml
         }
 
         // Looks up a ctor overload from the set provided by GetConstructors.
-        internal ConstructorInfo GetConstructor(Type[] paramTypes)
+        public ConstructorInfo GetConstructor(Type[] paramTypes)
         {
             if (UnderlyingType == null)
             {
@@ -1458,7 +1458,7 @@ namespace System.Xaml
             }
         }
 
-        internal static ReadOnlyCollection<T> GetReadOnly<T>(IList<T> list)
+        public static ReadOnlyCollection<T> GetReadOnly<T>(IList<T> list)
         {
             if (list == null)
             {
@@ -1818,7 +1818,7 @@ namespace System.Xaml
 
         #endregion
 
-        internal static class EmptyList<T>
+        public static class EmptyList<T>
         {
             public static readonly ReadOnlyCollection<T> Value =
                 new ReadOnlyCollection<T>(Array.Empty<T>());

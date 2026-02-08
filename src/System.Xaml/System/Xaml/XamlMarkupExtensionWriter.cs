@@ -615,7 +615,7 @@ namespace System.Xaml
         }
     }
 
-    internal class XamlMarkupExtensionWriterSettings
+    class XamlMarkupExtensionWriterSettings
     {
         public bool ContinueWritingWhenPrefixIsNotFound
         {

@@ -4,7 +4,7 @@
 
 namespace MS.Internal.Xaml.Parser
 {
-    internal enum ScannerNodeType
+    enum ScannerNodeType
     {
         NONE,
         ELEMENT,
@@ -18,7 +18,7 @@ namespace MS.Internal.Xaml.Parser
         ENDTAG
     };
 
-    internal enum ScannerAttributeKind
+    enum ScannerAttributeKind
     {
         Namespace,
         CtorDirective,

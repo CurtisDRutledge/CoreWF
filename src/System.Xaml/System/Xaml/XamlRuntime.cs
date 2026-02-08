@@ -12,12 +12,12 @@ using System.Xaml.Schema;
 
 namespace MS.Internal.Xaml.Runtime
 {
-    internal interface IAddLineInfo
+    public interface IAddLineInfo
     {
         XamlException WithLineInfo(XamlException ex);
     }
 
-    internal abstract class XamlRuntime
+    public abstract class XamlRuntime
     {
         abstract public IAddLineInfo LineInfo { get; set; }
 

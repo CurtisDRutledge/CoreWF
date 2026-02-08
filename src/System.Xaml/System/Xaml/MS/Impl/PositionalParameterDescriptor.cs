@@ -4,7 +4,7 @@
 
 namespace System.Xaml.MS.Impl
 {
-    internal class PositionalParameterDescriptor
+    class PositionalParameterDescriptor
     {
         public object Value { get; set; }
         public bool WasText { get; set; }

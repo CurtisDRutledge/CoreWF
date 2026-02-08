@@ -77,7 +77,7 @@ namespace Test.Common.TestObjects.Activities
             this.ProductTryCatchFinally.Catches.Add(item.NonGenericProductCatch);
         }
 
-        internal override IEnumerable<TestActivity> GetChildren()
+        public override IEnumerable<TestActivity> GetChildren()
         {
             if (this.Try != null)
             {

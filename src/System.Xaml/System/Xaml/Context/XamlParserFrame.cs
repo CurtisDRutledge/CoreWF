@@ -9,7 +9,7 @@ using MS.Internal.Xaml.Parser;
 
 namespace MS.Internal.Xaml.Context
 {
-    internal class XamlParserFrame: XamlCommonFrame
+    class XamlParserFrame: XamlCommonFrame
     {
         public override void Reset()
         {

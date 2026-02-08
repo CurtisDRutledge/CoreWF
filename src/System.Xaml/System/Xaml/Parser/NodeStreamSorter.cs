@@ -13,7 +13,7 @@ using MS.Internal.Xaml.Parser;
 
 namespace MS.Internal.Xaml
 {
-    internal class NodeStreamSorter: IEnumerator<XamlNode>
+    class NodeStreamSorter: IEnumerator<XamlNode>
     {
         XamlParserContext _context;
         XamlXmlReaderSettings _settings;

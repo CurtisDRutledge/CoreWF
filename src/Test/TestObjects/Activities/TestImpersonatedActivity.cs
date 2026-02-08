@@ -31,7 +31,7 @@ namespace Test.Common.TestObjects.Activities
             }
         }
 
-        internal override IEnumerable<TestActivity> GetChildren()
+        public override IEnumerable<TestActivity> GetChildren()
         {
             yield return _body;
         }

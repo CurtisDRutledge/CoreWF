@@ -153,13 +153,13 @@ namespace Test.Common.TestObjects.Activities
             get { return (CompensableActivity)this.ProductActivity; }
         }
 
-        internal override void ResetForValidation()
+        public override void ResetForValidation()
         {
             _currentIterationCount = 0;
             base.ResetForValidation();
         }
 
-        internal override IEnumerable<TestActivity> GetChildren()
+        public override IEnumerable<TestActivity> GetChildren()
         {
             if (_body != null)
             {
@@ -223,7 +223,7 @@ namespace Test.Common.TestObjects.Activities
             traceGroup.Steps.Add(new ActivityTrace(this.DisplayName, ActivityInstanceState.Canceled));
         }
 
-        internal override void GetConfirmationTrace(TraceGroup traceGroup)
+        public override void GetConfirmationTrace(TraceGroup traceGroup)
         {
             // This handler should only be invoked once (unless the CA is in a loop).
             _currentIterationCount++;
@@ -249,7 +249,7 @@ namespace Test.Common.TestObjects.Activities
             }
         }
 
-        internal override void GetCompensationTrace(TraceGroup traceGroup)
+        public override void GetCompensationTrace(TraceGroup traceGroup)
         {
             // This handler should only be invoked once (unless the CA is in a loop).
             _currentIterationCount++;

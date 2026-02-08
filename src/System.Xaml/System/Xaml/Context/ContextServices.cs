@@ -8,7 +8,7 @@ using System.Xaml;
 
 namespace MS.Internal.Xaml.Context
 {
-    internal static class ContextServices
+    static class ContextServices
     {
         // Used to implement IProvideValueTarget Service provider.
         public static object GetTargetProperty(ObjectWriterContext xamlContext)

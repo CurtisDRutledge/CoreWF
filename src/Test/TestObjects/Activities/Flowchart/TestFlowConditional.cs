@@ -120,7 +120,7 @@ namespace Test.Common.TestObjects.Activities
             }
         }
 
-        internal TestFlowElement TrueAction
+        public TestFlowElement TrueAction
         {
             get
             {
@@ -140,7 +140,7 @@ namespace Test.Common.TestObjects.Activities
             }
         }
 
-        internal TestFlowElement FalseAction
+        public TestFlowElement FalseAction
         {
             get
             {
@@ -160,7 +160,7 @@ namespace Test.Common.TestObjects.Activities
             }
         }
 
-        internal List<HintTrueFalse> TrueOrFalse
+        public List<HintTrueFalse> TrueOrFalse
         {
             get
             {
@@ -208,7 +208,7 @@ namespace Test.Common.TestObjects.Activities
             return CurrentTrueOrFalse;
         }
 
-        internal override Outcome GetTrace(TraceGroup traceGroup)
+        public override Outcome GetTrace(TraceGroup traceGroup)
         {
             Outcome outcome = Outcome.Completed;
 
@@ -252,7 +252,7 @@ namespace Test.Common.TestObjects.Activities
             return outcome;
         }
 
-        internal override TestFlowElement GetNextElement()
+        public override TestFlowElement GetNextElement()
         {
             if (this.CurrentTrueOrFalse == HintTrueFalse.True)
             {
@@ -287,7 +287,7 @@ namespace Test.Common.TestObjects.Activities
             return _productFlowConditional;
         }
 
-        internal void ResetIterationNumber()
+        public void ResetIterationNumber()
         {
             _iterationNumber = 0;
         }

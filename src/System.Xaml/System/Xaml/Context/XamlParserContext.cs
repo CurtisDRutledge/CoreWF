@@ -10,7 +10,7 @@ using MS.Internal.Xaml.Parser;
 
 namespace MS.Internal.Xaml.Context
 {
-    internal class XamlParserContext : XamlContext
+    class XamlParserContext : XamlContext
     {
         private XamlContextStack<XamlParserFrame> _stack;
         private Dictionary<string, string> _prescopeNamespaces;
@@ -81,7 +81,7 @@ namespace MS.Internal.Xaml.Context
             Dictionary<string, string> keys = new Dictionary<string, string>();
             while (frame.Depth > 0)
             {
-                if (frame._namespaces != null)
+                if (frame.Namespaces != null)
                 {
                     foreach (NamespaceDeclaration namespaceDeclaration in frame.GetNamespacePrefixes())
                     {
@@ -109,7 +109,7 @@ namespace MS.Internal.Xaml.Context
         }
 
         // Only pass rootObjectType if the member is being looked up on the root object
-        internal override bool IsVisible(XamlMember member, XamlType rootObjectType)
+        public override bool IsVisible(XamlMember member, XamlType rootObjectType)
         {
             if (member == null)
             {
@@ -155,7 +155,7 @@ namespace MS.Internal.Xaml.Context
             _stack.PopScope();
         }
 
-        internal void InitBracketCharacterCacheForType(XamlType extensionType)
+        public void InitBracketCharacterCacheForType(XamlType extensionType)
         {
             CurrentEscapeCharacterMapForMarkupExtension = SchemaContext.InitBracketCharacterCacheForType(extensionType);
         }
@@ -164,7 +164,7 @@ namespace MS.Internal.Xaml.Context
         /// Finds the list of parameters of the constructor with the most number
         /// of arguments.
         /// </summary>
-        internal void InitLongestConstructor(XamlType xamlType)
+        public void InitLongestConstructor(XamlType xamlType)
         {
             IEnumerable<ConstructorInfo> constructors = xamlType.GetConstructors();
             ParameterInfo[] constructorParameters = null;
@@ -194,19 +194,19 @@ namespace MS.Internal.Xaml.Context
             set { _stack.CurrentFrame.XamlType = value; }
         }
 
-        internal BracketModeParseParameters CurrentBracketModeParseParameters
+        public BracketModeParseParameters CurrentBracketModeParseParameters
         {
             get { return _stack.CurrentFrame.BracketModeParseParameters; }
             set { _stack.CurrentFrame.BracketModeParseParameters = value; }
         }
 
-        internal ParameterInfo[] CurrentLongestConstructorOfMarkupExtension
+        public ParameterInfo[] CurrentLongestConstructorOfMarkupExtension
         {
             get { return _stack.CurrentFrame.LongestConstructorOfCurrentMarkupExtensionType; }
             set { _stack.CurrentFrame.LongestConstructorOfCurrentMarkupExtensionType = value; }
         }
 
-        internal Dictionary<string, SpecialBracketCharacters> CurrentEscapeCharacterMapForMarkupExtension
+        public Dictionary<string, SpecialBracketCharacters> CurrentEscapeCharacterMapForMarkupExtension
         {
             get { return _stack.CurrentFrame.EscapeCharacterMapForMarkupExtension; }
             set { _stack.CurrentFrame.EscapeCharacterMapForMarkupExtension = value; }

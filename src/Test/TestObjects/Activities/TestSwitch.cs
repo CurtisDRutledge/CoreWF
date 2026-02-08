@@ -105,7 +105,7 @@ namespace Test.Common.TestObjects.Activities
             }
         }
 
-        override internal IEnumerable<TestActivity> GetChildren()
+        public override IEnumerable<TestActivity> GetChildren()
         {
             foreach (TestActivity act in CaseBodies)
             {

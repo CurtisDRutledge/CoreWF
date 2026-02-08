@@ -19,7 +19,7 @@ namespace MS.Internal.Serialization
     /// Stub string serializer. It exists to remove special caseing strings in a couple cases in the
     /// serialization code. It essentially states that strings are serialized as their value.
     /// </summary>
-    internal sealed class StringValueSerializer : ValueSerializer
+    sealed class StringValueSerializer : ValueSerializer
     {
         public StringValueSerializer() { }
 

@@ -14,16 +14,16 @@ using MS.Internal.WindowsBase; // FriendAccessAllowed
 namespace MS.Internal
 #endif
 {
-    #if !PBTCOMPILER && !SYSTEM_XAML
+#if !PBTCOMPILER && !SYSTEM_XAML
     [FriendAccessAllowed]
-    #endif
-    internal static class CriticalExceptions
+#endif
+    public static class CriticalExceptions
     {
         // these are all the exceptions considered critical by PreSharp
-        #if !PBTCOMPILER && !SYSTEM_XAML
+#if !PBTCOMPILER && !SYSTEM_XAML
         [FriendAccessAllowed]
-        #endif
-        internal static bool IsCriticalException(Exception ex)
+#endif
+        public static bool IsCriticalException(Exception ex)
         {
             ex = Unwrap(ex);
 
@@ -37,9 +37,9 @@ namespace MS.Internal
 
         // these are exceptions that we should treat as critical when they
         // arise during callbacks into application code
-        #if !PBTCOMPILER && !SYSTEM_XAML
+#if !PBTCOMPILER && !SYSTEM_XAML
         [FriendAccessAllowed]
-        internal static bool IsCriticalApplicationException(Exception ex)
+        public static bool IsCriticalApplicationException(Exception ex)
         {
             ex = Unwrap(ex);
 
@@ -48,12 +48,12 @@ namespace MS.Internal
                    ex is System.Threading.ThreadAbortException ||
                    ex is System.Security.SecurityException;
         }
-        #endif
+#endif
 
-        #if !PBTCOMPILER && !SYSTEM_XAML
+#if !PBTCOMPILER && !SYSTEM_XAML
         [FriendAccessAllowed]
-        #endif
-        internal static Exception Unwrap(Exception ex)
+#endif
+        public static Exception Unwrap(Exception ex)
         {
             // for certain types of exceptions, we care more about the inner
             // exception

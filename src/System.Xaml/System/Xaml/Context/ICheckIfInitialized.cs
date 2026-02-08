@@ -5,9 +5,9 @@
 namespace MS.Internal.Xaml.Context
 {
     // This interface allows ObjectWriterContext to call into ObjectWriter to get the live initialization
-    // status of an object. We direct calls through this interface to avoid breaking our internal layering
+    // status of an object. We direct calls through this interface to avoid breaking our layering
     // by having a direct reference from ObjectWriterContext to ObjectWriter.
-    internal interface ICheckIfInitialized
+    public interface ICheckIfInitialized
     {
         bool IsFullyInitialized(object obj);
     }

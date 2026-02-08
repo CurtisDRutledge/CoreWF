@@ -357,7 +357,7 @@ namespace MonoTests.System.Xaml
 		{
 			public bool Invoked { get; set; }
 
-			protected override XamlType GetXamlType(string xamlNamespace, string name, params XamlType[] typeArguments)
+            public override XamlType GetXamlType(string xamlNamespace, string name, params XamlType[] typeArguments)
 			{
 				Assert.IsNull(typeArguments);
 				Invoked = true;

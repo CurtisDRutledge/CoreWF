@@ -9,7 +9,7 @@ using System.Diagnostics;
 
 namespace MS.Internal.Xaml.Context
 {
-    abstract class XamlFrame
+    public abstract class XamlFrame
     {
         private int _depth;
         private XamlFrame _previous;

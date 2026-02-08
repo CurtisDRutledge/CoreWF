@@ -13,12 +13,12 @@ namespace System.Xaml.Replacements
     // 
     //  DateTimeConverter2
     //
-    //  This internal class simply wraps the DateTimeValueSerializer, to make it compatible with
-    //  internal code that expects a type converter.
+    //  This class simply wraps the DateTimeValueSerializer, to make it compatible with
+    //  code that expects a type converter.
     //
     //+--------------------------------------------------------------------------------------
     
-    internal class DateTimeConverter2 : TypeConverter
+    class DateTimeConverter2 : TypeConverter
     {
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
         {

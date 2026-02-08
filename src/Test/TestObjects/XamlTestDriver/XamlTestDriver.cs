@@ -334,7 +334,7 @@ namespace TestObjects.XamlTestDriver
                 //Log.TraceInternal("For official lab runs, the file will also be available on the file tab.");
                 var xamlString = GetStringFromMemoryStream(xamlStream);
                 xamlString.ShouldNotContain("System.Activities");
-                xamlString.ShouldNotContain("UiPath.Workflow");
+                xamlString.ShouldNotContain("Quorum.CoreWF");
                 File.WriteAllText(fileName, xamlString);
 
                 xamlStream.Position = 0;

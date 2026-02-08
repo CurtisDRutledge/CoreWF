@@ -12,7 +12,7 @@ using XAML3 = System.Windows.Markup;
 namespace MS.Internal.Xaml.Context
 {
     [DebuggerDisplay("{ToString()}")]
-    internal class ObjectWriterFrame : XamlCommonFrame
+    public class ObjectWriterFrame : XamlCommonFrame
     {
         private ObjectWriterFrameFlags _flags;
         private Dictionary<XamlMember, object> _preconstructionPropertyValues;

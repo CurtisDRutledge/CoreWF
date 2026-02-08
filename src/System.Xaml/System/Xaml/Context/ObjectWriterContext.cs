@@ -13,7 +13,7 @@ using XAML3 = System.Windows.Markup;
 
 namespace MS.Internal.Xaml.Context
 {
-    internal class ObjectWriterContext : XamlContext
+    public class ObjectWriterContext : XamlContext
     {
         private XamlContextStack<ObjectWriterFrame> _stack;
 
@@ -128,9 +128,9 @@ namespace MS.Internal.Xaml.Context
             protected set { base.LocalAssembly = value; }
         }
 
-        internal ICheckIfInitialized IsInitializedCallback { get; set; }
+        public ICheckIfInitialized IsInitializedCallback { get; set; }
 
-        internal bool NameResolutionComplete
+        public bool NameResolutionComplete
         {
             get { return _nameResolutionComplete; }
             set
@@ -141,7 +141,7 @@ namespace MS.Internal.Xaml.Context
             }
         }
 
-        internal XamlRuntime Runtime
+        public XamlRuntime Runtime
         {
             get
             {
@@ -156,7 +156,7 @@ namespace MS.Internal.Xaml.Context
         // The worker class implements IServiceProvider but uses the real
         // context for the implementation of the actual services.
 
-        internal Type ServiceProvider_Resolve(string qName)
+        public Type ServiceProvider_Resolve(string qName)
         {
             // As soon as we have the necessary setting on ObjectWriter, we need to start passing
             // the local assembly into the context; currently, this will only return publics.
@@ -170,36 +170,36 @@ namespace MS.Internal.Xaml.Context
             return xamlType.UnderlyingType;
         }
 
-        internal XamlType ServiceProvider_ResolveXamlType(string qName)
+        public XamlType ServiceProvider_ResolveXamlType(string qName)
         {
             return ResolveXamlType(qName, true);
         }
 
-        internal AmbientPropertyValue ServiceProvider_GetFirstAmbientValue(IEnumerable<XamlType> ceilingTypes, XamlMember[] properties)
+        public AmbientPropertyValue ServiceProvider_GetFirstAmbientValue(IEnumerable<XamlType> ceilingTypes, XamlMember[] properties)
         {
             List<AmbientPropertyValue> valueList = FindAmbientValues(ceilingTypes, /*searchLiveStackOnly*/false, /*types*/null, properties, true);
             return (valueList.Count == 0) ? null : valueList[0];
         }
 
-        internal object ServiceProvider_GetFirstAmbientValue(XamlType[] types)
+        public object ServiceProvider_GetFirstAmbientValue(XamlType[] types)
         {
             List<object> valueList = FindAmbientValues(types, true);
             return (valueList.Count == 0) ? null : valueList[0];
         }
 
-        internal IEnumerable<AmbientPropertyValue> ServiceProvider_GetAllAmbientValues(IEnumerable<XamlType> ceilingTypes, XamlMember[] properties)
+        public IEnumerable<AmbientPropertyValue> ServiceProvider_GetAllAmbientValues(IEnumerable<XamlType> ceilingTypes, XamlMember[] properties)
         {
             List<AmbientPropertyValue> valueList = FindAmbientValues(ceilingTypes, /*searchLiveStackOnly*/false, /*types*/null, properties, /*stopAfterFirst*/ false);
             return valueList;
         }
 
-        internal IEnumerable<object> ServiceProvider_GetAllAmbientValues(XamlType[] types)
+        public IEnumerable<object> ServiceProvider_GetAllAmbientValues(XamlType[] types)
         {
             List<object> valueList = FindAmbientValues(types, false);
             return valueList;
         }
 
-        internal IEnumerable<AmbientPropertyValue> ServiceProvider_GetAllAmbientValues(IEnumerable<XamlType> ceilingTypes, bool searchLiveStackOnly, IEnumerable<XamlType> types, XamlMember[] properties)
+        public IEnumerable<AmbientPropertyValue> ServiceProvider_GetAllAmbientValues(IEnumerable<XamlType> ceilingTypes, bool searchLiveStackOnly, IEnumerable<XamlType> types, XamlMember[] properties)
         {
             List<AmbientPropertyValue> valueList = FindAmbientValues(ceilingTypes, searchLiveStackOnly, types, properties, false);
             return valueList;
@@ -221,7 +221,7 @@ namespace MS.Internal.Xaml.Context
             }
         }
 
-        internal XamlObjectWriterSettings ServiceProvider_GetSettings()
+        public XamlObjectWriterSettings ServiceProvider_GetSettings()
         {
             if (_settings == null)
             {
@@ -262,7 +262,7 @@ namespace MS.Internal.Xaml.Context
 
             while (frame.Depth > 0)
             {
-                if (frame._namespaces != null)
+                if (frame.Namespaces != null)
                 {
                     foreach (NamespaceDeclaration namespaceDeclaration in frame.GetNamespacePrefixes())
                     {
@@ -286,7 +286,7 @@ namespace MS.Internal.Xaml.Context
 
         // ----- methods to support the Service Providers
 
-        internal ServiceProviderContext ServiceProviderContext    
+        public ServiceProviderContext ServiceProviderContext
         {
             get
             {
@@ -298,7 +298,7 @@ namespace MS.Internal.Xaml.Context
             }
         }
 
-        internal XamlType GetDestinationType()
+        public XamlType GetDestinationType()
         {
             ObjectWriterFrame frame = _stack.CurrentFrame;
 
@@ -1017,7 +1017,7 @@ namespace MS.Internal.Xaml.Context
             return allNamesAndValues;
         }
 
-        internal void AddNameScopeInitializationCompleteSubscriber(EventHandler handler)
+        public void AddNameScopeInitializationCompleteSubscriber(EventHandler handler)
         {
             if (_nameScopeInitializationCompleteSubscribers == null)
             {
@@ -1030,7 +1030,7 @@ namespace MS.Internal.Xaml.Context
             _nameScopeInitializationCompleteSubscribers.Add(subscriber);
         }
 
-        internal void RemoveNameScopeInitializationCompleteSubscriber(EventHandler handler)
+        public void RemoveNameScopeInitializationCompleteSubscriber(EventHandler handler)
         {
             var subscriber = _nameScopeInitializationCompleteSubscribers.Find(o => o.Handler == handler);
             if (subscriber != null)
@@ -1039,7 +1039,7 @@ namespace MS.Internal.Xaml.Context
             }
         }
 
-        internal void RaiseNameScopeInitializationCompleteEvent()
+        public void RaiseNameScopeInitializationCompleteEvent()
         {
             if (_nameScopeInitializationCompleteSubscribers != null)
             {
@@ -1052,7 +1052,7 @@ namespace MS.Internal.Xaml.Context
             }
         }
 
-        internal class NameScopeInitializationCompleteSubscriber
+        public class NameScopeInitializationCompleteSubscriber
         {
             List<XAML3.INameScopeDictionary> _nameScopeDictionaryList = new List<XAML3.INameScopeDictionary>();
 

@@ -15,7 +15,7 @@ namespace Test.Common.TestObjects.Activities
             this.ProductActivity = new ImportedChildrenWrapperActivity();
         }
 
-        internal override IEnumerable<TestActivity> GetChildren()
+        public override IEnumerable<TestActivity> GetChildren()
         {
             if (this.Body != null)
             {

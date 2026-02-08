@@ -113,7 +113,7 @@ namespace Test.Common.TestObjects.Activities.Expressions
         [DefaultValue(false)]
         public bool ExceptionInRight { get; set; }
 
-        internal override IEnumerable<TestActivity> GetChildren()
+        public override IEnumerable<TestActivity> GetChildren()
         {
             if (_leftActivity != null)
             {

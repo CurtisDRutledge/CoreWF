@@ -19,7 +19,7 @@ namespace System.Windows.Markup
             CultureInfo = cultureInfo;
         }
 
-        internal XamlSetTypeConverterEventArgs(XamlMember member, TypeConverter typeConverter, object value,
+        public XamlSetTypeConverterEventArgs(XamlMember member, TypeConverter typeConverter, object value,
             ITypeDescriptorContext serviceProvider, CultureInfo cultureInfo, object targetObject) :
             this(member, typeConverter, value, serviceProvider, cultureInfo)
         {
@@ -30,8 +30,8 @@ namespace System.Windows.Markup
         public ITypeDescriptorContext ServiceProvider { get; private set; }
         public CultureInfo CultureInfo { get; private set; }
 
-        internal object TargetObject { get; private set; }
-        internal XamlType CurrentType { get; set; }
+        public object TargetObject { get; private set; }
+        public XamlType CurrentType { get; set; }
 
         public override void CallBase()
         {

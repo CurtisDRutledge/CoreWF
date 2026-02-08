@@ -11,7 +11,7 @@ namespace System.Xaml.Replacements
     // This is a helper class used by the DateTimeConverter2 to call the DateTimeValueSerializer.
     // It provides no functionality.
 
-    internal class DateTimeValueSerializerContext : IValueSerializerContext
+    class DateTimeValueSerializerContext : IValueSerializerContext
     {
         public ValueSerializer GetValueSerializerFor(PropertyDescriptor descriptor)
         {

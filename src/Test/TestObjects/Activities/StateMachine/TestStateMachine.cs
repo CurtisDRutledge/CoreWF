@@ -57,7 +57,7 @@ namespace Test.Common.TestObjects.Activities
         private StateMachine ProductStateMachine { get { return (StateMachine)this.ProductActivity; } }
 
         // Required by TestServiceConfiguration.AddTestEndpointsToWorkflowService to get TestReceive
-        internal override IEnumerable<TestActivity> GetChildren()
+        public override IEnumerable<TestActivity> GetChildren()
         {
             List<TestActivity> children = new List<TestActivity>();
             Traverse(null, null, new Action<TestActivity>(
@@ -131,7 +131,7 @@ namespace Test.Common.TestObjects.Activities
         }
 
         // TestStateMachineState and TestTransition is not TestActivity, so override ResetForValidation for custom handling.
-        internal override void ResetForValidation()
+        public override void ResetForValidation()
         {
             Traverse(
                 new Action<TestStateMachineState>(

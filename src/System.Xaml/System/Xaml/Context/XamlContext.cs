@@ -12,7 +12,7 @@ using MS.Internal.Xaml.Parser;
 
 namespace MS.Internal.Xaml
 {
-    internal abstract class XamlContext
+    public abstract class XamlContext
     {
         private XamlSchemaContext _schemaContext;
         private Func<string, string> _resolvePrefixCachedDelegate;
@@ -213,25 +213,25 @@ namespace MS.Internal.Xaml
         abstract public IEnumerable<NamespaceDeclaration> GetNamespacePrefixes();
 
 
-        // -------------------- internal ------------------------
+        // -------------------- ------------------------
 
         private XamlType GetXamlTypeOrUnknown(XamlTypeName typeName)
         {
             return GetXamlType(typeName, true);
         }
 
-        internal XamlType GetXamlType(XamlName typeName)
+        public XamlType GetXamlType(XamlName typeName)
         {
             return GetXamlType(typeName, false);
         }
 
-        internal XamlType GetXamlType(XamlName typeName, bool returnUnknownTypesOnFailure)
+        public XamlType GetXamlType(XamlName typeName, bool returnUnknownTypesOnFailure)
         {
             XamlTypeName fullTypeName = GetXamlTypeName(typeName);
             return GetXamlType(fullTypeName, returnUnknownTypesOnFailure);
         }
 
-        internal XamlTypeName GetXamlTypeName(XamlName typeName)
+        public XamlTypeName GetXamlTypeName(XamlName typeName)
         {
             string xamlNs = ResolveXamlNameNS(typeName);
             if (xamlNs == null)
@@ -241,17 +241,17 @@ namespace MS.Internal.Xaml
             return new XamlTypeName(xamlNs, typeName.Name);
         }
 
-        internal XamlType GetXamlType(XamlTypeName typeName)
+        public XamlType GetXamlType(XamlTypeName typeName)
         {
             return GetXamlType(typeName, false, false);
         }
 
-        internal XamlType GetXamlType(XamlTypeName typeName, bool returnUnknownTypesOnFailure)
+        public XamlType GetXamlType(XamlTypeName typeName, bool returnUnknownTypesOnFailure)
         {
             return GetXamlType(typeName, returnUnknownTypesOnFailure, false);
         }
 
-        internal XamlType GetXamlType(XamlTypeName typeName, bool returnUnknownTypesOnFailure, 
+        public XamlType GetXamlType(XamlTypeName typeName, bool returnUnknownTypesOnFailure, 
             bool skipVisibilityCheck)
         {
             Debug.Assert(typeName != null, "typeName cannot be null and should have been checked before now");
@@ -276,7 +276,7 @@ namespace MS.Internal.Xaml
             return xamlType;
         }
 
-        internal Func<string, string> ResolvePrefixCachedDelegate
+        public Func<string, string> ResolvePrefixCachedDelegate
         {
             get
             {
@@ -293,7 +293,7 @@ namespace MS.Internal.Xaml
             return name.Namespace ?? FindNamespaceByPrefix(name.Prefix);
         }
 
-        internal XamlType ResolveXamlType(string qName, bool skipVisibilityCheck)
+        public XamlType ResolveXamlType(string qName, bool skipVisibilityCheck)
         {
             string error;
             XamlTypeName typeName = XamlTypeName.ParseInternal(qName, ResolvePrefixCachedDelegate, out error);
@@ -304,7 +304,7 @@ namespace MS.Internal.Xaml
             return GetXamlType(typeName, false, skipVisibilityCheck);
         }
 
-        internal XamlMember ResolveDirectiveProperty(string xamlNS, string name)
+        public XamlMember ResolveDirectiveProperty(string xamlNS, string name)
         {
             if (xamlNS != null)
             {
@@ -314,7 +314,7 @@ namespace MS.Internal.Xaml
         }
 
         // Only pass rootObjectType if the member is being looked up on the root object
-        internal virtual bool IsVisible(XamlMember member, XamlType rootObjectType)
+        public virtual bool IsVisible(XamlMember member, XamlType rootObjectType)
         {
             return true;
         }

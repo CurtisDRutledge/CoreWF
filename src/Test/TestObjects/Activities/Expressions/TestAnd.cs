@@ -88,7 +88,7 @@ namespace Test.Common.TestObjects.Activities.Expressions
             }
         }
 
-        internal override IEnumerable<TestActivity> GetChildren()
+        public override IEnumerable<TestActivity> GetChildren()
         {
             if (_leftTestActivity != null)
             {

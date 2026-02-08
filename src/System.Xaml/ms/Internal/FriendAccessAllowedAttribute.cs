@@ -2,7 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-// Description: Implementation of a FriendAccessAllowedAttribute attribute that is used to mark internal metadata
+// Description: Implementation of a FriendAccessAllowedAttribute attribute that is used to mark metadata
 //              that is allowed to be accessed from friend assemblies.
 
 using System;
@@ -41,7 +41,7 @@ namespace MS.Internal.YourAssemblyName
         AllowMultiple = false,
         Inherited = true)
     ]
-    internal sealed class FriendAccessAllowedAttribute : Attribute
+    sealed class FriendAccessAllowedAttribute : Attribute
     {
     }
 }

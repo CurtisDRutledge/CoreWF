@@ -40,14 +40,14 @@ namespace MS.Internal
 {
     [FriendAccessAllowed] // Built into Base, also used by Core and Framework.
     [Serializable]
-    internal struct SecurityCriticalDataForSet<T>
+    struct SecurityCriticalDataForSet<T>
     {
-        internal SecurityCriticalDataForSet(T value)
+        SecurityCriticalDataForSet(T value)
         { 
             _value = value; 
         }
 
-        internal T Value 
+        T Value 
         {
         #if DEBUG
             [System.Diagnostics.DebuggerStepThrough]

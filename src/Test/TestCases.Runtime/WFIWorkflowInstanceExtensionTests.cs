@@ -95,7 +95,7 @@ namespace TestCases.Runtime.WorkflowInstanceTest
         }
     }
 
-    internal class AdditionalExtensionsAdded : IWorkflowInstanceExtension
+    class AdditionalExtensionsAdded : IWorkflowInstanceExtension
     {
         private readonly Collection<object> _additionalExtensions;
 
@@ -112,13 +112,13 @@ namespace TestCases.Runtime.WorkflowInstanceTest
         void IWorkflowInstanceExtension.SetInstance(WorkflowInstanceProxy instance) { }
     }
 
-    internal class ThrowFromInterfaceMethodsBase
+    class ThrowFromInterfaceMethodsBase
     {
         public string ExceptionMessage { get; set; }
         public bool IsThrow { get; set; }
     }
 
-    internal class ThrowFromAdditionalExtensions : ThrowFromInterfaceMethodsBase, IWorkflowInstanceExtension
+    class ThrowFromAdditionalExtensions : ThrowFromInterfaceMethodsBase, IWorkflowInstanceExtension
     {
         IEnumerable<object> IWorkflowInstanceExtension.GetAdditionalExtensions()
         {
@@ -132,7 +132,7 @@ namespace TestCases.Runtime.WorkflowInstanceTest
         void IWorkflowInstanceExtension.SetInstance(WorkflowInstanceProxy instance) { }
     }
 
-    internal class ThrowFromSetInstance : ThrowFromInterfaceMethodsBase, IWorkflowInstanceExtension
+    class ThrowFromSetInstance : ThrowFromInterfaceMethodsBase, IWorkflowInstanceExtension
     {
         IEnumerable<object> IWorkflowInstanceExtension.GetAdditionalExtensions()
         {
@@ -148,7 +148,7 @@ namespace TestCases.Runtime.WorkflowInstanceTest
         }
     }
 
-    internal class CheckWorkflowPropertiesExtension : IWorkflowInstanceExtension
+    class CheckWorkflowPropertiesExtension : IWorkflowInstanceExtension
     {
         private Activity _expectedWorkflowDefinition;
         private readonly Guid _expectedWorkflowId;

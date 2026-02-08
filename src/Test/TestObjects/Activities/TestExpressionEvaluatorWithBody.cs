@@ -59,7 +59,7 @@ namespace Test.Common.TestObjects.Activities
             set { _willBodyExecute = value; }
         }
 
-        internal override IEnumerable<TestActivity> GetChildren()
+        public override IEnumerable<TestActivity> GetChildren()
         {
             if (Body != null)
             {

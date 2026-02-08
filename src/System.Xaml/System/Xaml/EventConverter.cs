@@ -8,7 +8,7 @@ using System.Xaml.Schema;
 
 namespace System.Xaml
 {
-    internal class EventConverter : TypeConverter
+    public class EventConverter : TypeConverter
     {
         // CanConvertTo and ConvertTo are not implemented here because it is not possible to convert 
         // an event/delegate to string in the general case, because 
@@ -42,7 +42,7 @@ namespace System.Xaml
             return base.ConvertFrom(context, culture, value);
         }
 
-        internal static void GetRootObjectAndDelegateType(ITypeDescriptorContext context, out object rootObject, out Type delegateType)
+        public static void GetRootObjectAndDelegateType(ITypeDescriptorContext context, out object rootObject, out Type delegateType)
         {
             rootObject = null; 
             delegateType = null;

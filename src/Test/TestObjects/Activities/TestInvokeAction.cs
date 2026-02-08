@@ -37,7 +37,7 @@ namespace Test.Common.TestObjects.Activities
             }
         }
 
-        internal override IEnumerable<TestActivity> GetChildren()
+        public override IEnumerable<TestActivity> GetChildren()
         {
             if (this.Handler != null)
             {
@@ -46,7 +46,7 @@ namespace Test.Common.TestObjects.Activities
         }
     }
 
-    internal class TestInvokeAction<T> : TestActivity
+    public class TestInvokeAction<T> : TestActivity
     {
         private InvokeAction<T> _productInvokeAction;
         private TestActivity _handler;
@@ -74,7 +74,7 @@ namespace Test.Common.TestObjects.Activities
             }
         }
 
-        internal override IEnumerable<TestActivity> GetChildren()
+        public override IEnumerable<TestActivity> GetChildren()
         {
             if (_handler != null)
             {

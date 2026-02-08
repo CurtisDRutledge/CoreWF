@@ -7,7 +7,7 @@ using MS.Internal.Xaml.Context;
 
 namespace System.Xaml
 {
-    internal enum DeferringMode
+    enum DeferringMode
     {
         Off,
         TemplateStarting,
@@ -15,7 +15,7 @@ namespace System.Xaml
         TemplateReady,
     }
 
-    internal class DeferringWriter : XamlWriter, IXamlLineInfoConsumer
+    class DeferringWriter : XamlWriter, IXamlLineInfoConsumer
     {
         DeferringMode _mode;
         bool _handled;

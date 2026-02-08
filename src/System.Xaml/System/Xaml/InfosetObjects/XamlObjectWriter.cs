@@ -63,7 +63,7 @@ namespace System.Xaml
             Initialize(schemaContext, (XamlSavedContext)null, settings);
         }
 
-        internal XamlObjectWriter(XamlSavedContext savedContext, XamlObjectWriterSettings settings)
+        public XamlObjectWriter(XamlSavedContext savedContext, XamlObjectWriterSettings settings)
         {
             if (savedContext == null)
             {
@@ -76,7 +76,7 @@ namespace System.Xaml
             Initialize(savedContext.SchemaContext, savedContext, settings);
         }
 
-        void Initialize(XamlSchemaContext schemaContext, XamlSavedContext savedContext, XamlObjectWriterSettings settings)
+        public void Initialize(XamlSchemaContext schemaContext, XamlSavedContext savedContext, XamlObjectWriterSettings settings)
         {
             _inDispose = false;
             //ObjectWriter must be passed in a non-null SchemaContext.  We check that here, since the CreateContext method

@@ -16,27 +16,27 @@ namespace System.Xaml.Schema
     // all future lookups happens via live reflection, which is unified. This logic can be removed
     // once the CLR fixes the Attribute Unification Bug.
 
-    internal abstract class Reflector
+    public abstract class Reflector
     {
         // If _attributeProvider is set, we will use it for all attribute lookups.
         // Otherwise, we will populate _attributeData with Member.GetCustomAttributesData.
         protected NullableReference<ICustomAttributeProvider> _attributeProvider;
         protected IList<CustomAttributeData> _attributeData;
 
-        internal ICustomAttributeProvider CustomAttributeProvider
+        public ICustomAttributeProvider CustomAttributeProvider
         {
             get { return _attributeProvider.Value; }
             set { _attributeProvider.Value = value; }
         }
 
-        internal void SetCustomAttributeProviderVolatile(ICustomAttributeProvider value)
+        public void SetCustomAttributeProviderVolatile(ICustomAttributeProvider value)
         {
             _attributeProvider.SetVolatile(value);
         }
 
-        internal bool CustomAttributeProviderIsSet { get { return _attributeProvider.IsSet; } }
+        public bool CustomAttributeProviderIsSet { get { return _attributeProvider.IsSet; } }
 
-        internal bool CustomAttributeProviderIsSetVolatile { get { return _attributeProvider.IsSetVolatile; } }
+        public bool CustomAttributeProviderIsSetVolatile { get { return _attributeProvider.IsSetVolatile; } }
 
         protected abstract MemberInfo Member { get; }
 

@@ -42,7 +42,7 @@ namespace Test.Common.TestObjects.Activities
             set { _compensationHint = value; }
         }
 
-        internal override IEnumerable<TestActivity> GetChildren()
+        public override IEnumerable<TestActivity> GetChildren()
         {
             if (_activity != null)
             {

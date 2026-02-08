@@ -73,7 +73,7 @@ namespace Test.Common.TestObjects.Activities
             return ((Sequence)ProductActivity).Activities.Remove(item.ProductActivity);
         }
 
-        internal override IEnumerable<TestActivity> GetChildren()
+        public override IEnumerable<TestActivity> GetChildren()
         {
             return this.Activities;
         }

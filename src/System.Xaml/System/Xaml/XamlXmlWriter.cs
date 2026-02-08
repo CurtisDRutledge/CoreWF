@@ -102,7 +102,7 @@ namespace System.Xaml
             InitializeXamlXmlWriter(xmlWriter, schemaContext, settings);
         }
 
-        void InitializeXamlXmlWriter(XmlWriter xmlWriter, XamlSchemaContext schemaContext, XamlXmlWriterSettings settings)
+        public void InitializeXamlXmlWriter(XmlWriter xmlWriter, XamlSchemaContext schemaContext, XamlXmlWriterSettings settings)
         {
             this.schemaContext = schemaContext ?? throw new ArgumentNullException(nameof(schemaContext));
 
@@ -283,7 +283,7 @@ namespace System.Xaml
             }
         }
 
-        static bool StringStartsWithCurly(string s)
+        public static bool StringStartsWithCurly(string s)
         {
             if (string.IsNullOrEmpty(s))
             {
@@ -297,7 +297,7 @@ namespace System.Xaml
         }
 
         // Implicit directives are part of the node-stream, but not the textual representation
-        internal static bool IsImplicit(XamlMember xamlMember)
+        public static bool IsImplicit(XamlMember xamlMember)
         {
             return xamlMember.IsDirective &&
                 (xamlMember == XamlLanguage.Items ||
@@ -306,7 +306,7 @@ namespace System.Xaml
                  xamlMember == XamlLanguage.UnknownContent);
         }
 
-        internal static bool HasSignificantWhitespace(string s)
+        public static bool HasSignificantWhitespace(string s)
         {
             if (string.IsNullOrEmpty(s))
             {
@@ -318,17 +318,17 @@ namespace System.Xaml
                 || ContainsWhitespaceThatIsNotSpace(s);
         }
 
-        internal static bool ContainsLeadingSpace(string s)
+        public static bool ContainsLeadingSpace(string s)
         {
             return s[0] == KnownStrings.SpaceChar;
         }
 
-        internal static bool ContainsTrailingSpace(string s)
+        public static bool ContainsTrailingSpace(string s)
         {
             return s[s.Length - 1] == KnownStrings.SpaceChar;
         }
 
-        internal static bool ContainsConsecutiveInnerSpaces(string s)
+        public static bool ContainsConsecutiveInnerSpaces(string s)
         {
             for (int i = 1; i < s.Length - 1; i++)
             {
@@ -340,7 +340,7 @@ namespace System.Xaml
             return false;
         }
 
-        internal static bool ContainsWhitespaceThatIsNotSpace(string s)
+        public static bool ContainsWhitespaceThatIsNotSpace(string s)
         {
             for (int i = 0; i < s.Length; i++)
             {
@@ -352,12 +352,12 @@ namespace System.Xaml
             return false;
         }
 
-        static void WriteXmlSpace(XamlXmlWriter writer)
+        public static void WriteXmlSpace(XamlXmlWriter writer)
         {
             writer.output.WriteAttributeString("xml", "space", "http://www.w3.org/XML/1998/namespace", "preserve");
         }
 
-        static XamlType GetContainingXamlType(XamlXmlWriter writer)
+        public static XamlType GetContainingXamlType(XamlXmlWriter writer)
         {
             Debug.Assert(writer.namespaceScopes.Peek().AllocatingNodeType == XamlNodeType.StartMember);
             Stack<Frame>.Enumerator enumerator = writer.namespaceScopes.GetEnumerator();
@@ -379,7 +379,7 @@ namespace System.Xaml
             return containingXamlType;
         }
 
-        void AssignNamespacePrefix(string ns, string prefix)
+        public void AssignNamespacePrefix(string ns, string prefix)
         {
             namespaceScopes.Peek().AssignNamespacePrefix(ns, prefix);
 
@@ -397,7 +397,7 @@ namespace System.Xaml
             }
         }
 
-        bool IsShadowed(string ns, string prefix)
+        public bool IsShadowed(string ns, string prefix)
         {
             Debug.Assert(ns != null);
             Debug.Assert(prefix != null);
@@ -420,7 +420,7 @@ namespace System.Xaml
         // Caveat: if the prefix found is shadowed (by a re-definition), FindPrefix will
         // redefine it.
         //
-        string FindPrefix(IList<string> namespaces, out string chosenNamespace)
+        public string FindPrefix(IList<string> namespaces, out string chosenNamespace)
         {
             string prefix = LookupPrefix(namespaces, out chosenNamespace);
 
@@ -445,7 +445,7 @@ namespace System.Xaml
         // the prefix is returned and the corresponding namespace is the out parameter "chosenNamespace".
         // Otherwise, the function returns null
         //
-        internal string LookupPrefix(IList<string> namespaces, out string chosenNamespace)
+        public string LookupPrefix(IList<string> namespaces, out string chosenNamespace)
         {
             string prefix;
             chosenNamespace = null;
@@ -464,7 +464,7 @@ namespace System.Xaml
             return null;
         }
 
-        bool IsPrefixEverUsedForAnotherNamespace(string prefix, string ns)
+        public bool IsPrefixEverUsedForAnotherNamespace(string prefix, string ns)
         {
             string registeredNamespace;
             return (prefixAssignmentHistory.TryGetValue(prefix, out registeredNamespace) && (ns != registeredNamespace));
@@ -475,7 +475,7 @@ namespace System.Xaml
         // Caveat: if the default prefix has never been used in the xaml document, DefinePrefix
         // chooses it.
         //
-        string DefinePrefix(string ns)
+        public string DefinePrefix(string ns)
         {
             // default namespace takes precedance if it has not been used, or has been used for the same namespace
             if (!IsPrefixEverUsedForAnotherNamespace(string.Empty, ns))
@@ -503,7 +503,7 @@ namespace System.Xaml
             return prefix;
         }
 
-        void CheckMemberForUniqueness(XamlMember property)
+        public void CheckMemberForUniqueness(XamlMember property)
         {
             // If we're not assuming the input is valid, then we need to do the checking...
             if (!settings.AssumeValidInput)
@@ -533,7 +533,7 @@ namespace System.Xaml
             }
         }
 
-        void WriteDeferredNamespaces(XamlNodeType nodeType)
+        public void WriteDeferredNamespaces(XamlNodeType nodeType)
         {
             Frame frame = namespaceScopes.Peek();
             if (frame.AllocatingNodeType != nodeType)
@@ -552,7 +552,7 @@ namespace System.Xaml
             }
         }
 
-        void WriteTypeArguments(XamlType type)
+        public void WriteTypeArguments(XamlType type)
         {
             if (TypeArgumentsContainNamespaceThatNeedsDefinition(type))
             {
@@ -564,7 +564,7 @@ namespace System.Xaml
             WriteEndMember();
         }
 
-        void WriteUndefinedNamespaces(XamlType type)
+        public void WriteUndefinedNamespaces(XamlType type)
         {
             string chosenNamespace;
             var namespaces = type.GetXamlNamespaces();
@@ -591,7 +591,7 @@ namespace System.Xaml
             }
         }
 
-        bool TypeArgumentsContainNamespaceThatNeedsDefinition(XamlType type)
+        public bool TypeArgumentsContainNamespaceThatNeedsDefinition(XamlType type)
         {
             string chosenNamespace;
             string prefix = LookupPrefix(type.GetXamlNamespaces(), out chosenNamespace);
@@ -618,7 +618,7 @@ namespace System.Xaml
             return false;
         }
 
-        string BuildTypeArgumentsString(IList<XamlType> typeArguments)
+        public string BuildTypeArgumentsString(IList<XamlType> typeArguments)
         {
             var builder = new StringBuilder();
             foreach (XamlType type in typeArguments)
@@ -634,14 +634,14 @@ namespace System.Xaml
             return builder.ToString();
         }
 
-        string ConvertXamlTypeToString(XamlType typeArgument)
+        public string ConvertXamlTypeToString(XamlType typeArgument)
         {
             var builder = new StringBuilder();
             ConvertXamlTypeToStringHelper(typeArgument, builder);
             return builder.ToString();
         }
 
-        void ConvertXamlTypeToStringHelper(XamlType type, StringBuilder builder)
+        public void ConvertXamlTypeToStringHelper(XamlType type, StringBuilder builder)
         {
             string prefix = LookupPrefix(type.GetXamlNamespaces(), out _);
             string typeName = GetTypeName(type);
@@ -675,7 +675,7 @@ namespace System.Xaml
             }
         }
 
-        static internal string GetTypeName(XamlType type)
+        public static string GetTypeName(XamlType type)
         {
             string typeName = type.Name;
             if (type.IsMarkupExtension && type.Name.EndsWith("Extension", false, TypeConverterHelper.InvariantEnglishUS))
@@ -685,7 +685,7 @@ namespace System.Xaml
             return typeName;
         }
 
-        class Frame
+        public class Frame
         {
             Dictionary<string, string> namespaceMap = new Dictionary<string, string>(); //namespace to prefix map
             Dictionary<string, string> prefixMap = new Dictionary<string, string>(); //prefix to namespace map
@@ -885,7 +885,7 @@ namespace System.Xaml
                 writer.output.WriteStartElement(prefix, local, ns);
             }
 
-            static void WriteStartAttribute(XamlXmlWriter writer, string prefix, string local, string ns)
+            public static void WriteStartAttribute(XamlXmlWriter writer, string prefix, string local, string ns)
             {
                 if (string.IsNullOrEmpty(prefix))
                 {
@@ -897,7 +897,7 @@ namespace System.Xaml
                 }
             }
 
-            protected internal void WriteNode(XamlXmlWriter writer, XamlNode node)
+            public void WriteNode(XamlXmlWriter writer, XamlNode node)
             {
                 switch (node.NodeType)
                 {
@@ -2182,7 +2182,7 @@ namespace System.Xaml
 
     // need to implement our own Set class to alleviate ties to System.Core.dll
     // HashSet<T> lives in System.Core.dll
-    internal class XamlPropertySet
+    public class XamlPropertySet
     {
         Dictionary<XamlMember, bool> dictionary = new Dictionary<XamlMember, bool>();
 

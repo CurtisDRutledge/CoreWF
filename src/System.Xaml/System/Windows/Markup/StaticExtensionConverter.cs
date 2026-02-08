@@ -19,7 +19,7 @@ using System.Xaml;
 
 namespace System.Windows.Markup
 {
-    class StaticExtensionConverter : TypeConverter
+    public class StaticExtensionConverter : TypeConverter
     {
         public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
         {

@@ -63,7 +63,7 @@ namespace MS.Utility
     // item, and does conservative growth to minimize the memory footprint.
 
     // This enum controls the growth to successively more complex storage models
-    internal enum FrugalListStoreState
+    enum FrugalListStoreState
     {
         Success,
         SingleItemList,
@@ -87,7 +87,7 @@ namespace MS.Utility
         }
 
         // for use only by trusted callers - e.g. FrugalObjectList.Compacter
-        internal void TrustedSetCount(int newCount)
+        void TrustedSetCount(int newCount)
         {
             _count = newCount;
         }
@@ -176,7 +176,7 @@ namespace MS.Utility
         }
 
         // basic implementation - compacts in-place
-        internal class Compacter
+        public class Compacter
         {
             public Compacter(FrugalListBase<T> store, int newCount)
             {
@@ -228,7 +228,7 @@ namespace MS.Utility
     /// <summary>
     /// A simple class to handle a single item
     /// </summary>
-    internal sealed class SingleItemList<T> : FrugalListBase<T>
+    sealed class SingleItemList<T> : FrugalListBase<T>
     {
         // Capacity of this store
         public override int Capacity
@@ -389,7 +389,7 @@ namespace MS.Utility
     /// A simple class to handle a list with 3 items.  Perf analysis showed
     /// that this yielded better memory locality and perf than an object and an array.
     /// </summary>
-    internal sealed class ThreeItemList<T> : FrugalListBase<T>
+    sealed class ThreeItemList<T> : FrugalListBase<T>
     {
         // Capacity of this store
         public override int Capacity
@@ -715,7 +715,7 @@ namespace MS.Utility
     /// <summary>
     /// A simple class to handle a list with 6 items.
     /// </summary>
-    internal sealed class SixItemList<T> : FrugalListBase<T>
+    sealed class SixItemList<T> : FrugalListBase<T>
     {
         // Capacity of this store
         public override int Capacity
@@ -1282,7 +1282,7 @@ namespace MS.Utility
     /// A simple class to handle an array of 7 or more items.  It is unsorted and uses
     /// a linear search.
     /// </summary>
-    internal sealed class ArrayItemList<T> : FrugalListBase<T>
+    sealed class ArrayItemList<T> : FrugalListBase<T>
     {
         public ArrayItemList()
         {
@@ -1596,7 +1596,7 @@ namespace MS.Utility
         }
 
         // array-based implementation - compacts in-place or into a new array
-        internal class ArrayCompacter : FrugalListBase<T>.Compacter
+        class ArrayCompacter : FrugalListBase<T>.Compacter
         {
             public ArrayCompacter(ArrayItemList<T> store, int newCount)
                 : base(store, newCount)
@@ -1688,7 +1688,7 @@ namespace MS.Utility
 #if !SYSTEM_XAML
     [FriendAccessAllowed] // Built into Core, also used by Framework.
 #endif
-    internal class FrugalObjectList<T>
+    class FrugalObjectList<T>
     {
         public FrugalObjectList()
         {
@@ -1972,7 +1972,7 @@ namespace MS.Utility
             return myClone;
         }
 
-        internal FrugalListBase<T> _listStore;
+        FrugalListBase<T> _listStore;
 
         #region Compacter
         // helper class - compacts the valid entries, while removing the invalid ones.
@@ -2022,7 +2022,7 @@ namespace MS.Utility
 #if !SYSTEM_XAML
     [FriendAccessAllowed] // Built into Core, also used by Framework.
 #endif
-    internal struct FrugalStructList<T>
+    struct FrugalStructList<T>
     {
         public FrugalStructList(int size)
         {
@@ -2337,7 +2337,7 @@ namespace MS.Utility
             return myClone;
         }
 
-        internal FrugalListBase<T> _listStore;
+        FrugalListBase<T> _listStore;
     }
 }
 

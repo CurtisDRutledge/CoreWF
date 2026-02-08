@@ -6,9 +6,9 @@ using MS.Internal.Xaml.Context;
 
 namespace System.Xaml
 {
-    internal enum SavedContextType { Template, ReparseValue, ReparseMarkupExtension }
+    public enum SavedContextType { Template, ReparseValue, ReparseMarkupExtension }
 
-    internal class XamlSavedContext
+    public class XamlSavedContext
     {
         private XamlSchemaContext _context;
         private XamlContextStack<ObjectWriterFrame> _stack;

@@ -17,17 +17,17 @@ namespace Test.Common.TestObjects.CustomActivities
             this.DisplayName = displayName;
         }
 
-        private List<Activity> _importedChildren;
-        public List<Activity> ImportedChildren
-        {
-            get
-            {
-                if (_importedChildren == null)
-                    _importedChildren = new List<Activity>();
+        //private List<Activity> _importedChildren;
+        //public List<Activity> ImportedChildren
+        //{
+        //    get
+        //    {
+        //        if (_importedChildren == null)
+        //            _importedChildren = new List<Activity>();
 
-                return _importedChildren;
-            }
-        }
+        //        return _importedChildren;
+        //    }
+        //}
 
         public Activity Body { get; set; }
 

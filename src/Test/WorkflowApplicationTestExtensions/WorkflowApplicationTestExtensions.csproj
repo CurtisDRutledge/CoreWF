@@ -1,4 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net6.0</TargetFrameworks>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Nito.AsyncEx.Tasks" Version="5.1.2" />
   </ItemGroup>

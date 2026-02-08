@@ -6,7 +6,7 @@ using System.Xaml;
 
 namespace MS.Internal.Xaml.Context
 {
-    internal class XamlObjectWriterFactory: IXamlObjectWriterFactory
+    class XamlObjectWriterFactory: IXamlObjectWriterFactory
     {
         XamlSavedContext _savedContext;
         XamlObjectWriterSettings _parentSettings;

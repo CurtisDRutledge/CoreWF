@@ -54,7 +54,7 @@ namespace System.Xaml.Schema
             return Name;
         }
 
-        internal virtual bool IsPublic
+        public virtual bool IsPublic
         {
             get
             {

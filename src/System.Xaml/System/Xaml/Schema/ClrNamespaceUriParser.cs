@@ -6,7 +6,7 @@ using System.Xaml.MS.Impl;
 
 namespace System.Xaml.Schema
 {
-    internal static class ClrNamespaceUriParser
+    static class ClrNamespaceUriParser
     {
         public static string GetUri(string clrNs, string assemblyName)
         {
