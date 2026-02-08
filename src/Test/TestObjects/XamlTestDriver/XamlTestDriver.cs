@@ -3,7 +3,9 @@
 
 using Shouldly;
 using System;
+using System.Activities;
 using System.Activities.Statements;
+using System.Activities.XamlIntegration;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -234,7 +236,7 @@ namespace TestObjects.XamlTestDriver
             using (XmlWriter xmlWriter = XmlWriter.Create(xamlStream, new XmlWriterSettings { Indent = true }))
             {
                 //ActivityUtilities.ReplaceLambdaValuesInActivityTree(obj, false, true);
-                XamlServices.Save(xmlWriter, obj);
+                System.Xaml.XamlServices.Save(xmlWriter, obj);
             }
         }
 
@@ -283,7 +285,7 @@ namespace TestObjects.XamlTestDriver
             Sequence sequence = new Sequence();
 
             // This needs to be uncommented when xaml deserialization can be used in full trust
-            return XamlServices.Load(xamlReader);
+            return System.Xaml.XamlServices.Load(xamlReader);
             //return serializer.Load(xamlReader);
             //return PartialTrustCaller.Deserialize(xamlReader);
         }

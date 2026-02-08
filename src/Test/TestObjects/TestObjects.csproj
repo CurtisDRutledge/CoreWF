@@ -1,5 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net6.0</TargetFrameworks>
+    <TargetFrameworks>net10.0</TargetFrameworks>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Quorum.CoreWF.Xaml\Quorum.CoreWF.Xaml.csproj" />
+    <ProjectReference Include="..\..\Quorum.CoreWF.Core\Quorum.CoreWF.Core.csproj" />
+  </ItemGroup>
 </Project>
