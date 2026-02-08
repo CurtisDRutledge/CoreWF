@@ -63,3 +63,27 @@ Status: Complete
 
 Success - Core runtime project upgraded with 25 API incompatibilities resolved
 
+
+## [2026-02-08 16:10] TASK-004: Upgrade Quorum.CoreWF.Core to .NET 10 (CRITICAL - High Complexity)
+
+Status: Complete
+
+- **Files Modified**: 
+  - src/Quorum.CoreWF.Core/Quorum.CoreWF.Core.csproj
+  - src/Quorum.CoreWF.Core/Activities/SourceExpressionException.cs
+  - src/Quorum.CoreWF.Core/Roslyn/UsedTypesAnalyzer.cs
+
+- **Code Changes**: 
+  - Updated TargetFramework from net6.0 to net10.0
+  - Updated System.CodeDom package from 6.0.0 to 10.0.2
+  - Updated description to reference .NET 10
+  - Added explicit ProjectReference to Quorum.CoreWF.Xaml
+  - Added [Obsolete] attributes to SourceExpressionException serialization methods
+  - Suppressed analyzer warnings (RS1036, RS1037, RS1038, RS1041, CA2022)
+
+- **Tests**: Build succeeded with zero warnings
+
+- **Commits**: 0c8a20e - "Upgrade Quorum.CoreWF.Core to .NET 10"
+
+Success - Critical high-complexity project (2,123 issues) upgraded successfully
+
