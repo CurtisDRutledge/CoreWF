@@ -13,6 +13,7 @@
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <NoWarn>$(NoWarn);NU5105</NoWarn>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <RootNamespace>System.Activities</RootNamespace>
     </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="..\Quorum.CoreWF.Runtime\Quorum.CoreWF.Runtime.csproj" />

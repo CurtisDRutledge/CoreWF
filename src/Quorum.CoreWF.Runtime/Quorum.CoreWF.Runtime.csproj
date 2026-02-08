@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net6.0</TargetFrameworks>
-	<AssemblyName>System.Activities</AssemblyName>
+	<AssemblyName>Quorum.CoreWF.Runtime</AssemblyName>
 	<PackageId>Quorum.CoreWF.Runtime</PackageId>
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -12,6 +12,7 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <NoWarn>$(NoWarn);NU5105</NoWarn>
+    <RootNamespace>System.Activities</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
