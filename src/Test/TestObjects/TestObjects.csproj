@@ -3,7 +3,16 @@
     <TargetFrameworks>net10.0</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.4" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\Quorum.CoreWF.Xaml\Quorum.CoreWF.Xaml.csproj" />
     <ProjectReference Include="..\..\Quorum.CoreWF.Core\Quorum.CoreWF.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Update="Microsoft.NET.Test.Sdk" Version="18.0.1" />
+    <PackageReference Update="Shouldly" Version="4.3.0" />
+    <PackageReference Update="xunit" Version="2.9.3" />
+    <PackageReference Update="xunit.runner.visualstudio" Version="3.1.5" />
   </ItemGroup>
 </Project>

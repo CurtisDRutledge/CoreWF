@@ -1,4 +1,4 @@
-﻿//
+//
 // Copyright (C) 2010 Novell Inc. http://novell.com
 //
 // Permission is hereby granted, free of charge, to any person obtaining
@@ -47,19 +47,19 @@ namespace MonoTests.System.Xaml
 		public void DefaultValues ()
 		{
 			var s = new XamlObjectWriterSettings ();
-			// TODO: Assert.IsNull (s.AccessLevel, "#1");
-			Assert.IsNull (s.AfterBeginInitHandler, "#2");
-			Assert.IsNull (s.AfterEndInitHandler, "#3");
-			Assert.IsNull (s.AfterPropertiesHandler, "#4");
-			Assert.IsNull (s.BeforePropertiesHandler, "#5");
-			Assert.IsNull (s.ExternalNameScope, "#6");
-			Assert.IsFalse (s.IgnoreCanConvert, "#7");
-			Assert.IsFalse (s.PreferUnconvertedDictionaryKeys, "#8");
-			Assert.IsFalse (s.RegisterNamesOnExternalNamescope, "#9");
-			Assert.IsNull (s.RootObjectInstance, "#10");
-			Assert.IsFalse (s.SkipDuplicatePropertyCheck, "#11");
-			Assert.IsFalse (s.SkipProvideValueOnRoot, "#12");
-			Assert.IsNull (s.XamlSetValueHandler, "#13");
+			// TODO: Assert.That(s.AccessLevel, Is.Null, "#1");
+			Assert.That(s.AfterBeginInitHandler, Is.Null, "#2");
+			Assert.That(s.AfterEndInitHandler, Is.Null, "#3");
+			Assert.That(s.AfterPropertiesHandler, Is.Null, "#4");
+			Assert.That(s.BeforePropertiesHandler, Is.Null, "#5");
+			Assert.That(s.ExternalNameScope, Is.Null, "#6");
+			Assert.That(s.IgnoreCanConvert, Is.False, "#7");
+			Assert.That(s.PreferUnconvertedDictionaryKeys, Is.False, "#8");
+			Assert.That(s.RegisterNamesOnExternalNamescope, Is.False, "#9");
+			Assert.That(s.RootObjectInstance, Is.Null, "#10");
+			Assert.That(s.SkipDuplicatePropertyCheck, Is.False, "#11");
+			Assert.That(s.SkipProvideValueOnRoot, Is.False, "#12");
+			Assert.That(s.XamlSetValueHandler, Is.Null, "#13");
 		}
 
 		[Test]
@@ -81,8 +81,8 @@ namespace MonoTests.System.Xaml
 				}
 			}
 			
-			Assert.AreEqual (obj, result, "#1");
-			Assert.AreEqual ("Test", obj.Property, "#2");
+			Assert.That(result, Is.EqualTo(obj), "#1");
+			Assert.That(obj.Property, Is.EqualTo("Test"), "#2");
 		}
 	}
 

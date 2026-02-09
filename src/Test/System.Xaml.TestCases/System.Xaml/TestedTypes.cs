@@ -402,14 +402,14 @@ namespace MonoTests.System.Xaml
 			get => _bar;
 			set
 			{
-				// Make sure we don't set this value twice.
-				Assert.IsNull(_bar);
+			// Make sure we don't set this value twice.
+				Assert.That(_bar, Is.Null);
 
 				_bar = value;
 				
-				// The value must be instantiated, but not yet initialized.
-				Assert.IsFalse(_bar.IsInitialized);
-				Assert.IsNull(_bar.Foo);
+			// The value must be instantiated, but not yet initialized.
+				Assert.That(_bar.IsInitialized, Is.False);
+				Assert.That(_bar.Foo, Is.Null);
 			}
 		}
 	}
@@ -426,15 +426,15 @@ namespace MonoTests.System.Xaml
 		public bool IsInitialized { get; private set;}
 
 		/// <inheritdoc />
-		public void BeginInit()
+	public void BeginInit()
 		{
-			Assert.IsFalse(IsInitialized);
+			Assert.That(IsInitialized, Is.False);
 		}
 
 		/// <inheritdoc />
-		public void EndInit()
+	public void EndInit()
 		{
-			Assert.IsFalse(IsInitialized);
+			Assert.That(IsInitialized, Is.False);
 			IsInitialized = true;
 		}
 	}
@@ -444,14 +444,14 @@ namespace MonoTests.System.Xaml
 	{
 		public TestClass10()
 		{
-			var collection = new ObservableCollection<TestClass9>();
+		var collection = new ObservableCollection<TestClass9>();
 			collection.CollectionChanged += (sender, args) =>
 			{
 				foreach (TestClass9 item in args.NewItems)
 				{
-					Assert.IsFalse(item.IsInitialized);
-					Assert.Zero(item.Bar);
-					Assert.IsNull(item.Baz);
+					Assert.That(item.IsInitialized, Is.False);
+					Assert.That(item.Bar, Is.EqualTo(0));
+					Assert.That(item.Baz, Is.Null);
 				}
 			};
 
@@ -2048,14 +2048,14 @@ namespace SecondTest
 			XamlSchemaContext schemaContext = service.SchemaContext;
 			var types = new XamlType[] { schemaContext.GetXamlType(typeof(ResourcesDict)) };
 
-			// Getting based on types alone should return the value, not the AmbientPropertyValue
+		// Getting based on types alone should return the value, not the AmbientPropertyValue
 			var objectValues = provider.GetAllAmbientValues(types).ToList();
-			Assert.AreEqual (1, objectValues.Count, "#1");
+			Assert.That(objectValues.Count, Is.EqualTo(1), "#1");
 
-			// ResourceDict is marked as Ambient, so the instance current being deserialized should be in this list.
+		// ResourceDict is marked as Ambient, so the instance current being deserialized should be in this list.
 			var ambientValues = provider.GetAllAmbientValues(null, false, types).ToList();
-			Assert.AreEqual(1, ambientValues.Count, "#2");
-			CollectionAssert.AreEqual (objectValues, ambientValues.Select (r => r.Value), "#3");
+			Assert.That(ambientValues.Count, Is.EqualTo(1), "#2");
+			Assert.That(ambientValues.Select (r => r.Value), Is.EqualTo(objectValues), "#3");
 			foreach (var dict in ambientValues.Select(r => r.Value).OfType<ResourcesDict>())
 			{
 				if (dict.ContainsKey(this.Key))
@@ -2110,10 +2110,10 @@ namespace SecondTest
 			int count = 0;
 			if (Equals (Key, "TestDictItem")) {
 				// inside ambient value, should be returned as well
-				Assert.AreEqual (1, values.Count, "#2");
-				Assert.IsInstanceOf<ResourcesDict> (values [0]);
+				Assert.That(values.Count, Is.EqualTo(1), "#2");
+				Assert.That(values [0], Is.InstanceOf<ResourcesDict>());
 			} else {
-				Assert.AreEqual (0, values.Count, "#3");
+				Assert.That(values.Count, Is.EqualTo(0), "#3");
 			}
 
 			var ambientValues = provider.GetAllAmbientValues(null, false, types, properties).ToList();
@@ -2121,18 +2121,18 @@ namespace SecondTest
 			if (Equals(Key, "TestDictItem"))
 			{
 				// inside ambient value, should be returned as well
-				Assert.AreEqual(3, ambientValues.Count, "#4");
-				Assert.IsInstanceOf<ResourcesDict>(ambientValues[count].Value);
-				Assert.IsNull(ambientValues[count++].RetrievedProperty);
+				Assert.That(ambientValues.Count, Is.EqualTo(3), "#4");
+				Assert.That(ambientValues[count].Value, Is.InstanceOf<ResourcesDict>());
+				Assert.That(ambientValues[count++].RetrievedProperty, Is.Null);
 			}
 			else
 			{
-				Assert.AreEqual(2, ambientValues.Count, "#5");
+				Assert.That(ambientValues.Count, Is.EqualTo(2), "#5");
 			}
-			Assert.IsInstanceOf<ResourcesDict>(ambientValues[count].Value, "#6");
-			Assert.AreEqual(properties[0], ambientValues[count++].RetrievedProperty, "#7");
-			Assert.IsNull(ambientValues[count].Value, "#8");
-			Assert.AreEqual(properties[1], ambientValues[count++].RetrievedProperty, "#9");
+			Assert.That(ambientValues[count].Value, Is.InstanceOf<ResourcesDict>(), "#6");
+			Assert.That(ambientValues[count++].RetrievedProperty, Is.EqualTo(properties[0]), "#7");
+			Assert.That(ambientValues[count].Value, Is.Null, "#8");
+			Assert.That(ambientValues[count++].RetrievedProperty, Is.EqualTo(properties[1]), "#9");
 
 			foreach (var dict in ambientValues.Select(r => r.Value).OfType<ResourcesDict>())
 			{

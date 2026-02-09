@@ -49,9 +49,9 @@ namespace MonoTests.System.Xaml
 		[Test]
 		public void ConstructorNameNull ()
 		{
-			// wow, it is allowed.
+		// wow, it is allowed.
 			var d = new XamlDirective (String.Empty, null);
-			Assert.IsNull (d.Name, "#1");
+			Assert.That(d.Name, Is.Null, "#1");
 		}
 
 		[Test]
@@ -94,35 +94,35 @@ namespace MonoTests.System.Xaml
 		[Test]
 		public void DefaultValuesWithName ()
 		{
-			var d = new XamlDirective ("urn:foo", "Foo");
-			Assert.AreEqual (AllowedMemberLocations.Any, d.AllowedLocation, "#1");
-			Assert.IsNull (d.DeclaringType, "#2");
-			Assert.IsNotNull (d.Invoker, "#3");
-			Assert.IsNull (d.Invoker.UnderlyingGetter, "#3-2");
-			Assert.IsNull (d.Invoker.UnderlyingSetter, "#3-3");
-			Assert.IsTrue (d.IsUnknown, "#4");
-			Assert.IsTrue (d.IsReadPublic, "#5");
-			Assert.IsTrue (d.IsWritePublic, "#6");
-			Assert.AreEqual ("Foo", d.Name, "#7");
-			Assert.IsTrue (d.IsNameValid, "#8");
-			Assert.AreEqual ("urn:foo", d.PreferredXamlNamespace, "#9");
-			Assert.IsNull (d.TargetType, "#10");
-			Assert.IsNotNull (d.Type, "#11");
-			Assert.AreEqual (typeof (object), d.Type.UnderlyingType, "#11-2");
-#if HAS_TYPE_CONVERTER
-			Assert.IsNull (d.TypeConverter, "#12");
-#endif
-			Assert.IsNull (d.ValueSerializer, "#13");
-			Assert.IsNull (d.DeferringLoader, "#14");
-			Assert.IsNull (d.UnderlyingMember, "#15");
-			Assert.IsFalse (d.IsReadOnly, "#16");
-			Assert.IsFalse (d.IsWriteOnly, "#17");
-			Assert.IsFalse (d.IsAttachable, "#18");
-			Assert.IsFalse (d.IsEvent, "#19");
-			Assert.IsTrue (d.IsDirective, "#20");
-			Assert.IsNotNull (d.DependsOn, "#21");
-			Assert.AreEqual (0, d.DependsOn.Count, "#21-2");
-			Assert.IsFalse (d.IsAmbient, "#22");
+		var d = new XamlDirective ("urn:foo", "Foo");
+			Assert.That(d.AllowedLocation, Is.EqualTo(AllowedMemberLocations.Any), "#1");
+			Assert.That(d.DeclaringType, Is.Null, "#2");
+			Assert.That(d.Invoker, Is.Not.Null, "#3");
+			Assert.That(d.Invoker.UnderlyingGetter, Is.Null, "#3-2");
+			Assert.That(d.Invoker.UnderlyingSetter, Is.Null, "#3-3");
+			Assert.That(d.IsUnknown, Is.True, "#4");
+			Assert.That(d.IsReadPublic, Is.True, "#5");
+			Assert.That(d.IsWritePublic, Is.True, "#6");
+			Assert.That(d.Name, Is.EqualTo("Foo"), "#7");
+			Assert.That(d.IsNameValid, Is.True, "#8");
+			Assert.That(d.PreferredXamlNamespace, Is.EqualTo("urn:foo"), "#9");
+			Assert.That(d.TargetType, Is.Null, "#10");
+			Assert.That(d.Type, Is.Not.Null, "#11");
+			Assert.That(d.Type.UnderlyingType, Is.EqualTo(typeof (object)), "#11-2");
+		#if HAS_TYPE_CONVERTER
+			Assert.That(d.TypeConverter, Is.Null, "#12");
+		#endif
+			Assert.That(d.ValueSerializer, Is.Null, "#13");
+			Assert.That(d.DeferringLoader, Is.Null, "#14");
+			Assert.That(d.UnderlyingMember, Is.Null, "#15");
+			Assert.That(d.IsReadOnly, Is.False, "#16");
+			Assert.That(d.IsWriteOnly, Is.False, "#17");
+			Assert.That(d.IsAttachable, Is.False, "#18");
+			Assert.That(d.IsEvent, Is.False, "#19");
+			Assert.That(d.IsDirective, Is.True, "#20");
+			Assert.That(d.DependsOn, Is.Not.Null, "#21");
+			Assert.That(d.DependsOn.Count, Is.EqualTo(0), "#21-2");
+			Assert.That(d.IsAmbient, Is.False, "#22");
 			// TODO: Assert.AreEqual (DesignerSerializationVisibility.Visible, d.SerializationVisibility, "#23");
 		}
 
@@ -130,33 +130,33 @@ namespace MonoTests.System.Xaml
 		[Test]
 		public void DefaultValuesWithComplexParams ()
 		{
-			var d = new XamlDirective (new string [0], "Foo", new XamlType (typeof (object), sctx), null, AllowedMemberLocations.Any);
-			Assert.AreEqual (AllowedMemberLocations.Any, d.AllowedLocation, "#1");
-			Assert.IsNull (d.DeclaringType, "#2");
-			Assert.IsNotNull (d.Invoker, "#3");
-			Assert.IsNull (d.Invoker.UnderlyingGetter, "#3-2");
-			Assert.IsNull (d.Invoker.UnderlyingSetter, "#3-3");
-			Assert.IsFalse (d.IsUnknown, "#4"); // different from another test
-			Assert.IsTrue (d.IsReadPublic, "#5");
-			Assert.IsTrue (d.IsWritePublic, "#6");
-			Assert.AreEqual ("Foo", d.Name, "#7");
-			Assert.IsTrue (d.IsNameValid, "#8");
-			Assert.AreEqual (null, d.PreferredXamlNamespace, "#9"); // different from another test (as we specified empty array above)
-			Assert.IsNull (d.TargetType, "#10");
-			Assert.IsNotNull (d.Type, "#11");
-			Assert.AreEqual (typeof (object), d.Type.UnderlyingType, "#11-2");
-			Assert.IsNull (d.TypeConverter, "#12");
-			Assert.IsNull (d.ValueSerializer, "#13");
-			Assert.IsNull (d.DeferringLoader, "#14");
-			Assert.IsNull (d.UnderlyingMember, "#15");
-			Assert.IsFalse (d.IsReadOnly, "#16");
-			Assert.IsFalse (d.IsWriteOnly, "#17");
-			Assert.IsFalse (d.IsAttachable, "#18");
-			Assert.IsFalse (d.IsEvent, "#19");
-			Assert.IsTrue (d.IsDirective, "#20");
-			Assert.IsNotNull (d.DependsOn, "#21");
-			Assert.AreEqual (0, d.DependsOn.Count, "#21-2");
-			Assert.IsFalse (d.IsAmbient, "#22");
+		var d = new XamlDirective (new string [0], "Foo", new XamlType (typeof (object), sctx), null, AllowedMemberLocations.Any);
+			Assert.That(d.AllowedLocation, Is.EqualTo(AllowedMemberLocations.Any), "#1");
+			Assert.That(d.DeclaringType, Is.Null, "#2");
+			Assert.That(d.Invoker, Is.Not.Null, "#3");
+			Assert.That(d.Invoker.UnderlyingGetter, Is.Null, "#3-2");
+			Assert.That(d.Invoker.UnderlyingSetter, Is.Null, "#3-3");
+			Assert.That(d.IsUnknown, Is.False, "#4"); // different from another test
+			Assert.That(d.IsReadPublic, Is.True, "#5");
+			Assert.That(d.IsWritePublic, Is.True, "#6");
+			Assert.That(d.Name, Is.EqualTo("Foo"), "#7");
+			Assert.That(d.IsNameValid, Is.True, "#8");
+			Assert.That(d.PreferredXamlNamespace, Is.EqualTo(null), "#9"); // different from another test (as we specified empty array above)
+			Assert.That(d.TargetType, Is.Null, "#10");
+			Assert.That(d.Type, Is.Not.Null, "#11");
+			Assert.That(d.Type.UnderlyingType, Is.EqualTo(typeof (object)), "#11-2");
+			Assert.That(d.TypeConverter, Is.Null, "#12");
+			Assert.That(d.ValueSerializer, Is.Null, "#13");
+			Assert.That(d.DeferringLoader, Is.Null, "#14");
+			Assert.That(d.UnderlyingMember, Is.Null, "#15");
+			Assert.That(d.IsReadOnly, Is.False, "#16");
+			Assert.That(d.IsWriteOnly, Is.False, "#17");
+			Assert.That(d.IsAttachable, Is.False, "#18");
+			Assert.That(d.IsEvent, Is.False, "#19");
+			Assert.That(d.IsDirective, Is.True, "#20");
+			Assert.That(d.DependsOn, Is.Not.Null, "#21");
+			Assert.That(d.DependsOn.Count, Is.EqualTo(0), "#21-2");
+			Assert.That(d.IsAmbient, Is.False, "#22");
 			//TODO: Assert.AreEqual (DesignerSerializationVisibility.Visible, d.SerializationVisibility, "#23");
 		}
 #endif

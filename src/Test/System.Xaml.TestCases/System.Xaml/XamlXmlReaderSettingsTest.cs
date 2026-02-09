@@ -46,10 +46,10 @@ namespace MonoTests.System.Xaml
 		public void DefaultValues()
 		{
 			var s = new XamlXmlReaderSettings();
-			Assert.IsFalse(s.CloseInput, "#1");
-			Assert.IsFalse(s.SkipXmlCompatibilityProcessing, "#2");
-			Assert.IsNull(s.XmlLang, "#3");
-			Assert.IsFalse(s.XmlSpacePreserve, "#4");
+			Assert.That(s.CloseInput, Is.False, "#1");
+			Assert.That(s.SkipXmlCompatibilityProcessing, Is.False, "#2");
+			Assert.That(s.XmlLang, Is.Null, "#3");
+			Assert.That(s.XmlSpacePreserve, Is.False, "#4");
 		}
 
 		[Test]
@@ -71,9 +71,9 @@ namespace MonoTests.System.Xaml
 
 			// .NET fails to copy this value.
 			//Assert.IsTrue (s.CloseInput, "#1");
-			Assert.IsTrue(s.SkipXmlCompatibilityProcessing, "#2");
-			Assert.AreEqual("ja-JP", s.XmlLang, "#3");
-			Assert.IsTrue(s.XmlSpacePreserve, "#4");
+			Assert.That(s.SkipXmlCompatibilityProcessing, Is.True, "#2");
+			Assert.That("ja-JP", Is.EqualTo(s.XmlLang), "#3");
+			Assert.That(s.XmlSpacePreserve, Is.True, "#4");
 		}
 
 		[Test]

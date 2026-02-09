@@ -47,8 +47,8 @@ namespace MonoTests.System.Xaml.Schema
 		[Test]
 		public void ConstructorDefault ()
 		{
-			var xtn = new XamlTypeName ();
-			Assert.IsNotNull (xtn.TypeArguments, "#1");
+		var xtn = new XamlTypeName ();
+			Assert.That(xtn.TypeArguments, Is.Not.Null, "#1");
 		}
 
 		[Test]
@@ -60,33 +60,33 @@ namespace MonoTests.System.Xaml.Schema
 		[Test]
 		public void ConstructorNameNull ()
 		{
-			// allowed.
+		// allowed.
 			var xtn = new XamlTypeName ("urn:foo", null);
-			Assert.IsNotNull (xtn.TypeArguments, "#1");
+			Assert.That(xtn.TypeArguments, Is.Not.Null, "#1");
 		}
 
 		[Test]
 		public void ConstructorNamespaceNull ()
 		{
-			// allowed.
+		// allowed.
 			var xtn = new XamlTypeName (null, "FooBar");
-			Assert.IsNotNull (xtn.TypeArguments, "#1");
+			Assert.That(xtn.TypeArguments, Is.Not.Null, "#1");
 		}
 
 		[Test]
 		public void ConstructorName ()
 		{
-			var n = new XamlTypeName ("urn:foo", "FooBar");
-			Assert.IsNotNull (n.TypeArguments, "#1");
-			Assert.AreEqual (0, n.TypeArguments.Count, "#2");
+		var n = new XamlTypeName ("urn:foo", "FooBar");
+			Assert.That(n.TypeArguments, Is.Not.Null, "#1");
+			Assert.That(n.TypeArguments.Count, Is.EqualTo(0), "#2");
 		}
 
 		[Test]
 		public void ConstructorTypeArgumentsNull ()
 		{
-			var n = new XamlTypeName ("urn:foo", "FooBar", (XamlTypeName []) null);
-			Assert.IsNotNull (n.TypeArguments, "#1");
-			Assert.AreEqual (0, n.TypeArguments.Count, "#2");
+		var n = new XamlTypeName ("urn:foo", "FooBar", (XamlTypeName []) null);
+			Assert.That(n.TypeArguments, Is.Not.Null, "#1");
+			Assert.That(n.TypeArguments.Count, Is.EqualTo(0), "#2");
 		}
 
 		[Test]
@@ -109,9 +109,9 @@ namespace MonoTests.System.Xaml.Schema
 		[Test]
 		public void ConstructorTypeArgumentsEmpty ()
 		{
-			var n = new XamlTypeName ("urn:foo", "FooBar", new XamlTypeName [0]);
-			Assert.IsNotNull (n.TypeArguments, "#1");
-			Assert.AreEqual (0, n.TypeArguments.Count, "#2");
+		var n = new XamlTypeName ("urn:foo", "FooBar", new XamlTypeName [0]);
+			Assert.That(n.TypeArguments, Is.Not.Null, "#1");
+			Assert.That(n.TypeArguments.Count, Is.EqualTo(0), "#2");
 		}
 
 		[Test]
@@ -139,49 +139,49 @@ namespace MonoTests.System.Xaml.Schema
 		[Test]
 		public void ToStringTypeArgumentsNull ()
 		{
-			var n = new XamlTypeName ("urn:foo", "FooBar", (XamlTypeName []) null);
-			Assert.AreEqual ("{urn:foo}FooBar", n.ToString (), "#1");
+		var n = new XamlTypeName ("urn:foo", "FooBar", (XamlTypeName []) null);
+			Assert.That(n.ToString (), Is.EqualTo("{urn:foo}FooBar"), "#1");
 		}
 
 		[Test]
 		public void ToStringTypeArgumentsNullEntry ()
 		{
-			#if PCL
+		#if PCL
 			Assert.Throws<ArgumentNullException> (() => {
 			#else
 			Assert.Throws<NullReferenceException> (() => {
 			#endif
 				var n = new XamlTypeName ("urn:foo", "FooBar", new XamlTypeName [] { null, new XamlTypeName ("urn:bar", "FooBarBaz") });
-				Assert.AreEqual ("{urn:foo}FooBar()", n.ToString (), "#1");
+				Assert.That(n.ToString (), Is.EqualTo("{urn:foo}FooBar()"), "#1");
 			});
 		}
 
 		[Test]
 		public void ToStringTypeArguments ()
 		{
-			var n = new XamlTypeName ("urn:foo", "FooBar", new XamlTypeName [] {new XamlTypeName ("urn:bar", "FooBarBaz")});
-			Assert.AreEqual ("{urn:foo}FooBar({urn:bar}FooBarBaz)", n.ToString (), "#1");
+		var n = new XamlTypeName ("urn:foo", "FooBar", new XamlTypeName [] {new XamlTypeName ("urn:bar", "FooBarBaz")});
+			Assert.That(n.ToString (), Is.EqualTo("{urn:foo}FooBar({urn:bar}FooBarBaz)"), "#1");
 		}
 
 		[Test]
 		public void ToStringTypeArguments2 ()
 		{
-			var n = new XamlTypeName ("urn:foo", "Foo", new XamlTypeName [] {new XamlTypeName ("urn:bar", "Bar"), new XamlTypeName ("urn:baz", "Baz")});
-			Assert.AreEqual ("{urn:foo}Foo({urn:bar}Bar, {urn:baz}Baz)", n.ToString (), "#1");
+		var n = new XamlTypeName ("urn:foo", "Foo", new XamlTypeName [] {new XamlTypeName ("urn:bar", "Bar"), new XamlTypeName ("urn:baz", "Baz")});
+			Assert.That(n.ToString (), Is.EqualTo("{urn:foo}Foo({urn:bar}Bar, {urn:baz}Baz)"), "#1");
 		}
 
 		[Test]
 		public void ToStringEmptyNamespace ()
 		{
-			var n = new XamlTypeName (string.Empty, "Foo");
-			Assert.AreEqual ("{}Foo", n.ToString (), "#1");
+		var n = new XamlTypeName (string.Empty, "Foo");
+			Assert.That(n.ToString (), Is.EqualTo("{}Foo"), "#1");
 		}
 
 		[Test]
 		public void ToStringXamlTypePredefined ()
 		{
-			var n = new XamlTypeName (XamlLanguage.Int32);
-			Assert.AreEqual ("{http://schemas.microsoft.com/winfx/2006/xaml}Int32", n.ToString (), "#1");
+		var n = new XamlTypeName (XamlLanguage.Int32);
+			Assert.That(n.ToString (), Is.EqualTo("{http://schemas.microsoft.com/winfx/2006/xaml}Int32"), "#1");
 		}
 
 		[Test]
@@ -198,34 +198,34 @@ namespace MonoTests.System.Xaml.Schema
 		[Test]
 		public void ToStringNullLookup ()
 		{
-			var n = new XamlTypeName ("urn:foo", "Foo", new XamlTypeName [] {new XamlTypeName ("urn:bar", "Bar"), new XamlTypeName ("urn:baz", "Baz")});
-			Assert.AreEqual ("{urn:foo}Foo({urn:bar}Bar, {urn:baz}Baz)", n.ToString (null), "#1");
+		var n = new XamlTypeName ("urn:foo", "Foo", new XamlTypeName [] {new XamlTypeName ("urn:bar", "Bar"), new XamlTypeName ("urn:baz", "Baz")});
+			Assert.That(n.ToString (null), Is.EqualTo("{urn:foo}Foo({urn:bar}Bar, {urn:baz}Baz)"), "#1");
 		}
 
 		[Test]
 		public void ToStringNamespaceLookup ()
 		{
-			var n = new XamlTypeName ("urn:foo", "Foo", new XamlTypeName [] {new XamlTypeName ("urn:bar", "Bar"), new XamlTypeName ("urn:baz", "Baz")});
+		var n = new XamlTypeName ("urn:foo", "Foo", new XamlTypeName [] {new XamlTypeName ("urn:bar", "Bar"), new XamlTypeName ("urn:baz", "Baz")});
 			var lookup = new MyNamespaceLookup ();
 			lookup.Add ("a", "urn:foo");
 			lookup.Add ("b", "urn:bar");
 			lookup.Add ("c", "urn:baz");
-			Assert.AreEqual ("a:Foo(b:Bar, c:Baz)", n.ToString (lookup), "#1");
-			Assert.AreEqual ("b:Bar, c:Baz", XamlTypeName.ToString (n.TypeArguments, lookup), "#2");
+			Assert.That(n.ToString (lookup), Is.EqualTo("a:Foo(b:Bar, c:Baz)"), "#1");
+			Assert.That(XamlTypeName.ToString (n.TypeArguments, lookup), Is.EqualTo("b:Bar, c:Baz"), "#2");
 		}
 
 		// This test shows that MarkupExtension names are not replaced at XamlTypeName.ToString(), while XamlXmlWriter writes like "x:Null".
 		[Test]
 		public void ToStringNamespaceLookup2 ()
 		{
-			var lookup = new MyNamespaceLookup ();
+		var lookup = new MyNamespaceLookup ();
 			lookup.Add ("x", XamlLanguage.Xaml2006Namespace);
-			Assert.AreEqual ("x:NullExtension", new XamlTypeName (XamlLanguage.Null).ToString (lookup), "#1");
+			Assert.That(new XamlTypeName (XamlLanguage.Null).ToString (lookup), Is.EqualTo("x:NullExtension"), "#1");
 			// WHY is TypeExtension not the case?
 			//Assert.AreEqual ("x:TypeExtension", new XamlTypeName (XamlLanguage.Type).ToString (lookup), "#2");
-			Assert.AreEqual ("x:ArrayExtension", new XamlTypeName (XamlLanguage.Array).ToString (lookup), "#3");
-			Assert.AreEqual ("x:StaticExtension", new XamlTypeName (XamlLanguage.Static).ToString (lookup), "#4");
-			Assert.AreEqual ("x:Reference", new XamlTypeName (XamlLanguage.Reference).ToString (lookup), "#5");
+			Assert.That(new XamlTypeName (XamlLanguage.Array).ToString (lookup), Is.EqualTo("x:ArrayExtension"), "#3");
+			Assert.That(new XamlTypeName (XamlLanguage.Static).ToString (lookup), Is.EqualTo("x:StaticExtension"), "#4");
+			Assert.That(new XamlTypeName (XamlLanguage.Reference).ToString (lookup), Is.EqualTo("x:Reference"), "#5");
 		}
 
 		[Test]
@@ -243,7 +243,7 @@ namespace MonoTests.System.Xaml.Schema
 		[Test]
 		public void StaticToStringEmptyArray ()
 		{
-			Assert.AreEqual ("", XamlTypeName.ToString (new XamlTypeName [0], new MyNamespaceLookup ()), "#1");
+		Assert.That(XamlTypeName.ToString (new XamlTypeName [0], new MyNamespaceLookup ()), Is.EqualTo(""), "#1");
 		}
 
 		class MyNamespaceLookup : INamespacePrefixLookup
@@ -279,84 +279,84 @@ namespace MonoTests.System.Xaml.Schema
 		[Test]
 		public void TryParseEmptyName ()
 		{
-			Assert.IsFalse (XamlTypeName.TryParse (String.Empty, new MyNSResolver (), out dummy), "#1");
+		Assert.That(XamlTypeName.TryParse (String.Empty, new MyNSResolver (), out dummy), Is.False, "#1");
 		}
 
 		[Test]
 		public void TryParseColon ()
 		{
-			var r = new MyNSResolver ();
+		var r = new MyNSResolver ();
 			r.Add ("a", "urn:foo");
-			Assert.IsFalse (XamlTypeName.TryParse (":", r, out dummy), "#1");
-			Assert.IsFalse (XamlTypeName.TryParse ("a:", r, out dummy), "#2");
-			Assert.IsFalse (XamlTypeName.TryParse (":b", r, out dummy), "#3");
+			Assert.That(XamlTypeName.TryParse (":", r, out dummy), Is.False, "#1");
+			Assert.That(XamlTypeName.TryParse ("a:", r, out dummy), Is.False, "#2");
+			Assert.That(XamlTypeName.TryParse (":b", r, out dummy), Is.False, "#3");
 		}
 
 		[Test]
 		public void TryParseInvalidName ()
 		{
-			var r = new MyNSResolver ();
+		var r = new MyNSResolver ();
 			r.Add ("a", "urn:foo");
 			r.Add ("#", "urn:bar");
-			Assert.IsFalse (XamlTypeName.TryParse ("$%#___!", r, out dummy), "#1");
-			Assert.IsFalse (XamlTypeName.TryParse ("a:#$#", r, out dummy), "#2");
-			Assert.IsFalse (XamlTypeName.TryParse ("#:foo", r, out dummy), "#3");
+			Assert.That(XamlTypeName.TryParse ("$%#___!", r, out dummy), Is.False, "#1");
+			Assert.That(XamlTypeName.TryParse ("a:#$#", r, out dummy), Is.False, "#2");
+			Assert.That(XamlTypeName.TryParse ("#:foo", r, out dummy), Is.False, "#3");
 		}
 
 		[Test]
 		public void TryParseNoFillEmpty ()
 		{
-			Assert.IsFalse (XamlTypeName.TryParse ("Foo", new MyNSResolver (true), out dummy), "#1");
+		Assert.That(XamlTypeName.TryParse ("Foo", new MyNSResolver (true), out dummy), Is.False, "#1");
 		}
 
 		[Test]
 		public void TryParseFillEmpty ()
 		{
-			var r = new MyNSResolver ();
-			Assert.IsTrue (XamlTypeName.TryParse ("Foo", r, out dummy), "#1");
-			Assert.IsNotNull (dummy, "#2");
-			Assert.AreEqual (String.Empty, dummy.Namespace, "#2-2");
-			Assert.AreEqual ("Foo", dummy.Name, "#2-3");
+		var r = new MyNSResolver ();
+			Assert.That(XamlTypeName.TryParse ("Foo", r, out dummy), Is.True, "#1");
+			Assert.That(dummy, Is.Not.Null, "#2");
+			Assert.That(dummy.Namespace, Is.EqualTo(String.Empty), "#2-2");
+			Assert.That(dummy.Name, Is.EqualTo("Foo"), "#2-3");
 		}
 
 		[Test]
 		public void TryParseAlreadyQualified ()
 		{
-			Assert.IsFalse (XamlTypeName.TryParse ("{urn:foo}Foo", new MyNSResolver (), out dummy), "#1");
+		Assert.That(XamlTypeName.TryParse ("{urn:foo}Foo", new MyNSResolver (), out dummy), Is.False, "#1");
 		}
 
 		[Test]
 		public void TryParseResolveFailure ()
 		{
-			Assert.IsFalse (XamlTypeName.TryParse ("x:Foo", new MyNSResolver (), out dummy), "#1");
+		Assert.That(XamlTypeName.TryParse ("x:Foo", new MyNSResolver (), out dummy), Is.False, "#1");
 		}
 
 		[Test]
 		public void TryParseResolveSuccess ()
 		{
-			var r = new MyNSResolver ();
+		var r = new MyNSResolver ();
 			r.Add ("x", "urn:foo");
-			Assert.IsTrue (XamlTypeName.TryParse ("x:Foo", r, out dummy), "#1");
-			Assert.IsNotNull (dummy, "#2");
-			Assert.AreEqual ("urn:foo", dummy.Namespace, "#2-2");
-			Assert.AreEqual ("Foo", dummy.Name, "#2-3");
+			Assert.That(XamlTypeName.TryParse ("x:Foo", r, out dummy), Is.True, "#1");
+			Assert.That(dummy, Is.Not.Null, "#2");
+			Assert.That(dummy.Namespace, Is.EqualTo("urn:foo"), "#2-2");
+			Assert.That(dummy.Name, Is.EqualTo("Foo"), "#2-3");
 		}
 
 		[Test]
 		public void TryParseInvalidGenericName ()
 		{
-			var r = new MyNSResolver ();
+		var r = new MyNSResolver ();
 			r.Add ("x", "urn:foo");
-			Assert.IsFalse (XamlTypeName.TryParse ("x:Foo()", r, out dummy), "#1");
+			Assert.That(XamlTypeName.TryParse ("x:Foo()", r, out dummy), Is.False, "#1");
 		}
 
 		[Test]
 		public void TryParseGenericName ()
 		{
-			var r = new MyNSResolver ();
+		var r = new MyNSResolver ();
 			r.Add ("x", "urn:foo");
-			Assert.IsTrue (XamlTypeName.TryParse ("x:Foo(x:Foo,x:Bar)", r, out dummy), "#1");
-			Assert.AreEqual (2, dummy.TypeArguments.Count, "#2");
+			Assert.That(XamlTypeName.TryParse ("x:Foo(x:Foo,x:Bar)", r, out dummy), Is.True, "#1");
+			Assert.That(dummy.TypeArguments.Count, Is.EqualTo(2), "#2");
 		}
 
 		[Test]
@@ -392,39 +392,39 @@ namespace MonoTests.System.Xaml.Schema
 		[Test]
 		public void ParseListValid ()
 		{
-			var l = XamlTypeName.ParseList ("foo,  bar", new MyNSResolver ());
-			Assert.AreEqual (2, l.Count, "#1");
-			Assert.AreEqual ("{}foo", l [0].ToString (), "#2");
-			Assert.AreEqual ("{}bar", l [1].ToString (), "#3");
+		var l = XamlTypeName.ParseList ("foo,  bar", new MyNSResolver ());
+			Assert.That(l.Count, Is.EqualTo(2), "#1");
+			Assert.That(l [0].ToString (), Is.EqualTo("{}foo"), "#2");
+			Assert.That(l [1].ToString (), Is.EqualTo("{}bar"), "#3");
 			l = XamlTypeName.ParseList ("foo,bar", new MyNSResolver ());
-			Assert.AreEqual ("{}foo", l [0].ToString (), "#4");
-			Assert.AreEqual ("{}bar", l [1].ToString (), "#5");
+			Assert.That(l [0].ToString (), Is.EqualTo("{}foo"), "#4");
+			Assert.That(l [1].ToString (), Is.EqualTo("{}bar"), "#5");
 		}
 		
 		[Test]
 		public void GenericArrayName ()
 		{
-			var ns = new MyNSResolver ();
+		var ns = new MyNSResolver ();
 			ns.Add ("s", "urn:foo");
 			var xn = XamlTypeName.Parse ("s:Nullable(s:Int32)[,,]", ns);
-			Assert.AreEqual ("urn:foo", xn.Namespace, "#1");
+			Assert.That(xn.Namespace, Is.EqualTo("urn:foo"), "#1");
 			// note that array suffix comes here.
-			Assert.AreEqual ("Nullable[,,]", xn.Name, "#2");
+			Assert.That(xn.Name, Is.EqualTo("Nullable[,,]"), "#2");
 			// note that array suffix is detached from Name and appended after generic type arguments.
-			Assert.AreEqual ("{urn:foo}Nullable({urn:foo}Int32)[,,]", xn.ToString (), "#3");
+			Assert.That(xn.ToString (), Is.EqualTo("{urn:foo}Nullable({urn:foo}Int32)[,,]"), "#3");
 		}
 
 		[Test]
 		public void GenericGenericName ()
 		{
-			var ns = new MyNSResolver ();
+		var ns = new MyNSResolver ();
 			ns.Add ("s", "urn:foo");
 			ns.Add ("", "urn:bar");
 			ns.Add ("x", XamlLanguage.Xaml2006Namespace);
 			var xn = XamlTypeName.Parse ("List(KeyValuePair(x:Int32, s:DateTime))", ns);
-			Assert.AreEqual ("urn:bar", xn.Namespace, "#1");
-			Assert.AreEqual ("List", xn.Name, "#2");
-			Assert.AreEqual ("{urn:bar}List({urn:bar}KeyValuePair({http://schemas.microsoft.com/winfx/2006/xaml}Int32, {urn:foo}DateTime))", xn.ToString (), "#3");
+			Assert.That(xn.Namespace, Is.EqualTo("urn:bar"), "#1");
+			Assert.That(xn.Name, Is.EqualTo("List"), "#2");
+			Assert.That(xn.ToString (), Is.EqualTo("{urn:bar}List({urn:bar}KeyValuePair({http://schemas.microsoft.com/winfx/2006/xaml}Int32, {urn:foo}DateTime))"), "#3");
 		}
 
 		class MyNSResolver : IXamlNamespaceResolver

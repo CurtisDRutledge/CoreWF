@@ -49,20 +49,20 @@ namespace MonoTests.System.Windows.Markup
 		[Test]
 		public void GetXmlReaderWithNullText ()
 		{
-			var x = new XData ();
-			Assert.IsNull (x.Text, "#1");
+		var x = new XData ();
+			Assert.That(x.Text, Is.Null, "#1");
 			Assert.Throws<ArgumentNullException> (() => { var xr = x.XmlReader; }, "#2");
 		}
 
 		[Test]
 		public void TextSetsXmlReader ()
 		{
-			var x = new XData ();
+		var x = new XData ();
 			x.Text = "foobar";
-			Assert.IsNotNull (x.Text, "#3");
+			Assert.That(x.Text, Is.Not.Null, "#3");
 			var r = x.XmlReader as XmlReader;
-			Assert.IsNotNull (r, "#4");
-			Assert.AreEqual (XmlNodeType.None, r.NodeType, "#5");
+			Assert.That(r, Is.Not.Null, "#4");
+			Assert.That(r.NodeType, Is.EqualTo(XmlNodeType.None), "#5");
 			try {
 				r.Read (); // invalid xml
 				Assert.Fail ("#6");
@@ -93,10 +93,10 @@ namespace MonoTests.System.Windows.Markup
 		[Test]
 		public void SetXmlReader ()
 		{
-			var x = new XData ();
+		var x = new XData ();
 			x.XmlReader = XmlReader.Create (new StringReader ("<root/>"));
-			Assert.IsNull (x.Text, "#1");
-			Assert.IsNotNull (x.XmlReader, "#2");
+			Assert.That(x.Text, Is.Null, "#1");
+			Assert.That(x.XmlReader, Is.Not.Null, "#2");
 			x.XmlReader = null;
 		}
 	}

@@ -65,17 +65,17 @@ namespace MonoTests.System.Windows.Markup
 		[Test]
 		public void TypeShouldReturnName()
 		{
-			var attr = new XamlDeferLoadAttribute(typeof(TestDeferredLoader), typeof(DeferredLoadingChild));
-			Assert.AreEqual(typeof(TestDeferredLoader).AssemblyQualifiedName, attr.LoaderTypeName, "#1");
-			Assert.AreEqual(typeof(DeferredLoadingChild).AssemblyQualifiedName, attr.ContentTypeName, "#2");
+		var attr = new XamlDeferLoadAttribute(typeof(TestDeferredLoader), typeof(DeferredLoadingChild));
+			Assert.That(attr.LoaderTypeName, Is.EqualTo(typeof(TestDeferredLoader).AssemblyQualifiedName), "#1");
+			Assert.That(attr.ContentTypeName, Is.EqualTo(typeof(DeferredLoadingChild).AssemblyQualifiedName), "#2");
 		}
 
 		[Test]
 		public void TypeNameShouldNotSetType()
 		{
-			var attr = new XamlDeferLoadAttribute(typeof(TestDeferredLoader).AssemblyQualifiedName, typeof(DeferredLoadingChild).AssemblyQualifiedName);
-			Assert.IsNull(attr.LoaderType, "#1");
-			Assert.IsNull(attr.ContentType, "#2");
+		var attr = new XamlDeferLoadAttribute(typeof(TestDeferredLoader).AssemblyQualifiedName, typeof(DeferredLoadingChild).AssemblyQualifiedName);
+			Assert.That(attr.LoaderType, Is.Null, "#1");
+			Assert.That(attr.ContentType, Is.Null, "#2");
 		}
 	}
 }

@@ -74,17 +74,17 @@ namespace MonoTests.System.Windows.Markup
 		[Test]
 		public void ProvideValueWithNameWithProviderResolveFail ()
 		{
-			var x = new Reference ("X");
+		var x = new Reference ("X");
 			var r = new NameServiceProvider (true, false);
-			Assert.AreEqual ("BAR", x.ProvideValue (r), "#1");
+			Assert.That(x.ProvideValue (r), Is.EqualTo("BAR"), "#1");
 		}
 
 		[Test]
 		public void ProvideValueWithNameWithProviderResolveSuccess ()
 		{
-			var x = new Reference ("Y");
+		var x = new Reference ("Y");
 			var r = new NameServiceProvider (true, true);
-			Assert.AreEqual ("FOO", x.ProvideValue (r), "#1");
+			Assert.That(x.ProvideValue (r), Is.EqualTo("FOO"), "#1");
 		}
 
 		class NameServiceProvider : IServiceProvider
@@ -96,9 +96,9 @@ namespace MonoTests.System.Windows.Markup
 				resolver = worksFine ? new Resolver (resolvesFine) : null;
 			}
 
-			public object GetService (Type serviceType)
+		public object GetService (Type serviceType)
 			{
-				Assert.AreEqual (typeof (IXamlNameResolver), serviceType, "TypeToResolve");
+				Assert.That(serviceType, Is.EqualTo(typeof (IXamlNameResolver)), "TypeToResolve");
 				return resolver;
 			}
 		}
@@ -123,11 +123,11 @@ namespace MonoTests.System.Windows.Markup
 			}
 			
 			// only X (which 'failed' to resolve) calls this
-			public object GetFixupToken (IEnumerable<string> names, bool canAssignDirectly)
+		public object GetFixupToken (IEnumerable<string> names, bool canAssignDirectly)
 			{
-				Assert.IsTrue (canAssignDirectly, "canAssignDirectly");
-				Assert.AreEqual (1, names.Count (), "Count");
-				Assert.AreEqual ("X", names.First (), "name0");
+				Assert.That(canAssignDirectly, Is.True, "canAssignDirectly");
+				Assert.That(names.Count (), Is.EqualTo(1), "Count");
+				Assert.That(names.First (), Is.EqualTo("X"), "name0");
 				return "BAR";
 			}
 			

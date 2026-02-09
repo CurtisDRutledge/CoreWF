@@ -18,11 +18,11 @@
     <ItemGroup>
         <ProjectReference Include="..\Quorum.CoreWF.Xaml\Quorum.CoreWF.Xaml.csproj" PrivateAssets="All" />
         <ProjectReference Include="..\Quorum.CoreWF.Runtime\Quorum.CoreWF.Runtime.csproj" />
-        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
-        <PackageReference Include="ReflectionMagic" Version="4.1.0" />
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.102" PrivateAssets="All" />
+        <PackageReference Include="ReflectionMagic" Version="5.0.1" />
         <ProjectReference Include="..\VisualBasic\Microsoft.CodeAnalysis.VisualBasic.Scripting.vbproj" PrivateAssets="All" />
-        <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic" Version="$(RoslynPackageVersion)" />
-        <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="$(RoslynPackageVersion)" />
+        <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic" Version="5.0.0" />
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="5.0.0" />
         <PackageReference Include="System.CodeDom" Version="10.0.2" />
         <PackageReference Include="Nito.AsyncEx.Tasks" Version="5.1.2" />
         <None Include="..\..\README.md" Pack="true" PackagePath="" />

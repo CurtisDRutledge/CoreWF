@@ -52,17 +52,17 @@ namespace MonoTests.System.Windows.Markup
         [Test]
         public void ConstructedWithType()
         {
-            var vsa = new ValueSerializerAttribute(typeof(TestType));
-            Assert.AreEqual(typeof(TestType), vsa.ValueSerializerType, "#1");
-            Assert.AreEqual(typeof(TestType).AssemblyQualifiedName, vsa.ValueSerializerTypeName, "#2");
+        var vsa = new ValueSerializerAttribute(typeof(TestType));
+            Assert.That(vsa.ValueSerializerType, Is.EqualTo(typeof(TestType)), "#1");
+            Assert.That(vsa.ValueSerializerTypeName, Is.EqualTo(typeof(TestType).AssemblyQualifiedName), "#2");
         }
 
         [Test]
         public void ConstructedWithTypeName()
         {
-            var vsa = new ValueSerializerAttribute(TestTypeTypeName);
-            Assert.AreEqual(typeof(TestType).AssemblyQualifiedName, vsa.ValueSerializerTypeName, "#1");
-            Assert.AreEqual(typeof(TestType), vsa.ValueSerializerType, "#1");
+        var vsa = new ValueSerializerAttribute(TestTypeTypeName);
+            Assert.That(vsa.ValueSerializerTypeName, Is.EqualTo(typeof(TestType).AssemblyQualifiedName), "#1");
+            Assert.That(vsa.ValueSerializerType, Is.EqualTo(typeof(TestType)), "#1");
         }
     }
 }

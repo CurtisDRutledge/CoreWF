@@ -46,14 +46,14 @@ namespace MonoTests.System.Xaml
 		public void DefaultValues ()
 		{
 			var s = new XamlObjectReaderSettings ();
-			Assert.IsFalse (s.RequireExplicitContentVisibility, "#1");
+			Assert.That(s.RequireExplicitContentVisibility, Is.False, "#1");
 
-			Assert.IsFalse (s.AllowProtectedMembersOnRoot, "#2");
-			Assert.IsFalse (s.IgnoreUidsOnPropertyElements, "#3");
-			Assert.IsFalse (s.ProvideLineInfo, "#4");
-			Assert.IsFalse (s.ValuesMustBeString, "#5");
-			Assert.IsNull (s.BaseUri, "#6");
-			Assert.IsNull (s.LocalAssembly, "#7");
+			Assert.That(s.AllowProtectedMembersOnRoot, Is.False, "#2");
+			Assert.That(s.IgnoreUidsOnPropertyElements, Is.False, "#3");
+			Assert.That(s.ProvideLineInfo, Is.False, "#4");
+			Assert.That(s.ValuesMustBeString, Is.False, "#5");
+			Assert.That(s.BaseUri, Is.Null, "#6");
+			Assert.That(s.LocalAssembly, Is.Null, "#7");
 		}
 	}
 }

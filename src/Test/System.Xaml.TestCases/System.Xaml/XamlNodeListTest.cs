@@ -42,23 +42,23 @@ namespace MonoTests.System.Xaml
 			var listReader = list.GetReader();
 			XamlServices.Transform(listReader, writer);
 
-			Assert.IsNotNull(writer.Result, "#1");
-			Assert.IsInstanceOf<TestClass4>(writer.Result, "#2");
+			Assert.That(writer.Result, Is.Not.Null, "#1");
+			Assert.That(writer.Result, Is.InstanceOf<TestClass4>(), "#2");
 
-			Assert.AreEqual("foo", ((TestClass4)writer.Result).Foo, "#3");
-			Assert.AreEqual("bar", ((TestClass4)writer.Result).Bar, "#4");
+			Assert.That(((TestClass4)writer.Result).Foo, Is.EqualTo("foo"), "#3");
+			Assert.That(((TestClass4)writer.Result).Bar, Is.EqualTo("bar"), "#4");
 
 			// try reading a 2nd time, we should not get the same reader
 			writer = new XamlObjectWriter(sc);
 			var listReader2 = list.GetReader();
-			Assert.AreNotSame(listReader, listReader2, "#5");
+			Assert.That(listReader, Is.Not.SameAs(listReader2), "#5");
 			XamlServices.Transform(listReader2, writer);
 
-			Assert.IsNotNull(writer.Result, "#6");
-			Assert.IsInstanceOf<TestClass4>(writer.Result, "#7");
+			Assert.That(writer.Result, Is.Not.Null, "#6");
+			Assert.That(writer.Result, Is.InstanceOf<TestClass4>(), "#7");
 
-			Assert.AreEqual("foo", ((TestClass4)writer.Result).Foo, "#8");
-			Assert.AreEqual("bar", ((TestClass4)writer.Result).Bar, "#9");
+			Assert.That(((TestClass4)writer.Result).Foo, Is.EqualTo("foo"), "#8");
+			Assert.That(((TestClass4)writer.Result).Bar, Is.EqualTo("bar"), "#9");
 		}
 
 		[Test]

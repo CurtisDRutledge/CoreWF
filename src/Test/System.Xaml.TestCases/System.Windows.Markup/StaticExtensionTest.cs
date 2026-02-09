@@ -74,19 +74,19 @@ namespace MonoTests.System.Windows.Markup
 		[Test]
 		public void ProvideValueStaticProperty ()
 		{
-			var x = new StaticExtension ();
+		var x = new StaticExtension ();
 			x.MemberType = typeof (XamlLanguage);
 			x.Member = "Array";
-			Assert.AreEqual (XamlLanguage.Array, x.ProvideValue (null), "#1");
+			Assert.That(x.ProvideValue (null), Is.EqualTo(XamlLanguage.Array), "#1");
 		}
 
 		[Test]
 		public void ProvideValueConst ()
 		{
-			var x = new StaticExtension ();
+		var x = new StaticExtension ();
 			x.MemberType = typeof (XamlLanguage);
 			x.Member = "Xaml2006Namespace";
-			Assert.AreEqual (XamlLanguage.Xaml2006Namespace, x.ProvideValue (null), "#1");
+			Assert.That(x.ProvideValue (null), Is.EqualTo(XamlLanguage.Xaml2006Namespace), "#1");
 		}
 
 		[Test]
@@ -117,17 +117,17 @@ namespace MonoTests.System.Windows.Markup
 		[Test]
 		public void ProvideValueWithMemberOnly()
 		{
-			const string xaml = "<x:Static xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml' xmlns:foo='clr-namespace:MonoTests.System.Xaml;assembly=System.Xaml.TestCases' Member='foo:StaticClass1.FooBar' />";
+		const string xaml = "<x:Static xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml' xmlns:foo='clr-namespace:MonoTests.System.Xaml;assembly=System.Xaml.TestCases' Member='foo:StaticClass1.FooBar' />";
 			var result = XamlServices.Parse(xaml.UpdateXml());
-			Assert.AreEqual("test", result);
+			Assert.That(result, Is.EqualTo("test"));
 		}
 
 		[Test]
 		public void ProvideValueFromChildEnum()
 		{
-			const string xaml = "<x:Static xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml' xmlns:foo='clr-namespace:MonoTests.System.Xaml;assembly=System.Xaml.TestCases' Member='foo:StaticClass1+MyEnum.EnumValue2' />";
+		const string xaml = "<x:Static xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml' xmlns:foo='clr-namespace:MonoTests.System.Xaml;assembly=System.Xaml.TestCases' Member='foo:StaticClass1+MyEnum.EnumValue2' />";
 			var result = XamlServices.Parse(xaml.UpdateXml());
-			Assert.AreEqual(StaticClass1.MyEnum.EnumValue2, result);
+			Assert.That(result, Is.EqualTo(StaticClass1.MyEnum.EnumValue2));
 		}
 	}
 }

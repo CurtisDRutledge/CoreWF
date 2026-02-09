@@ -46,8 +46,8 @@ namespace MonoTests.System.Xaml
 		public void DefaultValues ()
 		{
 			var s = new XamlXmlWriterSettings ();
-			Assert.IsFalse (s.AssumeValidInput, "#1");
-			Assert.IsFalse (s.CloseOutput, "#2");
+			Assert.That (s.AssumeValidInput, Is.False, "#1");
+			Assert.That(s.CloseOutput, Is.False, "#2");
 		}
 	}
 }

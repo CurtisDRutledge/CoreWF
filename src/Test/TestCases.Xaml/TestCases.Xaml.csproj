@@ -6,4 +6,10 @@
     <ProjectReference Include="../TestObjects/TestObjects.csproj" />
     <ProjectReference Include="..\..\Quorum.CoreWF.Core\Quorum.CoreWF.Core.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Update="Microsoft.NET.Test.Sdk" Version="18.0.1" />
+    <PackageReference Update="Shouldly" Version="4.3.0" />
+    <PackageReference Update="xunit" Version="2.9.3" />
+    <PackageReference Update="xunit.runner.visualstudio" Version="3.1.5" />
+  </ItemGroup>
 </Project>

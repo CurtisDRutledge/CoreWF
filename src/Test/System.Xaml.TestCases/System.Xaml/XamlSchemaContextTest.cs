@@ -56,9 +56,9 @@ namespace MonoTests.System.Xaml
 		{
 			// allowed.
 			var ctx = new XamlSchemaContext ((Assembly []) null);
-			Assert.IsFalse (ctx.FullyQualifyAssemblyNamesInClrNamespaces, "#1");
-			Assert.IsFalse (ctx.SupportMarkupExtensionsWithDuplicateArity, "#2");
-			Assert.IsNull (ctx.ReferenceAssemblies, "#3");
+			Assert.That(ctx.FullyQualifyAssemblyNamesInClrNamespaces, Is.False, "#1");
+			Assert.That(ctx.SupportMarkupExtensionsWithDuplicateArity, Is.False, "#2");
+			Assert.That(ctx.ReferenceAssemblies, Is.Null, "#3");
 		}
 
 		[Test]
@@ -78,7 +78,7 @@ namespace MonoTests.System.Xaml
 		public void Constructor ()
 		{
 			var ctx = new XamlSchemaContext (new Assembly [] {typeof (XamlSchemaContext).GetTypeInfo().Assembly });
-			Assert.AreEqual (1, ctx.ReferenceAssemblies.Count, "#1");
+			Assert.That(1, Is.EqualTo(ctx.ReferenceAssemblies.Count), "#1");
 		}
 
 		[Test]
@@ -86,23 +86,23 @@ namespace MonoTests.System.Xaml
 		{
 			var ctx = new XamlSchemaContext (null, null);
 			var arr = ctx.GetAllXamlNamespaces ().ToArray ();
-			Assert.AreEqual (6, arr.Length, "#1");
-			Assert.IsTrue (arr.Contains (XamlLanguage.Xaml2006Namespace), "#1-2");
-			Assert.IsTrue (arr.Contains ("urn:mono-test"), "#1-3");
-            Assert.IsTrue(arr.Contains("urn:mono-test2"), "#1-4");
-            Assert.IsTrue(arr.Contains("urn:bar"), "#1-5");
+			Assert.That(arr.Length, Is.EqualTo(6), "#1");
+			Assert.That(arr.Contains (XamlLanguage.Xaml2006Namespace), Is.True, "#1-2");
+			Assert.That(arr.Contains ("urn:mono-test"), Is.True, "#1-3");
+            Assert.That(arr.Contains("urn:mono-test2"), Is.True, "#1-4");
+            Assert.That(arr.Contains("urn:bar"), Is.True, "#1-5");
 
             ctx = NewStandardContext ();
 			arr = ctx.GetAllXamlNamespaces ().ToArray ();
-			Assert.AreEqual (1, arr.Length, "#2");
-			Assert.AreEqual (XamlLanguage.Xaml2006Namespace, arr [0], "#2-2");
+			Assert.That(arr.Length, Is.EqualTo(1), "#2");
+			Assert.That(arr [0], Is.EqualTo(XamlLanguage.Xaml2006Namespace), "#2-2");
 
 			ctx = NewThisAssemblyContext ();
 			arr = ctx.GetAllXamlNamespaces ().ToArray ();
-			Assert.AreEqual (5, arr.Length, "#3");
-			Assert.IsTrue (arr.Contains ("urn:mono-test"), "#3-2");
-			Assert.IsTrue (arr.Contains ("urn:mono-test2"), "#3-3");
-            Assert.IsTrue(arr.Contains("urn:bar"), "#3-4");
+			Assert.That(arr.Length, Is.EqualTo(5), "#3");
+			Assert.That(arr.Contains ("urn:mono-test"), Is.True, "#3-2");
+			Assert.That(arr.Contains ("urn:mono-test2"), Is.True, "#3-3");
+            Assert.That(arr.Contains("urn:bar"), Is.True, "#3-4");
         }
 
         [Test]
@@ -116,9 +116,9 @@ namespace MonoTests.System.Xaml
 		public void GetPreferredPrefix ()
 		{
 			var ctx = new XamlSchemaContext (null, null);
-			Assert.AreEqual ("x", ctx.GetPreferredPrefix (XamlLanguage.Xaml2006Namespace), "#1");
-			Assert.AreEqual ("p", ctx.GetPreferredPrefix ("urn:4mbw93w89mbh"), "#2"); // ... WTF "p" ?
-			Assert.AreEqual ("p", ctx.GetPreferredPrefix ("urn:etbeoesmj"), "#3"); // ... WTF "p" ?
+			Assert.That(ctx.GetPreferredPrefix (XamlLanguage.Xaml2006Namespace), Is.EqualTo("x"), "#1");
+			Assert.That(ctx.GetPreferredPrefix ("urn:4mbw93w89mbh"), Is.EqualTo("p"), "#2"); // ... WTF "p" ?
+			Assert.That(ctx.GetPreferredPrefix ("urn:etbeoesmj"), Is.EqualTo("p"), "#3"); // ... WTF "p" ?
 		}
 
 		[Test]
@@ -134,21 +134,22 @@ namespace MonoTests.System.Xaml
 		{
 			var ctx = new XamlSchemaContext (null, null);
 			string dummy;
-			Assert.IsFalse (ctx.TryGetCompatibleXamlNamespace (String.Empty, out dummy), "#1");
-			Assert.IsNull (dummy, "#1-2"); // this shows the fact that the out result value for false case is not trustworthy.
+			Assert.That(ctx.TryGetCompatibleXamlNamespace (String.Empty, out dummy), Is.False, "#1");
+			Assert.That(dummy, Is.Null, "#1-2"); // this shows the fact that the out result value for false case is not trustworthy.
 
 			ctx = NewThisAssemblyContext ();
-			Assert.IsFalse (ctx.TryGetCompatibleXamlNamespace (String.Empty, out dummy), "#2");
+			Assert.That(ctx.TryGetCompatibleXamlNamespace (String.Empty, out dummy), Is.False, "#2");
 
             // test XmlnsCompatibleWith when subsuming namespace is defined, should find both.
-            Assert.IsTrue (ctx.TryGetCompatibleXamlNamespace ("urn:bar", out dummy), "#3");
-			Assert.IsTrue (ctx.TryGetCompatibleXamlNamespace ("urn:foo", out dummy), "#4");
-			Assert.AreEqual ("urn:bar", dummy, "#5");
+            Assert.That(ctx.TryGetCompatibleXamlNamespace ("urn:bar", out dummy), Is.True, "#3");
+			Assert.That(ctx.TryGetCompatibleXamlNamespace ("urn:foo", out dummy), Is.True, "#4");
+			Assert.That(dummy, Is.EqualTo("urn:bar"), "#5");
 
             // should not find a compatible namespace when XmlnsCompatibleWith is used with undefined subsuming namespace
-            Assert.IsFalse(ctx.TryGetCompatibleXamlNamespace("urn:bar2", out dummy), "#6");
-            Assert.IsFalse(ctx.TryGetCompatibleXamlNamespace("urn:foo2", out dummy), "#7");
+            Assert.That(ctx.TryGetCompatibleXamlNamespace("urn:bar2", out dummy), Is.False, "#6");
+            Assert.That(ctx.TryGetCompatibleXamlNamespace("urn:foo2", out dummy), Is.False, "#7");
         }
+
 
         /*
                     var settings = new XamlSchemaContextSettings () { FullyQualifyAssemblyNamesInClrNamespaces = true };
@@ -156,9 +157,9 @@ namespace MonoTests.System.Xaml
 
                     ctx = new XamlSchemaContext (new Assembly [] {GetType ().Assembly }, settings);
                     arr = ctx.GetAllXamlNamespaces ().ToArray ();
-                    Assert.AreEqual (2, arr.Length, "#5");
-                    Assert.IsTrue (arr.Contains ("urn:mono-test"), "#5-2");
-                    Assert.IsTrue (arr.Contains ("urn:mono-test2"), "#5-3");
+                    Assert.That(arr.Length, Is.EqualTo(2), "#5");
+                    Assert.That(arr.Contains ("urn:mono-test"), Is.True, "#5-2");
+                    Assert.That(arr.Contains ("urn:mono-test2"), Is.True, "#5-3");
                 }
         */
 
@@ -166,18 +167,19 @@ namespace MonoTests.System.Xaml
 		public void GetXamlTypeAndAllXamlTypes ()
 		{
 			var ctx = new XamlSchemaContext (new Assembly [] {typeof (string).GetTypeInfo().Assembly }); // build with corlib.
-			Assert.AreEqual (0, ctx.GetAllXamlTypes (XamlLanguage.Xaml2006Namespace).Count (), "#0"); // premise
+			Assert.That(ctx.GetAllXamlTypes (XamlLanguage.Xaml2006Namespace).Count (), Is.EqualTo(0), "#0"); // premise
 
 			var xt = ctx.GetXamlType (typeof (string));
-			Assert.IsNotNull (xt, "#1");
-			Assert.AreEqual (typeof (string), xt.UnderlyingType, "#2");
-			Assert.IsTrue (object.ReferenceEquals (xt, ctx.GetXamlType (typeof (string))), "#3");
+			Assert.That(xt, Is.Not.Null, "#1");
+			Assert.That(xt.UnderlyingType, Is.EqualTo(typeof (string)), "#2");
+			Assert.That(object.ReferenceEquals (xt, ctx.GetXamlType (typeof (string))), Is.True, "#3");
 
 			// non-primitive type example
-			Assert.IsTrue (object.ReferenceEquals (ctx.GetXamlType (GetType ()), ctx.GetXamlType (GetType ())), "#4");
+			Assert.That(object.ReferenceEquals (ctx.GetXamlType (GetType ()), ctx.GetXamlType (GetType ())), Is.True, "#4");
 
 			// after getting these types, it still returns 0. So it's not all about caching.
-			Assert.AreEqual (0, ctx.GetAllXamlTypes (XamlLanguage.Xaml2006Namespace).Count (), "#5");
+
+			Assert.That(ctx.GetAllXamlTypes (XamlLanguage.Xaml2006Namespace).Count (), Is.EqualTo(0), "#5");
 		}
 
 		[Test]
@@ -195,28 +197,28 @@ namespace MonoTests.System.Xaml
 			// There are some special types that have non-default name: MemberDefinition, PropertyDefinition
 
 			var l = ctx.GetAllXamlTypes (XamlLanguage.Xaml2006Namespace);
-			Assert.IsTrue (l.Count () > 40, "#1");
-			Assert.IsTrue (l.Any (t => t.UnderlyingType == typeof (MemberDefinition)), "#2");
-			Assert.IsTrue (l.Any (t => t.Name == "AmbientAttribute"), "#3");
-			Assert.IsTrue (l.Any (t => t.Name == "XData"), "#4");
-			Assert.IsTrue (l.Any (t => t.Name == "ArrayExtension"), "#5");
-			Assert.IsTrue (l.Any (t => t.Name == "StaticExtension"), "#6");
+			Assert.That(l.Count () > 40, Is.True, "#1");
+			Assert.That(l.Any (t => t.UnderlyingType == typeof (MemberDefinition)), Is.True, "#2");
+			Assert.That(l.Any (t => t.Name == "AmbientAttribute"), Is.True, "#3");
+			Assert.That(l.Any (t => t.Name == "XData"), Is.True, "#4");
+			Assert.That(l.Any (t => t.Name == "ArrayExtension"), Is.True, "#5");
+			Assert.That(l.Any (t => t.Name == "StaticExtension"), Is.True, "#6");
 			// FIXME: enable these tests when I sort out how these special names are filled.
-			//Assert.IsTrue (l.Any (t => t.Name == "Member"), "#7");
-			//Assert.IsTrue (l.Any (t => t.Name == "Property"), "#8");
-			//Assert.IsFalse (l.Any (t => t.Name == "MemberDefinition"), "#9");
-			//Assert.IsFalse (l.Any (t => t.Name == "PropertyDefinition"), "#10");
-			//Assert.AreEqual ("MemberDefinition", new XamlType (typeof (MemberDefinition), new XamlSchemaContext (null, null)).Name);
-			//Assert.AreEqual ("Member", l.GetAllXamlTypes (XamlLanguage.Xaml2006Namespace).First (t => t.UnderlyingType == typeof (MemberDefinition)));
-			Assert.IsFalse (l.Any (t => t.Name == "Array"), "#11");
-			Assert.IsFalse (l.Any (t => t.Name == "Null"), "#12");
-			Assert.IsFalse (l.Any (t => t.Name == "Static"), "#13");
-			Assert.IsFalse (l.Any (t => t.Name == "Type"), "#14");
-			Assert.IsTrue (l.Contains (XamlLanguage.Type), "#15");
-			Assert.IsFalse (l.Contains (XamlLanguage.String), "#16"); // huh?
-			Assert.IsFalse (l.Contains (XamlLanguage.Object), "#17"); // huh?
-			Assert.IsTrue (l.Contains (XamlLanguage.Array), "#18");
-			Assert.IsFalse (l.Contains (XamlLanguage.Uri), "#19");
+			//Assert.That(l.Any (t => t.Name == "Member"), Is.True, "#7");
+			//Assert.That(l.Any (t => t.Name == "Property"), Is.True, "#8");
+			//Assert.That(l.Any (t => t.Name == "MemberDefinition"), Is.False, "#9");
+			//Assert.That(l.Any (t => t.Name == "PropertyDefinition"), Is.False, "#10");
+			//Assert.That(new XamlType (typeof (MemberDefinition), Is.EqualTo("MemberDefinition"), new XamlSchemaContext (null, null)).Name);
+			//Assert.That(l.GetAllXamlTypes (XamlLanguage.Xaml2006Namespace).First (t => t.UnderlyingType == typeof (MemberDefinition)));
+			Assert.That(l.Any (t => t.Name == "Array"), Is.False, "#11");
+			Assert.That(l.Any (t => t.Name == "Null"), Is.False, "#12");
+			Assert.That(l.Any (t => t.Name == "Static"), Is.False, "#13");
+			Assert.That(l.Any (t => t.Name == "Type"), Is.False, "#14");
+			Assert.That(l.Contains (XamlLanguage.Type), Is.True, "#15");
+			Assert.That(l.Contains (XamlLanguage.String), Is.False, "#16"); // huh?
+			Assert.That(l.Contains (XamlLanguage.Object), Is.False, "#17"); // huh?
+			Assert.That(l.Contains (XamlLanguage.Array), Is.True, "#18");
+			Assert.That(l.Contains (XamlLanguage.Uri), Is.False, "#19");
 		}
 
 		[Test]
@@ -227,27 +229,27 @@ namespace MonoTests.System.Xaml
 			//var ctx = NewStandardContext ();
 			XamlType xt;
 
-			Assert.IsNull (ctx.GetXamlType (new XamlTypeName ("urn:foobarbaz", "bar")));
+			Assert.That(ctx.GetXamlType (new XamlTypeName ("urn:foobarbaz", "bar")), Is.Null);
 
 			xt = ctx.GetXamlType (new XamlTypeName (ns, "Int32"));
-			Assert.IsNotNull (xt, "#1");
+			Assert.That(xt, Is.Not.Null, "#1");
 			xt = ctx.GetXamlType (new XamlTypeName (ns, "Int32", new XamlTypeName [] {new XamlTypeName (ns, "Int32")}));
-			Assert.IsNull (xt, "#1-2");
+			Assert.That(xt, Is.Null, "#1-2");
 			xt = ctx.GetXamlType (new XamlTypeName (ns, "Uri"));
-			Assert.IsNotNull (xt, "#2");
+			Assert.That(xt, Is.Not.Null, "#2");
 
 			// Compare those results to GetAllXamlTypesInXaml2006Namespace() results,
 			// which asserts that types with those names are *not* included.
 			xt = ctx.GetXamlType (new XamlTypeName (ns, "Array"));
-			Assert.IsNotNull (xt, "#3");
+			Assert.That(xt, Is.Not.Null, "#3");
 			xt = ctx.GetXamlType (new XamlTypeName (ns, "Property"));
-			Assert.IsNotNull (xt, "#4");
+			Assert.That(xt, Is.Not.Null, "#4");
 			xt = ctx.GetXamlType (new XamlTypeName (ns, "Null"));
-			Assert.IsNotNull (xt, "#5");
+			Assert.That(xt, Is.Not.Null, "#5");
 			xt = ctx.GetXamlType (new XamlTypeName (ns, "Static"));
-			Assert.IsNotNull (xt, "#6");
+			Assert.That(xt, Is.Not.Null, "#6");
 			xt = ctx.GetXamlType (new XamlTypeName (ns, "Type"));
-			Assert.IsNotNull (xt, "#7");
+			Assert.That(xt, Is.Not.Null, "#7");
 		}
 
 		[Test]
@@ -258,12 +260,12 @@ namespace MonoTests.System.Xaml
 			// There are some special types that have non-default name: MemberDefinition, PropertyDefinition
 
 			var xt = ctx.GetXamlType (typeof (Type));
-			Assert.AreEqual ("Type", xt.Name, "#1-1");
-			Assert.AreEqual (typeof (Type), xt.UnderlyingType, "#1-2");
+			Assert.That(xt.Name, Is.EqualTo("Type"), "#1-1");
+			Assert.That(xt.UnderlyingType, Is.EqualTo(typeof (Type)), "#1-2");
 
 			xt = ctx.GetXamlType (new XamlTypeName (XamlLanguage.Xaml2006Namespace, "Type")); // becomes TypeExtension, not Type
-			Assert.AreEqual ("TypeExtension", xt.Name, "#2-1");
-			Assert.AreEqual (typeof (TypeExtension), xt.UnderlyingType, "#2-2");
+			Assert.That(xt.Name, Is.EqualTo("TypeExtension"), "#2-1");
+			Assert.That(xt.UnderlyingType, Is.EqualTo(typeof (TypeExtension)), "#2-2");
 		}
 
 		[TestCase(typeof(bool))]
@@ -284,11 +286,11 @@ namespace MonoTests.System.Xaml
 			var xn = new XamlTypeName ("clr-namespace:System;assembly=mscorlib", type.Name);
 			var ctx = NewStandardContext ();
 			var xt = ctx.GetXamlType (xn);
-			Assert.IsNull (xt, "#1");
+			Assert.That(xt, Is.Null, "#1");
 
 			ctx = new XamlSchemaContext ();
 			xt = ctx.GetXamlType (xn);
-			Assert.IsNotNull (xt, "#2");
+			Assert.That(xt, Is.Not.Null, "#2");
 		}
 
 		[Test]
@@ -296,7 +298,7 @@ namespace MonoTests.System.Xaml
 		{
 			var ctx = new XamlSchemaContext ();
 			var xt = ctx.GetXamlType (typeof(AbstractObject));
-			Assert.IsNotNull (xt, "#1");
+			Assert.That(xt, Is.Not.Null, "#1");
 		}
 
 		[Test]
@@ -305,8 +307,8 @@ namespace MonoTests.System.Xaml
 			var ctx = new XamlSchemaContext();
 			var tn = new XamlTypeName(Compat.TestAssemblyNamespace, "AbstractObject");
 			var xt = ctx.GetXamlType(tn);
-			Assert.IsNotNull(xt, "#1");
-			Assert.IsNotNull(xt.UnderlyingType, "#2");
+			Assert.That(xt, Is.Not.Null, "#1");
+			Assert.That(xt.UnderlyingType, Is.Not.Null, "#2");
 		}
 
 		[Test]
@@ -315,8 +317,8 @@ namespace MonoTests.System.Xaml
 			var ctx = new XamlSchemaContext();
 			var tn = new XamlTypeName("urn:mono-test", "AbstractObject");
 			var xt = ctx.GetXamlType(tn);
-			Assert.IsNotNull(xt, "#1");
-			Assert.IsNotNull(xt.UnderlyingType, "#2");
+			Assert.That(xt, Is.Not.Null, "#1");
+			Assert.That(xt.UnderlyingType, Is.Not.Null, "#2");
 		}
 
 		[Test]
@@ -324,20 +326,20 @@ namespace MonoTests.System.Xaml
 		{
 			var ctx = new XamlSchemaContext();
 			var xt = ctx.GetXamlType(typeof(AttachedWrapper4));
-			Assert.IsNotNull(xt, "#1");
+			Assert.That(xt, Is.Not.Null, "#1");
 			var xm = xt.GetAttachableMember("SomeCollection");
-			Assert.IsNotNull(xm, "#2");
-			Assert.AreEqual(typeof(List<TestClass4>), xm.Type.UnderlyingType, "#3");
+			Assert.That(xm, Is.Not.Null, "#2");
+			Assert.That(xm.Type.UnderlyingType, Is.EqualTo(typeof(List<TestClass4>)), "#3");
 		}
 		[Test]
 		public void AttachableMemberTypeShouldBeCorrect()
 		{
 			var ctx = new XamlSchemaContext();
 			var xt = ctx.GetXamlType(typeof(AttachedWrapper5));
-			Assert.IsNotNull(xt, "#1");
+			Assert.That(xt, Is.Not.Null, "#1");
 			var xm = xt.GetAttachableMember("SomeCollection");
-			Assert.IsNotNull(xm, "#2");
-			Assert.AreEqual(typeof(List<TestClass4>), xm.Type.UnderlyingType, "#3");
+			Assert.That(xm, Is.Not.Null, "#2");
+			Assert.That(xm.Type.UnderlyingType, Is.EqualTo(typeof(List<TestClass4>)), "#3");
 		}
 
 		[Test]
@@ -350,7 +352,7 @@ namespace MonoTests.System.Xaml
 
 			XamlServices.Transform(reader, writer);
 
-			Assert.True(ctx.Invoked);
+			Assert.That(ctx.Invoked, Is.True);
 		}
 
 		private class TestGetXamlTypeArgumentsNull : XamlSchemaContext
@@ -359,7 +361,7 @@ namespace MonoTests.System.Xaml
 
             public override XamlType GetXamlType(string xamlNamespace, string name, params XamlType[] typeArguments)
 			{
-				Assert.IsNull(typeArguments);
+				Assert.That(typeArguments, Is.Null);
 				Invoked = true;
 				return base.GetXamlType(xamlNamespace, name, typeArguments);
 			}

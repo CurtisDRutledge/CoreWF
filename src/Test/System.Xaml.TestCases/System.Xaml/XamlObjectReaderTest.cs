@@ -120,7 +120,7 @@ namespace MonoTests.System.Xaml
 		{
 			var r = new XamlObjectReader (new TestClass4 ());
 			WriteNullMemberAsObject (r, delegate {
-				Assert.IsNull (r.Instance, "#x");
+				Assert.That(r.Instance, Is.Null, "#x");
 			}
 			);
 		}
@@ -153,7 +153,7 @@ namespace MonoTests.System.Xaml
 			while (r.NodeType != XamlNodeType.StartMember)
 				r.Read ();
 			r.Skip ();
-			Assert.AreEqual (XamlNodeType.EndObject, r.NodeType, "#1");
+			Assert.That(XamlNodeType.EndObject, Is.EqualTo(r.NodeType), "#1");
 		}
 
 		[Test]
@@ -190,7 +190,7 @@ namespace MonoTests.System.Xaml
 		void Read_TypeOrTypeExtension (XamlObjectReader r)
 		{
 			Read_TypeOrTypeExtension (r, delegate {
-				Assert.IsTrue (r.Instance is TypeExtension, "#26");
+				Assert.That(r.Instance is TypeExtension, Is.True, "#26");
 			}, XamlLanguage.PositionalParameters);
 		}
 
@@ -211,7 +211,7 @@ namespace MonoTests.System.Xaml
 		void Read_TypeOrTypeExtension2 (XamlObjectReader r)
 		{
 			Read_TypeOrTypeExtension2 (r, delegate {
-				Assert.IsTrue (r.Instance is TypeExtension, "#26");
+				Assert.That(r.Instance is TypeExtension, Is.True, "#26");
 			}, XamlLanguage.PositionalParameters);
 		}
 
@@ -240,7 +240,7 @@ namespace MonoTests.System.Xaml
 		void Read_NullOrNullExtension (XamlObjectReader r, object instance)
 		{
 			Read_NullOrNullExtension (r, delegate {
-				Assert.AreEqual (instance, r.Instance, "#26"); // null and NullExtension are different here.
+				Assert.That(instance, Is.EqualTo(r.Instance), "#26"); // null and NullExtension are different here.
 			});
 		}
 
@@ -269,7 +269,7 @@ namespace MonoTests.System.Xaml
 		{
 			var r = new XamlObjectReader (obj);
 			Read_ListInt32 (r, delegate {
-				Assert.AreEqual (obj, r.Instance, "#26");
+				Assert.That(obj, Is.EqualTo(r.Instance), "#26");
 			}, obj);
 		}
 
@@ -328,7 +328,7 @@ namespace MonoTests.System.Xaml
 		void Read_ArrayOrArrayExtensionOrMyArrayExtension (XamlObjectReader r, object instance, Type extType)
 		{
 			Read_ArrayOrArrayExtensionOrMyArrayExtension (r, delegate {
-				Assert.AreEqual (instance, r.Instance, "#26"); // different between Array and ArrayExtension. Also, different from Type and TypeExtension (Type returns TypeExtension, while Array remains to return Array)
+				Assert.That(instance, Is.EqualTo(r.Instance), "#26"); // different between Array and ArrayExtension. Also, different from Type and TypeExtension (Type returns TypeExtension, while Array remains to return Array)
 			}, extType);
 		}
 
@@ -345,7 +345,7 @@ namespace MonoTests.System.Xaml
 			var obj = new DateTime (2010, 4, 15);
 			var r = new XamlObjectReader (obj);
 			Read_CommonClrType (r, obj);
-			Assert.AreEqual ("2010-04-15", Read_Initialization (r, null), "#1");
+			Assert.That("2010-04-15", Is.EqualTo(Read_Initialization (r, null)), "#1");
 		}
 
 		[Test]
@@ -366,10 +366,10 @@ namespace MonoTests.System.Xaml
 			var obj = Guid.NewGuid ();
 			var r = new XamlObjectReader (obj);
 #if HAS_TYPE_CONVERTER
-			Assert.IsNotNull (r.SchemaContext.GetXamlType (typeof(Guid)).TypeConverter, "premise#1");
+			Assert.That(r.SchemaContext.GetXamlType (typeof(Guid)).TypeConverter, Is.Not.Null, "premise#1");
 #endif
 			Read_CommonClrType (r, obj);
-			Assert.AreEqual (obj.ToString (), Read_Initialization (r, null), "#1");
+			Assert.That(obj.ToString (), Is.EqualTo(Read_Initialization (r, null)), "#1");
 		}
 
 		[Test]
@@ -681,7 +681,7 @@ namespace MonoTests.System.Xaml
 			while (xr.Read ())
 				if (xr.NodeType == XamlNodeType.StartMember)
 					break;
-			Assert.AreEqual (xt.GetMember ("Foo"), xr.Member, "#1");
+			Assert.That(xt.GetMember ("Foo"), Is.EqualTo(xr.Member), "#1");
 			while (!xr.IsEof)
 				xr.Read ();
 		}
@@ -882,8 +882,8 @@ namespace MonoTests.System.Xaml
 					ReadValue(xr, "hello", "#3");
 				});
 			});
-			Assert.IsFalse(xr.Read());
-			Assert.IsTrue(obj.ShouldSerializeCalled > 0);
+			Assert.That(xr.Read(),Is.False);
+			Assert.That(obj.ShouldSerializeCalled > 0, Is.True);
 		}
 
 		[Test]
@@ -898,8 +898,8 @@ namespace MonoTests.System.Xaml
 			{
 				// no members
 			});
-			Assert.IsFalse(xr.Read());
-			Assert.IsTrue(obj.ShouldSerializeCalled > 0);
+			Assert.That(xr.Read(), Is.False);
+			Assert.That(obj.ShouldSerializeCalled > 0, Is.True);
 		}
 	}
 }

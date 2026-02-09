@@ -65,8 +65,8 @@ namespace MonoTests.System.Windows.Markup
 		[Test]
 		public void ProvideValueWithType ()
 		{
-			var x = new TypeExtension (typeof (int));
-			Assert.AreEqual (typeof (int), x.ProvideValue (null), "#1"); // serviceProvider is not required.
+		var x = new TypeExtension (typeof (int));
+			Assert.That(x.ProvideValue (null), Is.EqualTo(typeof (int)), "#1"); // serviceProvider is not required.
 		}
 
 		[Test]
@@ -107,9 +107,9 @@ namespace MonoTests.System.Windows.Markup
 				resolves = resolvesFine;
 			}
 
-			public object GetService (Type serviceType)
+		public object GetService (Type serviceType)
 			{
-				Assert.AreEqual (typeof (IXamlTypeResolver), serviceType, "TypeToResolve");
+				Assert.That(serviceType, Is.EqualTo(typeof (IXamlTypeResolver)), "TypeToResolve");
 				return works ? this : null;
 			}
 

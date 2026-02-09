@@ -44,51 +44,51 @@ namespace MonoTests.System.Xaml
 		[Test]
 		public void NullTypeName ()
 		{
-			// It is not rejected. No dot.
-			Assert.AreEqual ("Foo", new AttachableMemberIdentifier (null, "Foo").ToString (), "#1");
+		// It is not rejected. No dot.
+			Assert.That(new AttachableMemberIdentifier (null, "Foo").ToString (), Is.EqualTo("Foo"), "#1");
 		}
 		
 		[Test]
 		public void EmptyMemberName ()
 		{
-			// It is not rejected. Trailing dot.
-			Assert.AreEqual ("System.String.", new AttachableMemberIdentifier (typeof (string), "").ToString (), "#1");
+		// It is not rejected. Trailing dot.
+			Assert.That(new AttachableMemberIdentifier (typeof (string), "").ToString (), Is.EqualTo("System.String."), "#1");
 		}
 
 		[Test]
 		public void ToStringTest ()
 		{
-			Assert.AreEqual ("System.String.Foo", new AttachableMemberIdentifier (typeof (string), "Foo").ToString (), "#1");
-			Assert.AreEqual ("System.Int32.Foo", new AttachableMemberIdentifier (typeof (int), "Foo").ToString (), "#2");
+		Assert.That(new AttachableMemberIdentifier (typeof (string), "Foo").ToString (), Is.EqualTo("System.String.Foo"), "#1");
+			Assert.That(new AttachableMemberIdentifier (typeof (int), "Foo").ToString (), Is.EqualTo("System.Int32.Foo"), "#2");
 		}
 
 		[Test]
 		public void Equivalence ()
 		{
-			var a1 = new AttachableMemberIdentifier (typeof (string), "Foo");
+		var a1 = new AttachableMemberIdentifier (typeof (string), "Foo");
 			var a2 = new AttachableMemberIdentifier (typeof (string), "Foo");
 			var a3 = new AttachableMemberIdentifier (null, "Foo");
 			var a4 = new AttachableMemberIdentifier (null, "Foo");
 			var a5 = new AttachableMemberIdentifier (typeof (string), null);
 			var a6 = new AttachableMemberIdentifier (typeof (string), null);
-			Assert.IsTrue (a1 == a2, "#1");
-			Assert.IsFalse (a1 == a3, "#2");
-			Assert.IsFalse (a1 == a5, "#3");
-			Assert.IsTrue (a3 == a4, "#4");
-			Assert.IsFalse (a3 == a1, "#5");
-			Assert.IsFalse (a3 == a5, "#6");
-			Assert.IsTrue (a5 == a6, "#7");
-			Assert.IsFalse (a5 == a1, "#8");
-			Assert.IsFalse (a5 == a3, "#9");
-			Assert.IsTrue (a1.Equals (a2),"#11");
-			Assert.IsFalse (a1.Equals (a3),"#12");
-			Assert.IsFalse (a1.Equals (a5),"#13");
-			Assert.IsTrue (a3.Equals (a4),"#14");
-			Assert.IsFalse (a3.Equals (a1),"#15");
-			Assert.IsFalse (a3.Equals (a5),"#16");
-			Assert.IsTrue (a5.Equals (a6),"#17");
-			Assert.IsFalse (a5.Equals (a1),"#18");
-			Assert.IsFalse (a5.Equals (a3),"#19");
+			Assert.That(a1 == a2, Is.True, "#1");
+			Assert.That(a1 == a3, Is.False, "#2");
+			Assert.That(a1 == a5, Is.False, "#3");
+			Assert.That(a3 == a4, Is.True, "#4");
+			Assert.That(a3 == a1, Is.False, "#5");
+			Assert.That(a3 == a5, Is.False, "#6");
+			Assert.That(a5 == a6, Is.True, "#7");
+			Assert.That(a5 == a1, Is.False, "#8");
+			Assert.That(a5 == a3, Is.False, "#9");
+			Assert.That(a1.Equals (a2), Is.True,"#11");
+			Assert.That(a1.Equals (a3), Is.False,"#12");
+			Assert.That(a1.Equals (a5), Is.False,"#13");
+			Assert.That(a3.Equals (a4), Is.True,"#14");
+			Assert.That(a3.Equals (a1), Is.False,"#15");
+			Assert.That(a3.Equals (a5), Is.False,"#16");
+			Assert.That(a5.Equals (a6), Is.True,"#17");
+		Assert.That(a5.Equals (a1), Is.False,"#18");
+			Assert.That(a5.Equals (a3), Is.False,"#19");
 		}
 	}
 }

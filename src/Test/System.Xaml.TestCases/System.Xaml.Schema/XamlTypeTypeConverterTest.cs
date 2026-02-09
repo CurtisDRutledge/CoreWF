@@ -52,21 +52,21 @@ namespace MonoTests.System.Xaml.Schema
 		[Test]
 		public void CanConvertFrom ()
 		{
-			Assert.IsFalse (c.CanConvertFrom (null, typeof (XamlType)), "#1");
-			Assert.IsTrue (c.CanConvertFrom (null, typeof (string)), "#2");
-			Assert.IsFalse (c.CanConvertFrom (null, typeof (int)), "#3");
-			Assert.IsFalse (c.CanConvertFrom (null, typeof (object)), "#4");
-			Assert.IsFalse (c.CanConvertFrom (new DummyValueSerializerContext (), typeof (XamlType)), "#5");
+		Assert.That(c.CanConvertFrom (null, typeof (XamlType)), Is.False, "#1");
+			Assert.That(c.CanConvertFrom (null, typeof (string)), Is.True, "#2");
+			Assert.That(c.CanConvertFrom (null, typeof (int)), Is.False, "#3");
+			Assert.That(c.CanConvertFrom (null, typeof (object)), Is.False, "#4");
+			Assert.That(c.CanConvertFrom (new DummyValueSerializerContext (), typeof (XamlType)), Is.False, "#5");
 		}
 
 		[Test]
 		public void CanConvertTo ()
 		{
-			Assert.IsFalse (c.CanConvertTo (null, typeof (XamlType)), "#1");
-			Assert.IsTrue (c.CanConvertTo (null, typeof (string)), "#2");
-			Assert.IsFalse (c.CanConvertTo (null, typeof (int)), "#3");
-			Assert.IsFalse (c.CanConvertTo (null, typeof (object)), "#4");
-			Assert.IsFalse (c.CanConvertTo (new DummyValueSerializerContext (), typeof (XamlType)), "#5");
+		Assert.That(c.CanConvertTo (null, typeof (XamlType)), Is.False, "#1");
+			Assert.That(c.CanConvertTo (null, typeof (string)), Is.True, "#2");
+			Assert.That(c.CanConvertTo (null, typeof (int)), Is.False, "#3");
+			Assert.That(c.CanConvertTo (null, typeof (object)), Is.False, "#4");
+			Assert.That(c.CanConvertTo (new DummyValueSerializerContext (), typeof (XamlType)), Is.False, "#5");
 		}
 
 		// ConvertFrom() is not supported in either way.
@@ -104,22 +104,22 @@ namespace MonoTests.System.Xaml.Schema
 		[Test]
 		public void ConvertXamlTypeToString ()
 		{
-			// ... so, it does not seem to just call XamlType.ToString(), but rather first try to use UnderlyingType if possible.
-			Assert.AreEqual ("System.String", c.ConvertTo (null, null, XamlLanguage.String, typeof (string)), "#1"); // huh?
-			Assert.AreEqual ("System.Windows.Markup.TypeExtension".Fixup(), c.ConvertTo (null, null, XamlLanguage.Type, typeof (string)), "#1"); // huh?
-			Assert.AreEqual ("{urn:foo}Foo", c.ConvertTo (null, null, new XamlType ("urn:foo", "Foo", null, sctx), typeof (string)), "#2");
+		// ... so, it does not seem to just call XamlType.ToString(), but rather first try to use UnderlyingType if possible.
+			Assert.That(c.ConvertTo (null, null, XamlLanguage.String, typeof (string)), Is.EqualTo("System.String"), "#1"); // huh?
+			Assert.That(c.ConvertTo (null, null, XamlLanguage.Type, typeof (string)), Is.EqualTo("System.Windows.Markup.TypeExtension".Fixup()), "#1"); // huh?
+			Assert.That(c.ConvertTo (null, null, new XamlType ("urn:foo", "Foo", null, sctx), typeof (string)), Is.EqualTo("{urn:foo}Foo"), "#2");
 		}
 
 		[Test]
 		public void ConvertStringToString ()
 		{
-			Assert.AreEqual ("foo", c.ConvertTo (null, CultureInfo.InvariantCulture, "foo", typeof (string)), "#1");
+		Assert.That(c.ConvertTo (null, CultureInfo.InvariantCulture, "foo", typeof (string)), Is.EqualTo("foo"), "#1");
 		}
 
 		[Test]
 		public void ConvertIntToString ()
 		{
-			Assert.AreEqual ("5", c.ConvertTo (null, null, 5, typeof (string)), "#1");
+		Assert.That(c.ConvertTo (null, null, 5, typeof (string)), Is.EqualTo("5"), "#1");
 		}
 
 		[Test]

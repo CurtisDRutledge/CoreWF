@@ -54,7 +54,7 @@ namespace Perf.AssemblyReference.Benchmarks
             var config = new Serilog.LoggerConfiguration().WriteTo.Console().CreateLogger();
             config.Information("Logging from Serilog");
 
-            var mapper = new AutoMapper.MapperConfiguration(cfg => { }).CreateMapper();
+            var mapper = new AutoMapper.MapperConfiguration(cfg => { },null).CreateMapper();
             var faker = new Bogus.Faker();
             var csv = new CsvHelper.Configuration.CsvConfiguration(System.Globalization.CultureInfo.InvariantCulture);
             var document = new HtmlAgilityPack.HtmlDocument();

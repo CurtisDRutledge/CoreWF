@@ -20,90 +20,9 @@ namespace MonoTests.System.Xaml
 
 	    void XmlEquals(XElement first, XElement second)
 	    {
-		    Assert.AreEqual(first.ToString(), second.ToString());
+		    Assert.That(second.ToString(), Is.EqualTo(first.ToString()));
 	    }
 
-
-#if FALSE
-		[Test]
-	    public void CheckIgnorable()
-		{
-			var xml = @"
-<Root xmlns:mc='http://schemas.openxmlformats.org/markup-compatibility/2006' 
-     xmlns:i1='i1Uri' xmlns:i2='i2Uri' 
-	xmlns:compat='mapped' xmlns:ignoredCompat='mapped2' xmlns:ignoredCompat2='preserve' 
-	mc:Ignorable='i1 ignoredCompat ignoredCompat2'>
-    <Element i2:ShouldNotIgnore='1'/>
-	<i1:ShouldIgnore/>
-	<i1:ShouldIgnore>
-		<i2:ShouldIgnore/>
-	</i1:ShouldIgnore>
-    <Element i2:ShouldNotIgnore='1'>
-		<i1:ShouldIgnore/> 
-		<i2:ShouldNotIgnore/>
-		<i2:ShouldNotIgnore>
-			<i2:ShouldNotIgnore/>
-		</i2:ShouldNotIgnore>
-		<i1:ShouldIgnore> 
-			<i2:ShouldIgnore/>
-		</i1:ShouldIgnore> 
-	</Element>
-    <Element i1:ShouldAlwaysIgnore='1' mc:Ignorable='i2' i2:ShouldIgnore='1'/>
-    <Element i1:ShouldAlwaysIgnore='1' mc:Ignorable='i2' i2:ShouldIgnore='1'>
-		<i2:ShouldIgnore/>
-		<i2:ShouldIgnore>
-			<ShouldIgnore/>
-		</i2:ShouldIgnore>
-		<Element i2:ShouldIgnore='1'/>
-	</Element>
-	<Element i2:ShouldNotIgnore='1'/>
-    <Element compat:ShouldMap='1' ignoredCompat:ShouldMap='1' ignoredCompat2:ShouldMapAndPreserve='1'/>
-</Root>";
-			// TODO: Use XamlXmlParser directly with compaibility mode turned on.
-			var rdr = new XmlCompatibilityReader(XmlReader.Create(new StringReader(xml)),
-				(string ns, out string mapped) =>
-				{
-					if (ns == "mapped")
-					{
-						mapped = "mappedTo";
-						return true;
-					}
-					if (ns == "mapped2")
-					{
-						mapped = "mappedTo2";
-						return true;
-					}
-					if (ns == "preserve")
-					{
-						mapped = "preserve";
-						return true;
-					}
-					mapped = null;
-					return false;
-				});
-			var actual = XElement.Load(rdr).ToString();
-			var expected =
-				@"
-<Root xmlns:mc='http://schemas.openxmlformats.org/markup-compatibility/2006' xmlns:i1='i1Uri' xmlns:i2='i2Uri' xmlns:compat='mappedTo' xmlns:ignoredCompat='mappedTo2' xmlns:ignoredCompat2='preserve'>
-    <Element i2:ShouldNotIgnore='1' />
-	<Element i2:ShouldNotIgnore='1'>
-		<i2:ShouldNotIgnore />
-		<i2:ShouldNotIgnore>
-			<i2:ShouldNotIgnore />
-		</i2:ShouldNotIgnore>
-		</Element>
-    <Element />
-    <Element>
-		<Element />
-	</Element>
-	<Element i2:ShouldNotIgnore='1' />
-    <Element compat:ShouldMap='1' ignoredCompat:ShouldMap='1' ignoredCompat2:ShouldMapAndPreserve='1' />
-</Root>";
-			Func<string, string> filter = s => expected.Replace(" ", "").Replace('\'', '"').Replace("\n", "").Replace("\r", "");
-			Assert.AreEqual(filter(expected), filter(actual));
-
-		}
-#endif
 	    private static XamlDirective DesignContextDirective = new XamlDirective(
 		    new[] { "http://schemas.microsoft.com/expression/blend/2008" },
 		    "DataContext", XamlLanguage.Object, null, AllowedMemberLocations.Attribute);
@@ -180,9 +99,9 @@ d:DataContext='value'>
 					}
 
 					if (designMode)
-						Assert.AreEqual("value", res.DataContext);
+						Assert.That("value", Is.EqualTo(res.DataContext));
 					else
-						Assert.IsNull(res.DataContext);
+						Assert.That(res.DataContext, Is.Null);
 				}
 			}
 	    }

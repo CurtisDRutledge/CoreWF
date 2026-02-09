@@ -73,7 +73,7 @@ namespace MonoTests.System.Xaml
 		[Test]
 		public void SchemaContext ()
 		{
-			Assert.AreNotEqual (XamlLanguage.Type.SchemaContext, new XamlXmlReader (XmlReader.Create (new StringReader ("<root/>"))).SchemaContext, "#1");
+			Assert.That(new XamlXmlReader (XmlReader.Create (new StringReader ("<root/>"))).SchemaContext, Is.Not.EqualTo(XamlLanguage.Type.SchemaContext), "#1");
 		}
 
 		[Test]
@@ -135,31 +135,31 @@ namespace MonoTests.System.Xaml
 		{
 			var r = GetReader ("Int32.xml");
 
-			Assert.IsTrue (r.Read (), "ns#1");
-			Assert.AreEqual (XamlNodeType.NamespaceDeclaration, r.NodeType, "ns#2");
-			Assert.AreEqual (XamlLanguage.Xaml2006Namespace, r.Namespace.Namespace, "ns#3");
+			Assert.That(r.Read(), Is.True, "ns#1");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.NamespaceDeclaration), "ns#2");
+			Assert.That(r.Namespace.Namespace, Is.EqualTo(XamlLanguage.Xaml2006Namespace), "ns#3");
 
-			Assert.IsTrue (r.Read (), "so#1");
-			Assert.AreEqual (XamlNodeType.StartObject, r.NodeType, "so#2");
-			Assert.AreEqual (XamlLanguage.Int32, r.Type, "so#3");
+			Assert.That(r.Read (), Is.True, "so#1");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.StartObject), "so#2");
+			Assert.That(r.Type, Is.EqualTo(XamlLanguage.Int32), "so#3");
 
 			ReadBase (r);
 
-			Assert.IsTrue (r.Read (), "sinit#1");
-			Assert.AreEqual (XamlNodeType.StartMember, r.NodeType, "sinit#2");
-			Assert.AreEqual (XamlLanguage.Initialization, r.Member, "sinit#3");
+			Assert.That(r.Read (), Is.True, "sinit#1");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.StartMember), "sinit#2");
+			Assert.That(r.Member, Is.EqualTo(XamlLanguage.Initialization), "sinit#3");
 
-			Assert.IsTrue (r.Read (), "vinit#1");
-			Assert.AreEqual (XamlNodeType.Value, r.NodeType, "vinit#2");
-			Assert.AreEqual ("5", r.Value, "vinit#3"); // string
+			Assert.That(r.Read (), Is.True, "vinit#1");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.Value), "vinit#2");
+			Assert.That(r.Value, Is.EqualTo("5"), "vinit#3"); // string
 
-			Assert.IsTrue (r.Read (), "einit#1");
-			Assert.AreEqual (XamlNodeType.EndMember, r.NodeType, "einit#2");
+			Assert.That(r.Read (), Is.True, "einit#1");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndMember), "einit#2");
 
-			Assert.IsTrue (r.Read (), "eo#1");
-			Assert.AreEqual (XamlNodeType.EndObject, r.NodeType, "eo#2");
+			Assert.That(r.Read (), Is.True, "eo#1");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndObject), "eo#2");
 
-			Assert.IsFalse (r.Read (), "end");
+			Assert.That(r.Read (), Is.False, "end");
 		}
 
 		[Test]
@@ -167,30 +167,30 @@ namespace MonoTests.System.Xaml
 		{
 			var r = GetReader ("DateTime.xml");
 
-			Assert.IsTrue (r.Read (), "ns#1");
-			Assert.AreEqual (XamlNodeType.NamespaceDeclaration, r.NodeType, "ns#2");
-			Assert.AreEqual ("clr-namespace:System;assembly=System.Private.CoreLib", r.Namespace.Namespace, "ns#3");
+			Assert.That(r.Read (), Is.True, "ns#1");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.NamespaceDeclaration), "ns#2");
+			Assert.That(r.Namespace.Namespace, Is.EqualTo("clr-namespace:System;assembly=System.Private.CoreLib"), "ns#3");
 
-			Assert.IsTrue (r.Read (), "so#1");
-			Assert.AreEqual (XamlNodeType.StartObject, r.NodeType, "so#2");
-			Assert.AreEqual (r.SchemaContext.GetXamlType (typeof (DateTime)), r.Type, "so#3");
+			Assert.That(r.Read (), Is.True, "so#1");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.StartObject), "so#2");
+			Assert.That(r.Type, Is.EqualTo(r.SchemaContext.GetXamlType (typeof (DateTime))), "so#3");
 
 			ReadBase (r);
 
-			Assert.IsTrue (r.Read (), "sinit#1");
-			Assert.AreEqual (XamlNodeType.StartMember, r.NodeType, "sinit#2");
-			Assert.AreEqual (XamlLanguage.Initialization, r.Member, "sinit#3");
+			Assert.That(r.Read (), Is.True, "sinit#1");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.StartMember), "sinit#2");
+			Assert.That(r.Member, Is.EqualTo(XamlLanguage.Initialization), "sinit#3");
 
-			Assert.IsTrue (r.Read (), "vinit#1");
-			Assert.AreEqual (XamlNodeType.Value, r.NodeType, "vinit#2");
-			Assert.AreEqual ("2010-04-14", r.Value, "vinit#3"); // string
+			Assert.That(r.Read (), Is.True, "vinit#1");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.Value), "vinit#2");
+			Assert.That(r.Value, Is.EqualTo("2010-04-14"), "vinit#3"); // string
 
-			Assert.IsTrue (r.Read (), "einit#1");
-			Assert.AreEqual (XamlNodeType.EndMember, r.NodeType, "einit#2");
+			Assert.That(r.Read (), Is.True, "einit#1");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndMember), "einit#2");
 
-			Assert.IsTrue (r.Read (), "eo#1");
-			Assert.AreEqual (XamlNodeType.EndObject, r.NodeType, "eo#2");
-			Assert.IsFalse (r.Read (), "end");
+			Assert.That(r.Read (), Is.True, "eo#1");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndObject), "eo#2");
+			Assert.That(r.Read (), Is.False, "end");
 		}
 
 		[Test]
@@ -198,64 +198,64 @@ namespace MonoTests.System.Xaml
 		{
 			var r = GetReader ("GuidFactoryMethod.xml");
 
-			Assert.IsTrue (r.Read (), "ns#1");
-			Assert.AreEqual (XamlNodeType.NamespaceDeclaration, r.NodeType, "ns#2");
-			Assert.AreEqual ("clr-namespace:System;assembly=System.Private.CoreLib", r.Namespace.Namespace, "ns#3");
-			Assert.AreEqual (String.Empty, r.Namespace.Prefix, "ns#4");
+			Assert.That(r.Read (), Is.True, "ns#1");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.NamespaceDeclaration), "ns#2");
+			Assert.That(r.Namespace.Namespace, Is.EqualTo("clr-namespace:System;assembly=System.Private.CoreLib"), "ns#3");
+			Assert.That(r.Namespace.Prefix, Is.EqualTo(String.Empty), "ns#4");
 
-			Assert.IsTrue (r.Read (), "ns2#1");
-			Assert.AreEqual (XamlNodeType.NamespaceDeclaration, r.NodeType, "ns2#2");
-			Assert.AreEqual (XamlLanguage.Xaml2006Namespace, r.Namespace.Namespace, "ns2#3");
-			Assert.AreEqual ("x", r.Namespace.Prefix, "ns2#4");
+			Assert.That(r.Read (), Is.True, "ns2#1");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.NamespaceDeclaration), "ns2#2");
+			Assert.That(r.Namespace.Namespace, Is.EqualTo(XamlLanguage.Xaml2006Namespace), "ns2#3");
+			Assert.That(r.Namespace.Prefix, Is.EqualTo("x"), "ns2#4");
 
-			Assert.IsTrue (r.Read (), "so#1");
-			Assert.AreEqual (XamlNodeType.StartObject, r.NodeType, "so#2");
+			Assert.That(r.Read (), Is.True, "so#1");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.StartObject), "so#2");
 			var xt = r.SchemaContext.GetXamlType (typeof (Guid));
-			Assert.AreEqual (xt, r.Type, "so#3");
+			Assert.That(r.Type, Is.EqualTo(xt), "so#3");
 
 			ReadBase (r);
 
-			Assert.IsTrue (r.Read (), "sfactory#1");
-			Assert.AreEqual (XamlNodeType.StartMember, r.NodeType, "sfactory#2");
-			Assert.AreEqual (XamlLanguage.FactoryMethod, r.Member, "sfactory#3");
+			Assert.That(r.Read (), Is.True, "sfactory#1");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.StartMember), "sfactory#2");
+			Assert.That(r.Member, Is.EqualTo(XamlLanguage.FactoryMethod), "sfactory#3");
 
-			Assert.IsTrue (r.Read (), "vfactory#1");
-			Assert.AreEqual (XamlNodeType.Value, r.NodeType, "vfactory#2");
-			Assert.AreEqual ("Parse", r.Value, "vfactory#3"); // string
+			Assert.That(r.Read (), Is.True, "vfactory#1");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.Value), "vfactory#2");
+			Assert.That(r.Value, Is.EqualTo("Parse"), "vfactory#3"); // string
 
-			Assert.IsTrue (r.Read (), "efactory#1");
-			Assert.AreEqual (XamlNodeType.EndMember, r.NodeType, "efactory#2");
+			Assert.That(r.Read (), Is.True, "efactory#1");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndMember), "efactory#2");
 
-			Assert.IsTrue (r.Read (), "sarg#1");
-			Assert.AreEqual (XamlNodeType.StartMember, r.NodeType, "sarg#2");
-			Assert.AreEqual (XamlLanguage.Arguments, r.Member, "sarg#3");
+			Assert.That(r.Read (), Is.True, "sarg#1");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.StartMember), "sarg#2");
+			Assert.That(r.Member, Is.EqualTo(XamlLanguage.Arguments), "sarg#3");
 
-			Assert.IsTrue (r.Read (), "sarg1#1");
-			Assert.AreEqual (XamlNodeType.StartObject, r.NodeType, "sarg1#2");
-			Assert.AreEqual (XamlLanguage.String, r.Type, "sarg1#3");
+			Assert.That(r.Read (), Is.True, "sarg1#1");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.StartObject), "sarg1#2");
+			Assert.That(r.Type, Is.EqualTo(XamlLanguage.String), "sarg1#3");
 
-			Assert.IsTrue (r.Read (), "sInit#1");
-			Assert.AreEqual (XamlNodeType.StartMember, r.NodeType, "sInit#2");
-			Assert.AreEqual (XamlLanguage.Initialization, r.Member, "sInit#3");
+			Assert.That(r.Read (), Is.True, "sInit#1");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.StartMember), "sInit#2");
+			Assert.That(r.Member, Is.EqualTo(XamlLanguage.Initialization), "sInit#3");
 
-			Assert.IsTrue (r.Read (), "varg1#1");
-			Assert.AreEqual (XamlNodeType.Value, r.NodeType, "varg1#2");
-			Assert.AreEqual ("9c3345ec-8922-4662-8e8d-a4e41f47cf09", r.Value, "varg1#3");
+			Assert.That(r.Read (), Is.True, "varg1#1");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.Value), "varg1#2");
+			Assert.That(r.Value, Is.EqualTo("9c3345ec-8922-4662-8e8d-a4e41f47cf09"), "varg1#3");
 
-			Assert.IsTrue (r.Read (), "eInit#1");
-			Assert.AreEqual (XamlNodeType.EndMember, r.NodeType, "eInit#2");
+			Assert.That(r.Read (), Is.True, "eInit#1");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndMember), "eInit#2");
 
-			Assert.IsTrue (r.Read (), "earg1#1");
-			Assert.AreEqual (XamlNodeType.EndObject, r.NodeType, "earg1#2");
+			Assert.That(r.Read (), Is.True, "earg1#1");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndObject), "earg1#2");
 
-			Assert.IsTrue (r.Read (), "earg#1");
-			Assert.AreEqual (XamlNodeType.EndMember, r.NodeType, "earg#2");
+			Assert.That(r.Read (), Is.True, "earg#1");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndMember), "earg#2");
 
 
-			Assert.IsTrue (r.Read (), "eo#1");
-			Assert.AreEqual (XamlNodeType.EndObject, r.NodeType, "eo#2");
+			Assert.That(r.Read (), Is.True, "eo#1");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndObject), "eo#2");
 
-			Assert.IsFalse (r.Read (), "end");
+			Assert.That(r.Read (), Is.False, "end");
 		}
 
 		[Test]
@@ -265,9 +265,9 @@ namespace MonoTests.System.Xaml
 
 			var xt = r.SchemaContext.GetXamlType (typeof (EventStore));
 			var xm = xt.GetMember ("Event1");
-			Assert.IsNotNull (xt, "premise#1");
-			Assert.IsNotNull (xm, "premise#2");
-			Assert.IsTrue (xm.IsEvent, "premise#3");
+			Assert.That(xt, Is.Not.Null, "premise#1");
+			Assert.That(xm, Is.Not.Null, "premise#2");
+			Assert.That(xm.IsEvent, Is.True, "premise#3");
 			while (true) {
 				r.Read ();
 				if (r.Member != null && r.Member.IsEvent)
@@ -276,37 +276,37 @@ namespace MonoTests.System.Xaml
 					Assert.Fail ("Items did not appear");
 			}
 
-			Assert.AreEqual (xm, r.Member, "#x1");
-			Assert.AreEqual ("Event1", r.Member.Name, "#x2");
+			Assert.That(r.Member, Is.EqualTo(xm), "#x1");
+			Assert.That(r.Member.Name, Is.EqualTo("Event1"), "#x2");
 
-			Assert.IsTrue (r.Read (), "#x11");
-			Assert.AreEqual (XamlNodeType.Value, r.NodeType, "#x12");
-			Assert.AreEqual ("Method1", r.Value, "#x13");
+			Assert.That(r.Read (), Is.True, "#x11");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.Value), "#x12");
+			Assert.That(r.Value, Is.EqualTo("Method1"), "#x13");
 
-			Assert.IsTrue (r.Read (), "#x21");
-			Assert.AreEqual (XamlNodeType.EndMember, r.NodeType, "#x22");
+			Assert.That(r.Read (), Is.True, "#x21");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndMember), "#x22");
 
 			xm = xt.GetMember ("Event2");
-			Assert.IsTrue (r.Read (), "#x31");
-			Assert.AreEqual (xm, r.Member, "#x32");
-			Assert.AreEqual ("Event2", r.Member.Name, "#x33");
+			Assert.That(r.Read (), Is.True, "#x31");
+			Assert.That(r.Member, Is.EqualTo(xm), "#x32");
+			Assert.That(r.Member.Name, Is.EqualTo("Event2"), "#x33");
 
-			Assert.IsTrue (r.Read (), "#x41");
-			Assert.AreEqual (XamlNodeType.Value, r.NodeType, "#x42");
-			Assert.AreEqual ("Method2", r.Value, "#x43");
+			Assert.That(r.Read (), Is.True, "#x41");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.Value), "#x42");
+			Assert.That(r.Value, Is.EqualTo("Method2"), "#x43");
 
-			Assert.IsTrue (r.Read (), "#x51");
-			Assert.AreEqual (XamlNodeType.EndMember, r.NodeType, "#x52");
+			Assert.That(r.Read (), Is.True, "#x51");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndMember), "#x52");
 
-			Assert.IsTrue (r.Read (), "#x61");
-			Assert.AreEqual ("Event1", r.Member.Name, "#x62");
+			Assert.That(r.Read (), Is.True, "#x61");
+			Assert.That(r.Member.Name, Is.EqualTo("Event1"), "#x62");
 
-			Assert.IsTrue (r.Read (), "#x71");
-			Assert.AreEqual (XamlNodeType.Value, r.NodeType, "#x72");
-			Assert.AreEqual ("Method3", r.Value, "#x73"); // nonexistent, but no need to raise an error.
+			Assert.That(r.Read (), Is.True, "#x71");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.Value), "#x72");
+			Assert.That(r.Value, Is.EqualTo("Method3"), "#x73"); // nonexistent, but no need to raise an error.
 
-			Assert.IsTrue (r.Read (), "#x81");
-			Assert.AreEqual (XamlNodeType.EndMember, r.NodeType, "#x82");
+			Assert.That(r.Read (), Is.True, "#x81");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndMember), "#x82");
 
 			while (!r.IsEof)
 				r.Read ();
@@ -532,43 +532,43 @@ namespace MonoTests.System.Xaml
 	xmlns='clr-namespace:MonoTests.System.Xaml;assembly=System.Xaml.TestCases'/>");
 
 			r.Read(); // ns
-			Assert.AreEqual(XamlNodeType.NamespaceDeclaration, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.NamespaceDeclaration));
 			r.Read(); // ns
-			Assert.AreEqual(XamlNodeType.NamespaceDeclaration, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.NamespaceDeclaration));
 			r.Read();
-			Assert.AreEqual(XamlNodeType.StartObject, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.StartObject));
 			var xt = r.Type;
-			Assert.AreEqual(r.SchemaContext.GetXamlType(typeof(ValueWrapper)), xt);
+			Assert.That(xt, Is.EqualTo(r.SchemaContext.GetXamlType(typeof(ValueWrapper))));
 
 			if (r is XamlXmlReader)
 				ReadBase(r);
 
-			Assert.IsTrue(r.Read());
-			Assert.AreEqual(XamlNodeType.StartMember, r.NodeType);
-			Assert.AreEqual(xt.GetMember("StringValue"), r.Member);
-			Assert.IsTrue(r.Read(), "#5");
-			Assert.AreEqual(XamlNodeType.StartObject, r.NodeType);
-			Assert.AreEqual(r.SchemaContext.GetXamlType(typeof(MyExtension2)), xt = r.Type);
-			Assert.IsTrue(r.Read());
-			Assert.AreEqual(XamlNodeType.StartMember, r.NodeType);
-			Assert.AreEqual(xt.GetMember("Bar"), r.Member);
+			Assert.That(r.Read(), Is.True);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.StartMember));
+			Assert.That(r.Member, Is.EqualTo(xt.GetMember("StringValue")));
+			Assert.That(r.Read(), Is.True, "#5");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.StartObject));
+			Assert.That(xt = r.Type, Is.EqualTo(r.SchemaContext.GetXamlType(typeof(MyExtension2))));
+			Assert.That(r.Read(), Is.True);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.StartMember));
+			Assert.That(r.Member, Is.EqualTo(xt.GetMember("Bar")));
 
-			Assert.IsTrue(r.Read());
-			Assert.AreEqual(XamlNodeType.Value, r.NodeType);
-			Assert.AreEqual("Hello {0}", r.Value);
-			Assert.IsTrue(r.Read());
-			Assert.AreEqual(XamlNodeType.EndMember, r.NodeType);
-			Assert.IsTrue(r.Read());
-			Assert.AreEqual(XamlNodeType.EndObject, r.NodeType);
+			Assert.That(r.Read(), Is.True);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.Value));
+			Assert.That(r.Value, Is.EqualTo("Hello {0}"));
+			Assert.That(r.Read(), Is.True);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndMember));
+			Assert.That(r.Read(), Is.True);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndObject));
 
-			Assert.IsTrue(r.Read());
-			Assert.AreEqual(XamlNodeType.EndMember, r.NodeType);
-			Assert.IsTrue(r.Read());
-			Assert.AreEqual(XamlNodeType.EndObject, r.NodeType);
+			Assert.That(r.Read(), Is.True);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndMember));
+			Assert.That(r.Read(), Is.True);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndObject));
 
-			Assert.IsFalse(r.Read());
-			Assert.AreEqual(XamlNodeType.None, r.NodeType);
-			Assert.IsTrue(r.IsEof);
+			Assert.That(r.Read(), Is.False);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.None));
+			Assert.That(r.IsEof, Is.True);
 		}
 
 		[Test]
@@ -580,43 +580,43 @@ namespace MonoTests.System.Xaml
 	xmlns='clr-namespace:MonoTests.System.Xaml;assembly=System.Xaml.TestCases'/>");
 
 			r.Read(); // ns
-			Assert.AreEqual(XamlNodeType.NamespaceDeclaration, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.NamespaceDeclaration));
 			r.Read(); // ns
-			Assert.AreEqual(XamlNodeType.NamespaceDeclaration, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.NamespaceDeclaration));
 			r.Read();
-			Assert.AreEqual(XamlNodeType.StartObject, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.StartObject));
 			var xt = r.Type;
-			Assert.AreEqual(r.SchemaContext.GetXamlType(typeof(ValueWrapper)), xt);
+			Assert.That(xt, Is.EqualTo(r.SchemaContext.GetXamlType(typeof(ValueWrapper))));
 
 			if (r is XamlXmlReader)
 				ReadBase(r);
 
-			Assert.IsTrue(r.Read());
-			Assert.AreEqual(XamlNodeType.StartMember, r.NodeType);
-			Assert.AreEqual(xt.GetMember("StringValue"), r.Member);
-			Assert.IsTrue(r.Read(), "#5");
-			Assert.AreEqual(XamlNodeType.StartObject, r.NodeType);
-			Assert.AreEqual(r.SchemaContext.GetXamlType(typeof(MyExtension2)), xt = r.Type);
-			Assert.IsTrue(r.Read());
-			Assert.AreEqual(XamlNodeType.StartMember, r.NodeType);
-			Assert.AreEqual(xt.GetMember("Bar"), r.Member);
+			Assert.That(r.Read(), Is.True);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.StartMember));
+			Assert.That(r.Member, Is.EqualTo(xt.GetMember("StringValue")));
+			Assert.That(r.Read(), Is.True, "#5");
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.StartObject));
+			Assert.That(xt = r.Type, Is.EqualTo(r.SchemaContext.GetXamlType(typeof(MyExtension2))));
+			Assert.That(r.Read(), Is.True);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.StartMember));
+			Assert.That(r.Member, Is.EqualTo(xt.GetMember("Bar")));
 
-			Assert.IsTrue(r.Read());
-			Assert.AreEqual(XamlNodeType.Value, r.NodeType);
-			Assert.AreEqual("{0} Hello", r.Value);
-			Assert.IsTrue(r.Read());
-			Assert.AreEqual(XamlNodeType.EndMember, r.NodeType);
-			Assert.IsTrue(r.Read());
-			Assert.AreEqual(XamlNodeType.EndObject, r.NodeType);
+			Assert.That(r.Read(), Is.True);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.Value));
+			Assert.That(r.Value, Is.EqualTo("{0} Hello"));
+			Assert.That(r.Read(), Is.True);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndMember));
+			Assert.That(r.Read(), Is.True);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndObject));
 
-			Assert.IsTrue(r.Read());
-			Assert.AreEqual(XamlNodeType.EndMember, r.NodeType);
-			Assert.IsTrue(r.Read());
-			Assert.AreEqual(XamlNodeType.EndObject, r.NodeType);
+			Assert.That(r.Read(), Is.True);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndMember));
+			Assert.That(r.Read(), Is.True);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndObject));
 
-			Assert.IsFalse(r.Read());
-			Assert.AreEqual(XamlNodeType.None, r.NodeType);
-			Assert.IsTrue(r.IsEof);
+			Assert.That(r.Read(), Is.False);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.None));
+			Assert.That(r.IsEof, Is.True);
 		}
 
 		[Test]
@@ -672,34 +672,34 @@ namespace MonoTests.System.Xaml
 			var r = GetReaderText(xaml);
 
 			r.Read(); // xmlns
-			Assert.AreEqual(XamlNodeType.NamespaceDeclaration, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.NamespaceDeclaration));
 
 			r.Read(); // <TestClass4>
-			Assert.AreEqual(XamlNodeType.StartObject, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.StartObject));
 
 			ReadBase(r);
 
 			r.Read(); // StartMember (Foo)
-			Assert.AreEqual(XamlNodeType.StartMember, r.NodeType);
-			Assert.AreEqual(typeof(TestClass4), r.Member.DeclaringType.UnderlyingType);
-			Assert.AreEqual(nameof(TestClass4.Foo), r.Member.Name);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.StartMember));
+			Assert.That(r.Member.DeclaringType.UnderlyingType, Is.EqualTo(typeof(TestClass4)));
+			Assert.That(r.Member.Name, Is.EqualTo(nameof(TestClass4.Foo)));
 
 			r.Read(); // StartObject (NotFound)
-			Assert.AreEqual(XamlNodeType.StartObject, r.NodeType);
-			Assert.True(r.Type.IsUnknown);
-			Assert.AreEqual("NotFound", r.Type.Name);
-			Assert.AreEqual($"clr-namespace:MonoTests.System.Xaml;assembly={assembly}", r.Type.PreferredXamlNamespace);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.StartObject));
+			Assert.That(r.Type.IsUnknown, Is.True);
+			Assert.That(r.Type.Name, Is.EqualTo("NotFound"));
+			Assert.That(r.Type.PreferredXamlNamespace, Is.EqualTo($"clr-namespace:MonoTests.System.Xaml;assembly={assembly}"));
 
 			r.Read(); // EndObject (NotFound)
-			Assert.AreEqual(XamlNodeType.EndObject, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndObject));
 
 			r.Read(); // EndMember (foo)
-			Assert.AreEqual(XamlNodeType.EndMember, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndMember));
 
 			r.Read(); // EndObject (TestClass4)
-			Assert.AreEqual(XamlNodeType.EndObject, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndObject));
 
-			Assert.False(r.Read());
+			Assert.That(r.Read(), Is.False);
 		}
 
 		[Test]
@@ -711,10 +711,10 @@ namespace MonoTests.System.Xaml
 			var ctx = new TestSchemaContext("ExampleExtension");
 			var reader = new XamlXmlReader(new StringReader(xaml), ctx);
 
-			while (reader.Read()) ;
+		while (reader.Read()) ;
 
-			Assert.AreEqual(new[] { "TestClass4", "ExampleExtension", "Example" }, ctx.RequestedTypeNames);
-		}
+		Assert.That(ctx.RequestedTypeNames, Is.EqualTo(new[] { "TestClass4", "ExampleExtension", "Example" }));
+	}
 
 		[Test]
 		public void Looks_Up_Correct_Markup_Extension_Type_Names2()
@@ -725,10 +725,10 @@ namespace MonoTests.System.Xaml
 			var ctx = new TestSchemaContext("ExampleExtension");
 			var reader = new XamlXmlReader(new StringReader(xaml), ctx);
 
-			while (reader.Read()) ;
+		while (reader.Read()) ;
 
-			Assert.AreEqual(new[] { "TestClass4", "ExampleExtensionExtension", "ExampleExtension" }, ctx.RequestedTypeNames);
-		}
+		Assert.That(ctx.RequestedTypeNames, Is.EqualTo(new[] { "TestClass4", "ExampleExtensionExtension", "ExampleExtension" }));
+	}
 
 		[Test]
 		public void Read_ArgumentAttributed ()
@@ -1013,12 +1013,12 @@ namespace MonoTests.System.Xaml
 			var xaml = @"<CollectionParentItem xmlns='clr-namespace:MonoTests.System.Xaml;assembly=System.Xaml.TestCases'><OtherItem/></CollectionParentItem>".UpdateXml ();
 			var parent = (CollectionParentItem)XamlServices.Load (new StringReader (xaml));
 
-			Assert.IsNotNull (parent, "#1");
-			Assert.IsInstanceOf<CollectionParentItem> (parent, "#2");
-			Assert.AreEqual (1, parent.Items.Count, "#3");
+			Assert.That(parent, Is.Not.Null, "#1");
+			Assert.That(parent, Is.InstanceOf<CollectionParentItem>(), "#2");
+			Assert.That(parent.Items.Count, Is.EqualTo(1), "#3");
 			var item = parent.Items.FirstOrDefault ();
-			Assert.IsNotNull (item, "#4");
-			Assert.AreEqual ("FromOther", item.Name, "#5");
+			Assert.That(item, Is.Not.Null, "#4");
+			Assert.That(item.Name, Is.EqualTo("FromOther"), "#5");
 		}
 
 		/// <summary>
@@ -1030,12 +1030,12 @@ namespace MonoTests.System.Xaml
 			var xaml = @"<CollectionParentItem xmlns='clr-namespace:MonoTests.System.Xaml;assembly=System.Xaml.TestCases'><CollectionItem Name='Direct'/></CollectionParentItem>".UpdateXml ();
 			var parent = (CollectionParentItem)XamlServices.Load (new StringReader (xaml));
 
-			Assert.IsNotNull (parent, "#1");
-			Assert.IsInstanceOf<CollectionParentItem> (parent, "#2");
-			Assert.AreEqual (1, parent.Items.Count, "#3");
+			Assert.That(parent, Is.Not.Null, "#1");
+			Assert.That(parent, Is.InstanceOf<CollectionParentItem>(), "#2");
+			Assert.That(parent.Items.Count, Is.EqualTo(1), "#3");
 			var item = parent.Items.FirstOrDefault ();
-			Assert.IsNotNull (item, "#4");
-			Assert.AreEqual ("Direct", item.Name, "#5");
+			Assert.That(item, Is.Not.Null, "#4");
+			Assert.That(item.Name, Is.EqualTo("Direct"), "#5");
 		}
 
 		[Test]
@@ -1048,15 +1048,15 @@ namespace MonoTests.System.Xaml
 			var xaml = @"<CollectionParentItem xmlns='clr-namespace:MonoTests.System.Xaml;assembly=System.Xaml.TestCases'><CollectionItem Name='Item1'/>SomeContent</CollectionParentItem>".UpdateXml();
 			var parent = (CollectionParentItem)XamlServices.Load(new StringReader(xaml));
 
-			Assert.IsNotNull(parent, "#1");
-			Assert.IsInstanceOf<CollectionParentItem>(parent, "#2");
-			Assert.AreEqual(2, parent.Items.Count, "#3");
+			Assert.That(parent, Is.Not.Null, "#1");
+			Assert.That(parent, Is.InstanceOf<CollectionParentItem>(), "#2");
+			Assert.That(parent.Items.Count, Is.EqualTo(2), "#3");
 			var item = parent.Items[0];
-			Assert.IsNotNull(item, "#4");
-			Assert.AreEqual("Item1", item.Name, "#5");
+			Assert.That(item, Is.Not.Null, "#4");
+			Assert.That(item.Name, Is.EqualTo("Item1"), "#5");
 			item = parent.Items[1];
-			Assert.IsNotNull(item, "#6");
-			Assert.AreEqual("SomeContent", item.Name, "#7");
+			Assert.That(item, Is.Not.Null, "#6");
+			Assert.That(item.Name, Is.EqualTo("SomeContent"), "#7");
 		}
 
 		#region non-common tests
@@ -1078,8 +1078,8 @@ namespace MonoTests.System.Xaml
 			settings.LocalAssembly = typeof(TestClass1).GetTypeInfo().Assembly;
 			string xml = File.ReadAllText(Compat.GetTestFile ("LocalAssembly.xml")).UpdateXml();
 			var obj = XamlServices.Load(new XamlXmlReader(new StringReader(xml), settings));
-			Assert.IsNotNull(obj, "#1");
-			Assert.IsInstanceOf<TestClass1>(obj, "#2");
+			Assert.That(obj, Is.Not.Null, "#1");
+			Assert.That(obj, Is.InstanceOf<TestClass1>(), "#2");
 		}
 
 		[Test]
@@ -1095,8 +1095,8 @@ namespace MonoTests.System.Xaml
 #endif
 			Assert.Throws(exType, () => {
 				var obj = XamlServices.Load (new XamlXmlReader (new StringReader (xml), settings));
-				Assert.IsNotNull (obj, "#1");
-				Assert.IsInstanceOf<TestClass1> (obj, "#2");
+				Assert.That(obj, Is.Not.Null, "#1");
+				Assert.That(obj, Is.InstanceOf<TestClass1>(), "#2");
 			});
 		}
 
@@ -1104,65 +1104,65 @@ namespace MonoTests.System.Xaml
 		public void Read_NumericValues()
 		{
 			var obj = (NumericValues)XamlServices.Load(GetReader("NumericValues.xml"));
-			Assert.IsNotNull(obj, "#1");
-			Assert.AreEqual(123.456, obj.DoubleValue, "#2");
-			Assert.AreEqual(234.567M, obj.DecimalValue, "#3");
-			Assert.AreEqual(345.678f, obj.FloatValue, "#4");
-			Assert.AreEqual(123, obj.ByteValue, "#5");
-			Assert.AreEqual(123456, obj.IntValue, "#6");
-			Assert.AreEqual(234567, obj.LongValue, "#7");
+			Assert.That(obj, Is.Not.Null, "#1");
+			Assert.That(obj.DoubleValue, Is.EqualTo(123.456), "#2");
+			Assert.That(obj.DecimalValue, Is.EqualTo(234.567M), "#3");
+			Assert.That(obj.FloatValue, Is.EqualTo(345.678f), "#4");
+			Assert.That(obj.ByteValue, Is.EqualTo(123), "#5");
+			Assert.That(obj.IntValue, Is.EqualTo(123456), "#6");
+			Assert.That(obj.LongValue, Is.EqualTo(234567), "#7");
 		}
 
 		[Test]
 		public void Read_NumericValues_Max()
 		{
 			var obj = (NumericValues)XamlServices.Load(GetReader("NumericValues_Max.xml"));
-			Assert.IsNotNull(obj, "#1");
-			Assert.AreEqual(double.MaxValue, obj.DoubleValue, "#2");
-			Assert.AreEqual(decimal.MaxValue, obj.DecimalValue, "#3");
-			Assert.AreEqual(float.MaxValue, obj.FloatValue, "#4");
-			Assert.AreEqual(byte.MaxValue, obj.ByteValue, "#5");
-			Assert.AreEqual(int.MaxValue, obj.IntValue, "#6");
-			Assert.AreEqual(long.MaxValue, obj.LongValue, "#7");
+			Assert.That(obj, Is.Not.Null, "#1");
+			Assert.That(obj.DoubleValue, Is.EqualTo(double.MaxValue), "#2");
+			Assert.That(obj.DecimalValue, Is.EqualTo(decimal.MaxValue), "#3");
+			Assert.That(obj.FloatValue, Is.EqualTo(float.MaxValue), "#4");
+			Assert.That(obj.ByteValue, Is.EqualTo(byte.MaxValue), "#5");
+			Assert.That(obj.IntValue, Is.EqualTo(int.MaxValue), "#6");
+			Assert.That(obj.LongValue, Is.EqualTo(long.MaxValue), "#7");
 		}
 
 		[Test]
 		public void Read_NumericValues_PositiveInfinity()
 		{
 			var obj = (NumericValues)XamlServices.Load(GetReader("NumericValues_PositiveInfinity.xml"));
-			Assert.IsNotNull(obj, "#1");
-			Assert.AreEqual(double.PositiveInfinity, obj.DoubleValue, "#2");
-			Assert.AreEqual(0, obj.DecimalValue, "#3");
-			Assert.AreEqual(float.PositiveInfinity, obj.FloatValue, "#4");
-			Assert.AreEqual(0, obj.ByteValue, "#5");
-			Assert.AreEqual(0, obj.IntValue, "#6");
-			Assert.AreEqual(0, obj.LongValue, "#7");
+			Assert.That(obj, Is.Not.Null, "#1");
+			Assert.That(obj.DoubleValue, Is.EqualTo(double.PositiveInfinity), "#2");
+			Assert.That(obj.DecimalValue, Is.EqualTo(0), "#3");
+			Assert.That(obj.FloatValue, Is.EqualTo(float.PositiveInfinity), "#4");
+			Assert.That(obj.ByteValue, Is.EqualTo(0), "#5");
+			Assert.That(obj.IntValue, Is.EqualTo(0), "#6");
+			Assert.That(obj.LongValue, Is.EqualTo(0), "#7");
 		}
 
 		[Test]
 		public void Read_NumericValues_NegativeInfinity()
 		{
 			var obj = (NumericValues)XamlServices.Load(GetReader("NumericValues_NegativeInfinity.xml"));
-			Assert.IsNotNull(obj, "#1");
-			Assert.AreEqual(double.NegativeInfinity, obj.DoubleValue, "#2");
-			Assert.AreEqual(0, obj.DecimalValue, "#3");
-			Assert.AreEqual(float.NegativeInfinity, obj.FloatValue, "#4");
-			Assert.AreEqual(0, obj.ByteValue, "#5");
-			Assert.AreEqual(0, obj.IntValue, "#6");
-			Assert.AreEqual(0, obj.LongValue, "#7");
+			Assert.That(obj, Is.Not.Null, "#1");
+			Assert.That(obj.DoubleValue, Is.EqualTo(double.NegativeInfinity), "#2");
+			Assert.That(obj.DecimalValue, Is.EqualTo(0), "#3");
+			Assert.That(obj.FloatValue, Is.EqualTo(float.NegativeInfinity), "#4");
+			Assert.That(obj.ByteValue, Is.EqualTo(0), "#5");
+			Assert.That(obj.IntValue, Is.EqualTo(0), "#6");
+			Assert.That(obj.LongValue, Is.EqualTo(0), "#7");
 		}
 
 		[Test]
 		public void Read_NumericValues_NaN()
 		{
 			var obj = (NumericValues)XamlServices.Load(GetReader("NumericValues_NaN.xml"));
-			Assert.IsNotNull(obj, "#1");
-			Assert.AreEqual(double.NaN, obj.DoubleValue, "#2");
-			Assert.AreEqual(0, obj.DecimalValue, "#3");
-			Assert.AreEqual(float.NaN, obj.FloatValue, "#4");
-			Assert.AreEqual(0, obj.ByteValue, "#5");
-			Assert.AreEqual(0, obj.IntValue, "#6");
-			Assert.AreEqual(0, obj.LongValue, "#7");
+			Assert.That(obj, Is.Not.Null, "#1");
+			Assert.That(obj.DoubleValue, Is.EqualTo(double.NaN), "#2");
+			Assert.That(obj.DecimalValue, Is.EqualTo(0), "#3");
+			Assert.That(obj.FloatValue, Is.EqualTo(float.NaN), "#4");
+			Assert.That(obj.ByteValue, Is.EqualTo(0), "#5");
+			Assert.That(obj.IntValue, Is.EqualTo(0), "#6");
+			Assert.That(obj.LongValue, Is.EqualTo(0), "#7");
 		}
 
 		[Test]
@@ -1173,9 +1173,9 @@ namespace MonoTests.System.Xaml
 			settings.AddNamespace(null, Compat.TestAssemblyNamespace);
 			settings.AddNamespace("x", XamlLanguage.Xaml2006Namespace);
 			var obj = (TestClass5)XamlServices.Load(GetReader("DefaultNamespaces.xml", settings));
-			Assert.IsNotNull(obj, "#1");
-			Assert.AreEqual(obj.Bar, "Hello");
-			Assert.AreEqual(obj.Baz, null);
+			Assert.That(obj, "#1", Is.Not.Null);
+			Assert.That("Hello", Is.EqualTo(obj.Bar));
+			Assert.That(null, Is.EqualTo(obj.Baz));
 #else
 			Assert.Ignore("Not supported in System.Xaml");
 #endif
@@ -1189,9 +1189,9 @@ namespace MonoTests.System.Xaml
 			settings.AddNamespace(null, "urn:mono-test");
 			settings.AddNamespace("x", "urn:mono-test2");
 			var obj = (NamespaceTest.NamespaceTestClass)XamlServices.Load(GetReader("DefaultNamespaces_WithDefinedNamespace.xml", settings));
-			Assert.IsNotNull(obj, "#1");
-			Assert.AreEqual(obj.Foo, "Hello");
-			Assert.AreEqual(obj.Bar, null);
+			Assert.That(obj, "#1", Is.Not.Null);
+			Assert.That("Hello", Is.EqualTo(obj.Foo));
+			Assert.That(null, Is.EqualTo(obj.Bar));
 #else
 			Assert.Ignore("Not supported in System.Xaml");
 #endif
@@ -1201,37 +1201,37 @@ namespace MonoTests.System.Xaml
 		public void Read_NumericValues_StandardTypes()
 		{
 			var obj = (NumericValues)XamlServices.Load(GetReader("NumericValues_StandardTypes.xml"));
-			Assert.IsNotNull(obj, "#1");
-			Assert.AreEqual(123.456, obj.DoubleValue, "#2");
-			Assert.AreEqual(234.567M, obj.DecimalValue, "#3");
-			Assert.AreEqual(345.678f, obj.FloatValue, "#4");
-			Assert.AreEqual(123, obj.ByteValue, "#5");
-			Assert.AreEqual(123456, obj.IntValue, "#6");
-			Assert.AreEqual(234567, obj.LongValue, "#7");
+			Assert.That(obj, Is.Not.Null, "#1");
+			Assert.That(obj.DoubleValue, Is.EqualTo(123.456), "#2");
+			Assert.That(obj.DecimalValue, Is.EqualTo(234.567M), "#3");
+			Assert.That(obj.FloatValue, Is.EqualTo(345.678f), "#4");
+			Assert.That(obj.ByteValue, Is.EqualTo(123), "#5");
+			Assert.That(obj.IntValue, Is.EqualTo(123456), "#6");
+			Assert.That(obj.LongValue, Is.EqualTo(234567), "#7");
 		}
 
 		[Test]
 		public void Read_BaseClassPropertiesInSeparateNamespace()
 		{
 			var obj = (NamespaceTest2.TestClassWithDifferentBaseNamespace)XamlServices.Load(GetReader("BaseClassPropertiesInSeparateNamespace.xml"));
-			Assert.IsNotNull(obj);
-			Assert.AreEqual("MyName", obj.TheName);
-			Assert.AreEqual("OtherValue", obj.SomeOtherProperty);
-			Assert.AreEqual("TheBar", obj.Bar);
-			Assert.IsNull(obj.Baz);
+			Assert.That(obj, Is.Not.Null);
+			Assert.That(obj.TheName, Is.EqualTo("MyName"));
+			Assert.That(obj.SomeOtherProperty, Is.EqualTo("OtherValue"));
+			Assert.That(obj.Bar, Is.EqualTo("TheBar"));
+			Assert.That(obj.Baz, Is.Null);
 		}
 
 		[Test]
 		public void Read_BaseClassPropertiesInSeparateNamespace_WithChildren()
 		{
 			var obj = (NamespaceTest2.TestClassWithDifferentBaseNamespace)XamlServices.Load(GetReader("BaseClassPropertiesInSeparateNamespace_WithChildren.xml"));
-			Assert.IsNotNull(obj);
-			Assert.AreEqual("MyName", obj.TheName);
-			Assert.AreEqual("OtherValue", obj.SomeOtherProperty);
-			Assert.AreEqual("TheBar", obj.Bar);
-			Assert.IsNull(obj.Baz);
-			Assert.IsNotNull(obj.Other);
-			Assert.AreEqual("TheBar2", obj.Other.Bar);
+			Assert.That(obj, Is.Not.Null);
+			Assert.That(obj.TheName, Is.EqualTo("MyName"));
+			Assert.That(obj.SomeOtherProperty, Is.EqualTo("OtherValue"));
+			Assert.That(obj.Bar, Is.EqualTo("TheBar"));
+			Assert.That(obj.Baz, Is.Null);
+			Assert.That(obj.Other, Is.Not.Null);
+			Assert.That(obj.Other.Bar, Is.EqualTo("TheBar2"));
 		}
 
 		[Test]
@@ -1239,21 +1239,21 @@ namespace MonoTests.System.Xaml
 		{
 			var xaml = @"<TestClassWithDifferentBaseNamespace UnknownProperty=""Woo"" xmlns=""urn:mono-test2""/>";
 			var reader = GetReaderText(xaml);
-			Assert.IsTrue(reader.Read());
-			Assert.AreEqual(XamlNodeType.NamespaceDeclaration, reader.NodeType);
-			Assert.AreEqual("urn:mono-test2", reader.Namespace.Namespace);
+			Assert.That(reader.Read(), Is.True);
+			Assert.That(reader.NodeType, Is.EqualTo(XamlNodeType.NamespaceDeclaration));
+			Assert.That(reader.Namespace.Namespace, Is.EqualTo("urn:mono-test2"));
 
 			XamlType xt;
-			Assert.IsTrue(reader.Read());
-			Assert.AreEqual(XamlNodeType.StartObject, reader.NodeType);
-			Assert.AreEqual(xt = reader.SchemaContext.GetXamlType(typeof(MonoTests.System.Xaml.NamespaceTest2.TestClassWithDifferentBaseNamespace)), reader.Type);
+			Assert.That(reader.Read(), Is.True);
+			Assert.That(reader.NodeType, Is.EqualTo(XamlNodeType.StartObject));
+			Assert.That(reader.Type, Is.EqualTo(xt = reader.SchemaContext.GetXamlType(typeof(MonoTests.System.Xaml.NamespaceTest2.TestClassWithDifferentBaseNamespace))));
 
 			ReadBase(reader);
 
-			Assert.IsTrue(reader.Read());
-			Assert.AreEqual(XamlNodeType.StartMember, reader.NodeType);
-			Assert.AreEqual("UnknownProperty", reader.Member.Name);
-			Assert.IsTrue(reader.Member.IsUnknown);
+			Assert.That(reader.Read(), Is.True);
+			Assert.That(reader.NodeType, Is.EqualTo(XamlNodeType.StartMember));
+			Assert.That(reader.Member.Name, Is.EqualTo("UnknownProperty"));
+			Assert.That(reader.Member.IsUnknown, Is.True);
 		}
 
 		[Test]
@@ -1268,17 +1268,17 @@ namespace MonoTests.System.Xaml
 			ReadNamespace(reader, "base", ns, "");
 
 			XamlType xt;
-			Assert.IsTrue(reader.Read());
-			Assert.AreEqual(XamlNodeType.StartObject, reader.NodeType);
-			Assert.AreEqual(xt = reader.SchemaContext.GetXamlType(typeof(MonoTests.System.Xaml.NamespaceTest2.TestClassWithDifferentBaseNamespace)), reader.Type);
+			Assert.That(reader.Read(), Is.True);
+			Assert.That(reader.NodeType, Is.EqualTo(XamlNodeType.StartObject));
+			Assert.That(reader.Type, Is.EqualTo(xt = reader.SchemaContext.GetXamlType(typeof(MonoTests.System.Xaml.NamespaceTest2.TestClassWithDifferentBaseNamespace))));
 
 			ReadBase(reader);
 
-			Assert.IsTrue(reader.Read());
-			Assert.AreEqual(XamlNodeType.StartMember, reader.NodeType);
-			Assert.AreEqual("UnknownProperty", reader.Member.Name);
-			Assert.AreEqual(ns, reader.Member.PreferredXamlNamespace);
-			Assert.IsTrue(reader.Member.IsUnknown);
+			Assert.That(reader.Read(), Is.True);
+			Assert.That(reader.NodeType, Is.EqualTo(XamlNodeType.StartMember));
+			Assert.That(reader.Member.Name, Is.EqualTo("UnknownProperty"));
+			Assert.That(reader.Member.PreferredXamlNamespace, Is.EqualTo(ns));
+			Assert.That(reader.Member.IsUnknown, Is.True);
 		}
 
 		[Test]
@@ -1307,38 +1307,38 @@ namespace MonoTests.System.Xaml
 			var reader = GetReaderText(xaml);
 
 			reader.Read(); // xmlns
-			Assert.AreEqual(reader.NodeType, XamlNodeType.NamespaceDeclaration);
+			Assert.That(XamlNodeType.NamespaceDeclaration, Is.EqualTo(reader.NodeType));
 
 			reader.Read(); // <TestClass1>
-			Assert.AreEqual(reader.NodeType, XamlNodeType.StartObject);
+			Assert.That(XamlNodeType.StartObject, Is.EqualTo(reader.NodeType));
 
 			ReadBase(reader);
 
 			reader.Read(); // StartMember (x:_UnknownContent)
-			Assert.AreEqual(reader.NodeType, XamlNodeType.StartMember);
-			Assert.AreEqual(reader.Member, XamlLanguage.UnknownContent);
+			Assert.That(XamlNodeType.StartMember, Is.EqualTo(reader.NodeType));
+			Assert.That(XamlLanguage.UnknownContent, Is.EqualTo(reader.Member));
 
 			reader.Read(); // <TestClass3>
-			Assert.AreEqual(reader.NodeType, XamlNodeType.StartObject);
-			Assert.AreEqual(reader.Type, reader.SchemaContext.GetXamlType(typeof(TestClass3)));
+			Assert.That(XamlNodeType.StartObject, Is.EqualTo(reader.NodeType));
+			Assert.That(reader.Type, Is.EqualTo(reader.SchemaContext.GetXamlType(typeof(TestClass3))));
 
 			reader.Read(); // </TestClass3>
-			Assert.AreEqual(reader.NodeType, XamlNodeType.EndObject);	
+			Assert.That(XamlNodeType.EndObject, Is.EqualTo(reader.NodeType));	
 			
 			reader.Read(); // <TestClass4>
-			Assert.AreEqual(reader.NodeType, XamlNodeType.StartObject);
-			Assert.AreEqual(reader.Type, reader.SchemaContext.GetXamlType(typeof(TestClass4)));
+			Assert.That(XamlNodeType.StartObject, Is.EqualTo(reader.NodeType));
+			Assert.That(reader.Type, Is.EqualTo(reader.SchemaContext.GetXamlType(typeof(TestClass4))));
 
 			reader.Read(); // </TestClass4>
-			Assert.AreEqual(reader.NodeType, XamlNodeType.EndObject);
+			Assert.That(XamlNodeType.EndObject, Is.EqualTo(reader.NodeType));
 
 			reader.Read(); // EndMember (x:_UnknownContent)
-			Assert.AreEqual(reader.NodeType, XamlNodeType.EndMember);
+			Assert.That(XamlNodeType.EndMember, Is.EqualTo(reader.NodeType));
 
 			reader.Read(); // </TestClass1>
-			Assert.AreEqual(reader.NodeType, XamlNodeType.EndObject);
+			Assert.That(XamlNodeType.EndObject, Is.EqualTo(reader.NodeType));
 
-			Assert.IsFalse(reader.Read()); // EOF
+			Assert.That(reader.Read(), Is.False); // EOF
 		}
 
 		/// <summary>
@@ -1352,39 +1352,39 @@ namespace MonoTests.System.Xaml
 			var reader = GetReaderText(xaml);
 
 			reader.Read(); // xmlns
-			Assert.AreEqual(reader.NodeType, XamlNodeType.NamespaceDeclaration);
+			Assert.That(XamlNodeType.NamespaceDeclaration, Is.EqualTo(reader.NodeType));
 
 			reader.Read(); // <DeferredLoadingContainerMember2>
-			Assert.AreEqual(reader.NodeType, XamlNodeType.StartObject);
+			Assert.That(XamlNodeType.StartObject, Is.EqualTo(reader.NodeType));
 
 			ReadBase(reader);
 
 			reader.Read(); // StartMember
-			Assert.AreEqual(reader.NodeType, XamlNodeType.StartMember);
+			Assert.That(XamlNodeType.StartMember, Is.EqualTo(reader.NodeType));
 						
 			reader.Read(); // <DeferredLoadingChild>
-			Assert.AreEqual(reader.NodeType, XamlNodeType.StartObject);
-			Assert.AreEqual(reader.Type, reader.SchemaContext.GetXamlType(typeof(TestClass4)));
+			Assert.That(XamlNodeType.StartObject, Is.EqualTo(reader.NodeType));
+			Assert.That(reader.Type, Is.EqualTo(reader.SchemaContext.GetXamlType(typeof(TestClass4))));
 
 			reader.Read(); // StartMember (Foo)
-			Assert.AreEqual(reader.NodeType, XamlNodeType.StartMember);			
+			Assert.That(XamlNodeType.StartMember, Is.EqualTo(reader.NodeType));			
 			
 			reader.Read(); // "Blah"
-			Assert.AreEqual(reader.NodeType, XamlNodeType.Value);
+			Assert.That(XamlNodeType.Value, Is.EqualTo(reader.NodeType));
 
 			reader.Read(); // EndMember
-			Assert.AreEqual(reader.NodeType, XamlNodeType.EndMember);
+			Assert.That(XamlNodeType.EndMember, Is.EqualTo(reader.NodeType));
 
 			reader.Read(); // </DeferredLoadingChild>
-			Assert.AreEqual(reader.NodeType, XamlNodeType.EndObject);
+			Assert.That(XamlNodeType.EndObject, Is.EqualTo(reader.NodeType));
 
 			reader.Read(); // EndMember
-			Assert.AreEqual(reader.NodeType, XamlNodeType.EndMember);
+			Assert.That(XamlNodeType.EndMember, Is.EqualTo(reader.NodeType));
 
 			reader.Read(); // </DeferredLoadingContainerMember2>
-			Assert.AreEqual(reader.NodeType, XamlNodeType.EndObject);
+			Assert.That(XamlNodeType.EndObject, Is.EqualTo(reader.NodeType));
 
-			Assert.IsFalse(reader.Read()); // EOF
+			Assert.That(reader.Read(), Is.False); // EOF
 		}
 
 
@@ -1398,66 +1398,66 @@ namespace MonoTests.System.Xaml
 			var r = GetReaderText(xaml);
 
 			r.Read(); // xmlns
-			Assert.AreEqual(XamlNodeType.NamespaceDeclaration, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.NamespaceDeclaration));
 
 			r.Read(); // <CollectionParentItem>
-			Assert.AreEqual(XamlNodeType.StartObject, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.StartObject));
 
 			ReadBase(r);
 
 			r.Read(); // StartMember (Items)
-			Assert.AreEqual(XamlNodeType.StartMember, r.NodeType);
-			Assert.AreEqual(typeof(CollectionParentItem), r.Member.DeclaringType.UnderlyingType);
-			Assert.AreEqual(nameof(CollectionParentItem.Items), r.Member.Name);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.StartMember));
+			Assert.That(r.Member.DeclaringType.UnderlyingType, Is.EqualTo(typeof(CollectionParentItem)));
+			Assert.That(r.Member.Name, Is.EqualTo(nameof(CollectionParentItem.Items)));
 
 			r.Read(); // GetObject
-			Assert.AreEqual(XamlNodeType.GetObject, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.GetObject));
 
 			r.Read(); // StartMember (_Items)
-			Assert.AreEqual(XamlNodeType.StartMember, r.NodeType);
-			Assert.AreEqual(XamlLanguage.Items, r.Member);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.StartMember));
+			Assert.That(r.Member, Is.EqualTo(XamlLanguage.Items));
 
 			r.Read(); // <CollectionItem>
-			Assert.AreEqual(XamlNodeType.StartObject, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.StartObject));
 
 			r.Read(); // StartMember (Name)
-			Assert.AreEqual(XamlNodeType.StartMember, r.NodeType);
-			Assert.AreEqual("Name", r.Member.Name);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.StartMember));
+			Assert.That(r.Member.Name, Is.EqualTo("Name"));
 
 			r.Read(); // "World"
-			Assert.AreEqual(XamlNodeType.Value, r.NodeType);
-			Assert.AreEqual("World", r.Value);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.Value));
+			Assert.That(r.Value, Is.EqualTo("World"));
 
 			r.Read(); // EndMember (Name)
-			Assert.AreEqual(XamlNodeType.EndMember, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndMember));
 
 			r.Read(); // </CollectionItem>
-			Assert.AreEqual(XamlNodeType.EndObject, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndObject));
 
 			r.Read(); // EndMember (Items)
-			Assert.AreEqual(XamlNodeType.EndMember, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndMember));
 
 			r.Read(); // </GetObject>
-			Assert.AreEqual(XamlNodeType.EndObject, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndObject));
 
 			r.Read(); // EndMember (Items)
-			Assert.AreEqual(XamlNodeType.EndMember, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndMember));
 
 			r.Read(); // StartMember (_Items)
-			Assert.AreEqual(XamlNodeType.StartMember, r.NodeType);
-			Assert.AreEqual(nameof(CollectionParentItem.OtherItem), r.Member.Name);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.StartMember));
+			Assert.That(r.Member.Name, Is.EqualTo(nameof(CollectionParentItem.OtherItem)));
 
 			r.Read(); // "True"
-			Assert.AreEqual(XamlNodeType.Value, r.NodeType);
-			Assert.AreEqual("True", r.Value);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.Value));
+			Assert.That(r.Value, Is.EqualTo("True"));
 
 			r.Read(); // EndMember (Items)
-			Assert.AreEqual(XamlNodeType.EndMember, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndMember));
 
 			r.Read(); // </CollectionParentItem>
-			Assert.AreEqual(XamlNodeType.EndObject, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndObject));
 
-			Assert.IsFalse(r.Read()); // EOF
+			Assert.That(r.Read(), Is.False); // EOF
 		}
 
 		[Test]
@@ -1471,63 +1471,63 @@ namespace MonoTests.System.Xaml
 			var r = GetReaderText(xaml);
 
 			r.Read(); // xmlns
-			Assert.AreEqual(XamlNodeType.NamespaceDeclaration, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.NamespaceDeclaration));
 
 			r.Read(); // <CollectionParentItem>
-			Assert.AreEqual(XamlNodeType.StartObject, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.StartObject));
 
 			ReadBase(r);
 
 			r.Read(); // StartMember (Items)
-			Assert.AreEqual(XamlNodeType.StartMember, r.NodeType);
-			Assert.AreEqual(typeof(CollectionParentItem), r.Member.DeclaringType.UnderlyingType);
-			Assert.AreEqual(nameof(CollectionParentItem.Items), r.Member.Name);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.StartMember));
+			Assert.That(r.Member.DeclaringType.UnderlyingType, Is.EqualTo(typeof(CollectionParentItem)));
+			Assert.That(r.Member.Name, Is.EqualTo(nameof(CollectionParentItem.Items)));
 
 			r.Read(); // GetObject
-			Assert.AreEqual(XamlNodeType.GetObject, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.GetObject));
 
 			r.Read(); // StartMember (_Items)
-			Assert.AreEqual(XamlNodeType.StartMember, r.NodeType);
-			Assert.AreEqual(XamlLanguage.Items, r.Member);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.StartMember));
+			Assert.That(r.Member, Is.EqualTo(XamlLanguage.Items));
 
 			r.Read(); // "Hello"
-			Assert.AreEqual(XamlNodeType.Value, r.NodeType);
-			Assert.AreEqual("Hello ", r.Value);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.Value));
+			Assert.That(r.Value, Is.EqualTo("Hello "));
 
 			r.Read(); // <CollectionItem>
-			Assert.AreEqual(XamlNodeType.StartObject, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.StartObject));
 
 			r.Read(); // StartMember (Name)
-			Assert.AreEqual(XamlNodeType.StartMember, r.NodeType);
-			Assert.AreEqual("Name", r.Member.Name);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.StartMember));
+			Assert.That(r.Member.Name, Is.EqualTo("Name"));
 
 			r.Read(); // "World"
-			Assert.AreEqual(XamlNodeType.Value, r.NodeType);
-			Assert.AreEqual("World", r.Value);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.Value));
+			Assert.That(r.Value, Is.EqualTo("World"));
 
 			r.Read(); // EndMember (Name)
-			Assert.AreEqual(XamlNodeType.EndMember, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndMember));
 
 			r.Read(); // </CollectionItem>
-			Assert.AreEqual(XamlNodeType.EndObject, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndObject));
 
 			r.Read(); // "!"
-			Assert.AreEqual(XamlNodeType.Value, r.NodeType);
-			Assert.AreEqual(" !", r.Value);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.Value));
+			Assert.That(r.Value, Is.EqualTo(" !"));
 
 			r.Read(); // EndMember (_Items)
-			Assert.AreEqual(XamlNodeType.EndMember, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndMember));
 
 			r.Read(); // </CollectionItemCollectionAddOverride>
-			Assert.AreEqual(XamlNodeType.EndObject, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndObject));
 
 			r.Read(); // EndMember (Items)
-			Assert.AreEqual(XamlNodeType.EndMember, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndMember));
 
 			r.Read(); // </CollectionParentItem>
-			Assert.AreEqual(XamlNodeType.EndObject, r.NodeType);
+			Assert.That(r.NodeType, Is.EqualTo(XamlNodeType.EndObject));
 
-			Assert.IsFalse(r.Read()); // EOF
+			Assert.That(r.Read(), Is.False); // EOF
 		}
 
 		[Test]
@@ -1541,10 +1541,10 @@ namespace MonoTests.System.Xaml
 </CollectionItemCollectionAddOverride>";
 			var result = (CollectionItemCollectionAddOverride)XamlServices.Parse(xaml);
 
-			Assert.AreEqual(3, result.Count);
-			Assert.AreEqual("Hello ", result[0].Name);
-			Assert.AreEqual("World", result[1].Name);
-			Assert.AreEqual(" !", result[2].Name);
+			Assert.That(result.Count, Is.EqualTo(3));
+			Assert.That(result[0].Name, Is.EqualTo("Hello "));
+			Assert.That(result[1].Name, Is.EqualTo("World"));
+			Assert.That(result[2].Name, Is.EqualTo(" !"));
 		}
 
 		[Test]
@@ -1558,10 +1558,10 @@ namespace MonoTests.System.Xaml
 </CollectionParentItem>";
 			var result = (CollectionParentItem)XamlServices.Parse(xaml);
 
-			Assert.AreEqual(3, result.Items.Count);
-			Assert.AreEqual("Hello ", result.Items[0].Name);
-			Assert.AreEqual("World", result.Items[1].Name);
-			Assert.AreEqual(" !", result.Items[2].Name);
+			Assert.That(result.Items.Count, Is.EqualTo(3));
+			Assert.That(result.Items[0].Name, Is.EqualTo("Hello "));
+			Assert.That(result.Items[1].Name, Is.EqualTo("World"));
+			Assert.That(result.Items[2].Name, Is.EqualTo(" !"));
 		}
 
 		public class TestSchemaContext : XamlSchemaContext
@@ -1601,3 +1601,4 @@ namespace MonoTests.System.Xaml
 		}
 	}
 }
+

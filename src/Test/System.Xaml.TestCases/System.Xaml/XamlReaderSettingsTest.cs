@@ -1,4 +1,4 @@
-﻿//
+//
 // Copyright (C) 2010 Novell Inc. http://novell.com
 //
 // Permission is hereby granted, free of charge, to any person obtaining
@@ -46,12 +46,12 @@ namespace MonoTests.System.Xaml
 		public void DefaultValues ()
 		{
 			var s = new XamlReaderSettings ();
-			Assert.IsFalse (s.AllowProtectedMembersOnRoot, "#1");
-			Assert.IsNull (s.BaseUri, "#2");
-			Assert.IsFalse (s.IgnoreUidsOnPropertyElements, "#3");
-			Assert.IsNull (s.LocalAssembly, "#4");
-			Assert.IsFalse (s.ProvideLineInfo, "#5");
-			Assert.IsFalse (s.ValuesMustBeString, "#6");
+			Assert.That(s.AllowProtectedMembersOnRoot, Is.False, "#1");
+			Assert.That(s.BaseUri, Is.Null, "#2");
+			Assert.That(s.IgnoreUidsOnPropertyElements, Is.False, "#3");
+			Assert.That(s.LocalAssembly, Is.Null, "#4");
+			Assert.That(s.ProvideLineInfo, Is.False, "#5");
+			Assert.That(s.ValuesMustBeString, Is.False, "#6");
 		}
 
 		[Test]
@@ -73,12 +73,12 @@ namespace MonoTests.System.Xaml
 
 			s = new XamlReaderSettings (s);
 
-			Assert.IsTrue (s.AllowProtectedMembersOnRoot, "#1");
-			Assert.IsTrue (s.BaseUri.Equals (new Uri ("urn:foo")), "#2");
-			Assert.IsTrue (s.IgnoreUidsOnPropertyElements, "#3");
-			Assert.AreEqual (typeof (int).GetTypeInfo().Assembly, s.LocalAssembly, "#4");
-			Assert.IsTrue (s.ProvideLineInfo, "#5");
-			Assert.IsTrue (s.ValuesMustBeString, "#6");
+			Assert.That(s.AllowProtectedMembersOnRoot, Is.True, "#1");
+			Assert.That(s.BaseUri.Equals (new Uri ("urn:foo")), Is.True, "#2");
+			Assert.That(s.IgnoreUidsOnPropertyElements, Is.True, "#3");
+			Assert.That(s.LocalAssembly, Is.EqualTo(typeof (int).GetTypeInfo().Assembly), "#4");
+			Assert.That(s.ProvideLineInfo, Is.True, "#5");
+			Assert.That(s.ValuesMustBeString, Is.True, "#6");
 		}
 	}
 }

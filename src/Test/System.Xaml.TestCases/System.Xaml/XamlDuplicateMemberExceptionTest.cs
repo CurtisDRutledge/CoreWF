@@ -45,10 +45,10 @@ namespace MonoTests.System.Xaml
 		[Test]
 		public void ConstructorNullArg ()
 		{
-			// allowed.
+		// allowed.
 			var ex = new XamlDuplicateMemberException ((XamlMember) null, (XamlType) null);
-			Assert.IsNull (ex.DuplicateMember, "#1");
-			Assert.IsNull (ex.ParentType, "#2");
+			Assert.That(ex.DuplicateMember, Is.Null, "#1");
+			Assert.That(ex.ParentType, Is.Null, "#2");
 		}
 	}
 }

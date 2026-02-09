@@ -15,7 +15,7 @@
     <RootNamespace>System.Activities</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.102" PrivateAssets="All" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Quorum.CoreWF.Xaml\Quorum.CoreWF.Xaml.csproj" PrivateAssets="All" />

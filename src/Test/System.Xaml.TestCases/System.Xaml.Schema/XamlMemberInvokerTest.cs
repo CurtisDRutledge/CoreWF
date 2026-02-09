@@ -61,11 +61,11 @@ namespace MonoTests.System.Xaml.Schema
 		[Test]
 		public void FromProperty ()
 		{
-			var pi = str_len;
+		var pi = str_len;
 			var i = new XamlMemberInvoker (new XamlMember (pi, sctx));
-			Assert.AreEqual (pi.GetGetMethod (), i.UnderlyingGetter, "#1");
-			Assert.IsNull (i.UnderlyingSetter, "#2");
-			Assert.AreEqual (5, i.GetValue ("hello"), "#3");
+			Assert.That(i.UnderlyingGetter, Is.EqualTo(pi.GetGetMethod ()), "#1");
+			Assert.That(i.UnderlyingSetter, Is.Null, "#2");
+			Assert.That(i.GetValue ("hello"), Is.EqualTo(5), "#3");
 		}
 
 		[Test]
@@ -95,10 +95,10 @@ namespace MonoTests.System.Xaml.Schema
 		[Test]
 		public void GetValueOnWriteInternalProperty()
 		{
-			var pi = testClass5_Baz;
+		var pi = testClass5_Baz;
 			var i = new XamlMemberInvoker(new XamlMember(pi, sctx));
 			var val = i.GetValue(new TestClass5 { Baz = "hello" });
-			Assert.AreEqual("hello", val);
+			Assert.That(val, Is.EqualTo("hello"));
 		}
 
 		[Test]
@@ -112,11 +112,11 @@ namespace MonoTests.System.Xaml.Schema
 		[Test]
 		public void SetValueOnReadWriteProperty ()
 		{
-			var pi = sb_len;
+		var pi = sb_len;
 			var i = new XamlMemberInvoker (new XamlMember (pi, sctx));
 			var sb = new StringBuilder ();
 			i.SetValue (sb, 5);
-			Assert.AreEqual (5, sb.Length, "#1");
+			Assert.That(sb.Length, Is.EqualTo(5), "#1");
 		}
 
 		[Test]
@@ -142,21 +142,21 @@ namespace MonoTests.System.Xaml.Schema
 		[Test]
 		public void GetValueOnTypeValue ()
 		{
-			var xm = XamlLanguage.Type.GetMember ("Type");
+		var xm = XamlLanguage.Type.GetMember ("Type");
 			var i = new XamlMemberInvoker (xm);
 			var o = i.GetValue (new TypeExtension (typeof (int)));
-			Assert.AreEqual (typeof (int), o, "#1");
+			Assert.That(o, Is.EqualTo(typeof (int)), "#1");
 		}
 
 		[Test]
 		public void GetValueArrayExtension ()
 		{
-			var xt = sctx.GetXamlType (typeof (TestClass));
+		var xt = sctx.GetXamlType (typeof (TestClass));
 			var xm = xt.GetMember ("ArrayMember");
-			Assert.IsNotNull (xm, "#-1");
-			Assert.AreEqual (XamlLanguage.Array, xm.Type, "#0");
+			Assert.That(xm, Is.Not.Null, "#-1");
+			Assert.That(xm.Type, Is.EqualTo(XamlLanguage.Array), "#0");
 			var o = xm.Invoker.GetValue (new TestClass ());
-			Assert.AreEqual (typeof (ArrayExtension), o.GetType (), "#1");
+			Assert.That(o.GetType (), Is.EqualTo(typeof (ArrayExtension)), "#1");
 		}
 
 		[Test]
@@ -200,10 +200,10 @@ namespace MonoTests.System.Xaml.Schema
 		[Test]
 		public void FromEvent ()
 		{
-			var ei = eventStore_Event1;
+		var ei = eventStore_Event1;
 			var i = new XamlMemberInvoker (new XamlMember (ei, sctx));
-			Assert.IsNull (i.UnderlyingGetter, "#1");
-			Assert.AreEqual (ei.GetAddMethod (), i.UnderlyingSetter, "#2");
+			Assert.That(i.UnderlyingGetter, Is.Null, "#1");
+			Assert.That(i.UnderlyingSetter, Is.EqualTo(ei.GetAddMethod ()), "#2");
 		}
 
 		[Test]
@@ -245,9 +245,9 @@ namespace MonoTests.System.Xaml.Schema
 		[Test]
 		public void CustomTypeDefaultValues ()
 		{
-			var i = new MyXamlMemberInvoker ();
-			Assert.IsNull (i.UnderlyingGetter, "#1");
-			Assert.IsNull (i.UnderlyingSetter, "#2");
+		var i = new MyXamlMemberInvoker ();
+			Assert.That(i.UnderlyingGetter, Is.Null, "#1");
+			Assert.That(i.UnderlyingSetter, Is.Null, "#2");
 		}
 
 		[Test]
@@ -320,8 +320,8 @@ namespace MonoTests.System.Xaml.Schema
 		[Test]
 		public void UnknownInvoker ()
 		{
-			Assert.IsNull (XamlMemberInvoker.UnknownInvoker.UnderlyingGetter, "#1");
-			Assert.IsNull (XamlMemberInvoker.UnknownInvoker.UnderlyingSetter, "#2");
+		Assert.That(XamlMemberInvoker.UnknownInvoker.UnderlyingGetter, Is.Null, "#1");
+			Assert.That(XamlMemberInvoker.UnknownInvoker.UnderlyingSetter, Is.Null, "#2");
 		}
 	}
 }

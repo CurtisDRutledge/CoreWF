@@ -75,11 +75,11 @@ namespace MonoTests.System.Windows.Markup
 		[Test]
 		public void AddInconsistent ()
 		{
-			var x = new ArrayExtension (typeof (int));
-			Assert.AreEqual (typeof (int), x.Type, "#1");
+		var x = new ArrayExtension (typeof (int));
+			Assert.That(x.Type, Is.EqualTo(typeof (int)), "#1");
 			// adding inconsistent items is not rejected, while calling ProvideValue() results in an error.
 			x.AddChild (new object ());
-			Assert.AreEqual (typeof (int), x.Type, "#2");
+			Assert.That(x.Type, Is.EqualTo(typeof (int)), "#2");
 		}
 
 		[Test]
@@ -93,10 +93,10 @@ namespace MonoTests.System.Windows.Markup
 		[Test]
 		public void AddInconsistent2 ()
 		{
-			var x = new ArrayExtension (new int [] {1, 3});
-			Assert.AreEqual (typeof (int), x.Type, "#1");
+		var x = new ArrayExtension (new int [] {1, 3});
+			Assert.That(x.Type, Is.EqualTo(typeof (int)), "#1");
 			x.AddChild (new object ());
-			Assert.AreEqual (typeof (int), x.Type, "#2");
+			Assert.That(x.Type, Is.EqualTo(typeof (int)), "#2");
 		}
 
 		[Test]
@@ -116,36 +116,36 @@ namespace MonoTests.System.Windows.Markup
 		[Test]
 		public void ProvideValueInconsistent2 ()
 		{
-			var x = new ArrayExtension (new int [] {1, 3});
+		var x = new ArrayExtension (new int [] {1, 3});
 			x.AddChild (new object ());
 			x.AddChild (null); // allowed
-			Assert.AreEqual (4, x.Items.Count);
+			Assert.That(x.Items.Count, Is.EqualTo(4));
 			Assert.Throws<InvalidOperationException> (() => x.ProvideValue (null));
 		}
 
 		[Test]
 		public void ProvideValue ()
 		{
-			var x = new ArrayExtension (new int [] {1, 3});
+		var x = new ArrayExtension (new int [] {1, 3});
 			x.AddChild (5);
-			Assert.AreEqual (3, x.Items.Count);
+			Assert.That(x.Items.Count, Is.EqualTo(3));
 			var ret = x.ProvideValue (null);
-			Assert.IsNotNull (ret, "#1");
+			Assert.That(ret, Is.Not.Null, "#1");
 			var arr = ret as int [];
-			Assert.IsNotNull (arr, "#2");
-			Assert.AreEqual (3, arr.Length, "#3");
-			Assert.AreEqual (5, arr [2], "#4");
+			Assert.That(arr, Is.Not.Null, "#2");
+			Assert.That(arr.Length, Is.EqualTo(3), "#3");
+			Assert.That(arr [2], Is.EqualTo(5), "#4");
 		}
 
 		[Test]
 		public void AddTextInconsistent ()
 		{
-			var x = new ArrayExtension (new int [] {1, 3});
-			Assert.AreEqual (typeof (int), x.Type, "#1");
+		var x = new ArrayExtension (new int [] {1, 3});
+			Assert.That(x.Type, Is.EqualTo(typeof (int)), "#1");
 			x.AddText ("test");
 			x.AddText (null); // allowed
-			Assert.AreEqual (4, x.Items.Count);
-			Assert.AreEqual (typeof (int), x.Type, "#2");
+			Assert.That(x.Items.Count, Is.EqualTo(4));
+			Assert.That(x.Type, Is.EqualTo(typeof (int)), "#2");
 		}
 
 		[Test]

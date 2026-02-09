@@ -62,8 +62,8 @@ namespace MonoTests.System.Xaml
 			var a = new object ();
 			AttachablePropertyServices.SetProperty (a, Attachable.FooIdentifier, "x");
 			string v;
-			Assert.IsTrue (AttachablePropertyServices.TryGetProperty<string> (a, Attachable.FooIdentifier, out v), "#1");
-			Assert.AreEqual ("x", v, "#2");
+		Assert.That(AttachablePropertyServices.TryGetProperty<string> (a, Attachable.FooIdentifier, out v), Is.True, "#1");
+			Assert.That(v, Is.EqualTo("x"), "#2");
 		}
 
 		[Test]
@@ -72,10 +72,11 @@ namespace MonoTests.System.Xaml
 			var a = new AttachedWrapper2 ();
 			AttachedWrapper2.SetFoo (a, "x");
 			string v;
-			Assert.IsFalse (AttachablePropertyServices.TryGetProperty<string> (a, AttachedWrapper2.FooIdentifier, out v), "#1");
-			Assert.AreEqual ("x", AttachedWrapper2.GetFoo (a), "#2");
+		Assert.That(AttachablePropertyServices.TryGetProperty<string> (a, AttachedWrapper2.FooIdentifier, out v), Is.False, "#1");
+			Assert.That(AttachedWrapper2.GetFoo (a), Is.EqualTo("x"), "#2");
 
-			Assert.AreEqual (1, AttachedWrapper2.PropertyCount, "#3");
+
+			Assert.That(AttachedWrapper2.PropertyCount, Is.EqualTo(1), "#3");
 		}
 	}
 }
